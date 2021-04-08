@@ -14,12 +14,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "UniversityStaffs")
 public class UniversityStaffMember {
-<<<<<<< Updated upstream
-	private int staffId;
-	private String password;
-	private String role;
 
-=======
 	@Id
 	@Column(name = "staffId")
 	private int staffId;
@@ -46,7 +41,7 @@ public class UniversityStaffMember {
 		this.role = role;
 	}
 
->>>>>>> Stashed changes
+
 	public int getStaffId() {
 		return staffId;
 	}
