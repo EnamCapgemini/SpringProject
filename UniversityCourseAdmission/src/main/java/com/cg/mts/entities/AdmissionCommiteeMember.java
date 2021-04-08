@@ -6,45 +6,41 @@ import javax.persistence.Id;
 
 @Entity
 public class AdmissionCommiteeMember {
-	
-@Id
-@Column(name = "adminId")
-private int adminId;
-@Column(name = "adminName")
-private String adminName;
-@Column(name = "adminContact")
-private String adminContact;
 
-public AdmissionCommiteeMember() {
-	super();
-}
+	@Id
+	@Column(name = "adminId")
+	private int adminId;
+	@Column(name = "adminName")
+	private String adminName;
+	@Column(name = "adminContact")
+	private String adminContact;
 
-public int getAdminId() {
-	return adminId;
-}
+	public AdmissionCommiteeMember() {
+		super();
+	}
 
-public void setAdminId(int adminId) {
-	this.adminId = adminId;
-}
+	public int getAdminId() {
+		return adminId;
+	}
 
-public String getAdminName() {
-	return adminName;
-}
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
+	}
 
-public void setAdminName(String adminName) {
-	this.adminName = adminName;
-}
+	public String getAdminName() {
+		return adminName;
+	}
 
-public String getAdminContact() {
-	return adminContact;
-}
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
 
-public void setAdminContact(String adminContact) {
-	this.adminContact = adminContact;
-}
+	public String getAdminContact() {
+		return adminContact;
+	}
 
-
-
-
+	public void setAdminContact(String adminContact) {
+		this.adminContact = adminContact;
+	}
 
 }
