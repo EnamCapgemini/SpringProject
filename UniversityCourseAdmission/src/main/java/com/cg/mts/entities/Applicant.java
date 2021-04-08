@@ -20,7 +20,10 @@ public class Applicant {
 	@NotNull(message="applicant name is required")
 	@Length(min=4,max=15,message="${name.length.error}")
 	private String applicantName;
-
+	
+	@NotEmpty(message="mobile number should not be empty")
+	@NotNull(message="mobile number is required")
+	@Length(min=10,max=10,message="${phone.length.error}")
 	private String mobileNumber;
 	private String applicantDegree;
 	private int applicantGraduationPercent;
