@@ -15,25 +15,25 @@ public class Course {
 	@Id
 	@Column(name="COURSE_ID")
 	private int courseId;
-	
+
 	@NotEmpty(message="course should not be empty")
 	@NotNull(message="course is required")
 	@Length(min=4,max=15,message="${name.length.error}")
 	private String courseName;
-	
+
 	@NotEmpty(message="duration should not be empty")
 	@NotNull(message="duration is required")
 	private String courseDuration;
-	
+
 	private LocalDate courseStartDate;
 	private LocalDate courseEndDate;
-	
+
 	@NotEmpty(message="Fees should not be empty")
 	@NotNull(message="Fees is required")
 	private String courseFees;
-	
-		  public Course(){}
-		
+
+	public Course(){}
+
 	public Course(int courseId, String courseName, String courseDuration, LocalDate courseStartDate,
 			LocalDate courseEndDate, String courseFees) {
 		super();
