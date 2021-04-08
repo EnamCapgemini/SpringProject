@@ -1,7 +1,6 @@
 package com.cg.mts.entities;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
