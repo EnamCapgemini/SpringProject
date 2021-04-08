@@ -3,12 +3,42 @@ package com.cg.mts.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "admission")
 public class Admission {
+
+	@Id
+	@Column(name = "ADMISSION_Id")
 	private int admissionId;
+
+	@Column(name = "COURSE_ID")
 	private int courseId;
+
+	@Column(name = "APPLICANT_ID")
 	private int applicantId;
+
+	@Column(name = "ADMISSION_DATE")
 	private LocalDate admissionDate;
+	@Column(name = "STATUS")
 	private AdmissionStatus status;
+
+	public Admission() {
+		super();
+	}
+
+	public Admission(int admissionId, int courseId, int applicantId, LocalDate admissionDate, AdmissionStatus status) {
+		super();
+		this.admissionId = admissionId;
+		this.courseId = courseId;
+		this.applicantId = applicantId;
+		this.admissionDate = admissionDate;
+		this.status = status;
+	}
 
 	public int getAdmissionId() {
 		return admissionId;
