@@ -1,9 +1,46 @@
 package com.cg.mts.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+@SuppressWarnings("deprecation")
+@Entity
+@Table(name = "UniversityStaffs")
 public class UniversityStaffMember {
+
+	@Id
+	@Column(name = "staffId")
 	private int staffId;
+
+	@NotEmpty(message = "Password must have to given")
+	@NotNull(message = "Password can't be Null")
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\\\S+$).{8, 20}$", message = "Password must contains one uppercase letter, one lowercase letter, one digit and a special character. Don't use any WhiteSapce.")
+	@Length(min = 8, max = 20,message = "Password length should be 8-20 characters")
 	private String password;
+
+	@NotEmpty(message = "Staff Role must have to given")
+	@NotNull(message = "Staff Role can't be Null")
+	@Length(min = 2, max = 20)
 	private String role;
+
+	public UniversityStaffMember() {
+
+	}
+
+	public UniversityStaffMember(int staffId, String password, String role) {
+		super();
+		this.staffId = staffId;
+		this.password = password;
+		this.role = role;
+	}
+
 
 	public int getStaffId() {
 		return staffId;
