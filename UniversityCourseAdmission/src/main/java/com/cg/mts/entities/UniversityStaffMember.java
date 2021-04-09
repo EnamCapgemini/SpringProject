@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -19,6 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @SuppressWarnings("deprecation")
 @Entity
 @Table(name = "UniversityStaffs")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class UniversityStaffMember implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -12,7 +12,9 @@ import javax.persistence.OneToOne;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,7 +38,6 @@ public class Admission implements Serializable{
 	
 	@Column(name = "STATUS")
 	private AdmissionStatus status;
-	
 
 	@OneToOne(mappedBy="admission")
 	private Applicant applicant;
@@ -45,7 +46,6 @@ public class Admission implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="admissionCommiteeMemberId")
 	private AdmissionCommiteeMember admissioncommitee;
-
 
 	public Admission() {
 		super();
