@@ -1,9 +1,12 @@
 package com.cg.mts.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +14,10 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name="course")
-public class Course {
+public class Course implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@Column(name="COURSE_ID")
 	private int courseId;
@@ -31,6 +37,10 @@ public class Course {
 	@NotEmpty(message="Fees should not be empty")
 	@NotNull(message="Fees is required")
 	private String courseFees;
+	
+	@ManyToOne
+	@JoinColumn(name="staff_Id")
+	private UniversityStaffMember universitystaff;
 
 	public Course(){}
 
