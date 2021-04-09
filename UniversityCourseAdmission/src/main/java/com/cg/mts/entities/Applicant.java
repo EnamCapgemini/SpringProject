@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -49,17 +53,20 @@ public class Applicant implements Serializable {
 	@Column(name = "GRAD_PER")
 	private int applicantGraduationPercent;
 	
-	@Column(name = "ADMISSION")
+	@OneToOne
+	@JoinColumn(name="admission_id")
 	private Admission admission;
 	
-	@Column(name = "ADMISSION_STATUS")
+	@OneToOne
+	@JoinColumn(name="admission_status")
 	private AdmissionStatus status;
 	
 	@Column(name = "GENDER")
 	@NotEmpty(message="gender should not be empty")
 	private Gender gender;
 	
-	@Column(name = "ADDRESS")
+	@OneToOne
+	@JoinColumn(name="address")
 	@NotEmpty(message="address should not be empty")
 	private Address address;
 	
@@ -124,12 +131,14 @@ public class Applicant implements Serializable {
 	public void setAdmission(Admission admission) {
 		this.admission = admission;
 	}
+	@Enumerated(EnumType.STRING)
 	public AdmissionStatus getStatus() {
 		return status;
 	}
 	public void setStatus(AdmissionStatus status) {
 		this.status = status;
 	}
+	@Enumerated(EnumType.STRING)
 	public Gender getGender() {
 		return gender;
 	}

@@ -1,10 +1,14 @@
 package com.cg.mts.entities;
 
+import javax.persistence.OneToOne;
+
 public class Address {
 	private String city;
 	private String state;
 	private int pinCode;
 	private String roadName;
+	@OneToOne(mappedBy="admission")
+	private Applicant applicant;
 	public Address() {
 		
 	}
