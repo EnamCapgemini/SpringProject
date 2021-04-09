@@ -19,7 +19,9 @@ insert into UniversityStaffs values(10023,"Abc54tc_98","Coordinator");
 insert into UniversityStaffs values(10024,"a_ctBG6709","Head");
 insert into UniversityStaffs values(10025,"Admission_21","Admission Committee");
 insert into UniversityStaffs values(10026,"committeeM_2M","Admission Committee");
-insert into UniversityStaffs values(10027,"Faculty_56","Faculty");
+insert into UniversityStaffs values(10027,"Faculty_56","Admission Committee");
+insert into UniversityStaffs values(10026,"committee35_g","Admission Committee");
+insert into UniversityStaffs values(10026,"com56_rteu78","Admission Committee");
 
 insert into StaffCredentials values(101,"pass@123");
 insert into StaffCredentials values(105,"pass@456");
