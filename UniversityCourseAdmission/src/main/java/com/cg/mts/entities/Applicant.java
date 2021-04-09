@@ -57,6 +57,7 @@ public class Applicant implements Serializable {
 	@JoinColumn(name = "COURSE")*/
 	private int courseId;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "GENDER")
 	@NotEmpty(message = "gender should not be empty")
 	private Gender gender;
