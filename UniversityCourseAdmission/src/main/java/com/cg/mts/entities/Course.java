@@ -42,6 +42,14 @@ public class Course implements Serializable{
 	@JoinColumn(name="staff_Id")
 	private UniversityStaffMember universitystaff;
 
+	@OneToOne
+	@JoinColumn(name="applicant_Id")
+	private Admission admission;
+	
+	@ManyToOne
+	@JoinColumn(name="applicant_Id")
+	private Applicant applicant;
+
 	public Course(){}
 
 	public Course(int courseId, String courseName, String courseDuration, LocalDate courseStartDate,
