@@ -25,17 +25,23 @@ public class Course implements Serializable{
 	@NotEmpty(message="course should not be empty")
 	@NotNull(message="course is required")
 	@Length(min=4,max=15,message="${name.length.error}")
+	@Column(name = "COURSE_NAME")
 	private String courseName;
 
 	@NotEmpty(message="duration should not be empty")
 	@NotNull(message="duration is required")
+	@Column(name = "COURSE_DURATION")
 	private String courseDuration;
-
+	
+	@Column(name = "COURSE_START_DATE")
 	private LocalDate courseStartDate;
+	
+	@Column(name = "COURSE_END_DATE")
 	private LocalDate courseEndDate;
 
 	@NotEmpty(message="Fees should not be empty")
 	@NotNull(message="Fees is required")
+	@Column(name = "COURSE_FEES")
 	private String courseFees;
 	
 	
