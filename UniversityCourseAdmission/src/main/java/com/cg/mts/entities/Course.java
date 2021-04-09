@@ -2,6 +2,7 @@ package com.cg.mts.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,6 +13,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name="course")
+@Embeddable
 public class Course implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

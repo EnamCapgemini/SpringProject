@@ -26,7 +26,7 @@ public class AdmissionCommiteeMember extends UniversityStaffMember implements Se
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	//@Id
 	@Column(name = "ADMISSION_COMMITEE_MEMBER_ID")
 	private int admissionCommiteeMemberId;
 

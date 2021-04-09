@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -43,7 +44,8 @@ public class UniversityStaffMember implements Serializable {
 	@Column(name="STAFF_ROLE")
 	private String role;
 	
-	@OneToMany(mappedBy="courses",cascade=CascadeType.ALL)
+	//@OneToMany(mappedBy ="courses",cascade=CascadeType.ALL)
+	@ElementCollection
 	private Set<Course> courses = new HashSet<>();
 
 	public UniversityStaffMember() {
