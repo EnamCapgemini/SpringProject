@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class StaffLogin implements Serializable {
+public class StaffCredentials implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -15,7 +15,7 @@ public class StaffLogin implements Serializable {
 
 	private String password;
 
-	public StaffLogin() {
+	public StaffCredentials() {
 
 	}
 

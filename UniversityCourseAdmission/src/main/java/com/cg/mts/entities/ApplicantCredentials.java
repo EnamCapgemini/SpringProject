@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class ApplicantLogin implements Serializable {
+public class ApplicantCredentials implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -15,7 +15,7 @@ public class ApplicantLogin implements Serializable {
 
 	private String password;
 
-	public ApplicantLogin() {
+	public ApplicantCredentials() {
 
 	}
 
