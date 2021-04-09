@@ -65,11 +65,7 @@ public class ApplicationErrorHandler {
 
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
-	
-<<<<<<< HEAD
-=======
 
->>>>>>> 6561712d7f206536fbe7cd0f742b8c7fb99ab73b
 	@ExceptionHandler(EmptyDataException.class)
 	public ResponseEntity<?> handleEmptyData(EmptyDataException ex) {
 		Map<String, Object> errorBody = new LinkedHashMap<>();
@@ -83,15 +79,14 @@ public class ApplicationErrorHandler {
 	@ExceptionHandler(ApplicantNotFoundException.class)
 	public ResponseEntity<?> handleApplicantNotFound(ApplicantNotFoundException ex){
 		Map<String, Object> errorBody = new LinkedHashMap<>();
-<<<<<<< HEAD
+
 		errorBody.put("error", "Not Found");
 		errorBody.put("timestamp", LocalDateTime.now());
 		errorBody.put("details", ex.getMessage());
 
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
-=======
->>>>>>> 6561712d7f206536fbe7cd0f742b8c7fb99ab73b
+
 
 	@ExceptionHandler(AdmissionIdNotFoundException.class)
 	public ResponseEntity<?> handleAdmissionId(AdmissionIdNotFoundException ex) {
