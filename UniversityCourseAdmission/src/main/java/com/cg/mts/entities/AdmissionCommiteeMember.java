@@ -19,65 +19,64 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @SuppressWarnings("deprecation")
 @Entity
-@Table(name = "AdmissionCommiteeMember")
-public class AdmissionCommiteeMember extends UniversityStaffMember implements Serializable{
+@Table(name = "ADMISSIONCOMMITEEMEMBER")
+public class AdmissionCommiteeMember extends UniversityStaffMember implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "ADMISSION_COMMITEE_MEMBER_ID")
-	private int adminId;
+	private int admissionCommiteeMemberId;
 
 	@NotEmpty(message = "Name must be to given")
 	@NotNull(message = "Name is required")
 	@Length(min = 5, max = 20, message = "Name not between 5-20 letters")
 	@Column(name = "ADMISSION_COMMITEE_MEMBER_NAME")
-	private String adminName;
+	private String admissionCommiteeMemberName;
 
 	@NotEmpty(message = "Contact must be to given")
 	@NotNull(message = "Contact is required")
 	@Length(min = 2, max = 50, message = "Contact invalid")
 	@Column(name = "ADMISSION_COMMITEE_MEMBER_CONTACT")
-	private String adminContact;
-	
-	@OneToMany(mappedBy="admissioncommitee",cascade=CascadeType.ALL)
-	private Set<Admission>  admission = new HashSet<>();
-	
+	private String admissionCommiteeMemberContact;
 
-	
+	@OneToMany(mappedBy = "admissioncommitee", cascade = CascadeType.ALL)
+	private Set<Admission> admission = new HashSet<>();
+
 	public AdmissionCommiteeMember() {
 		super();
 	}
 
-	public AdmissionCommiteeMember(int adminId, String adminName, String adminContact) {
+	public AdmissionCommiteeMember(int admissionCommiteeMemberId, String admissionCommiteeMemberName,
+			String admissionCommiteeMemberContact) {
 		super();
-		this.adminId = adminId;
-		this.adminName = adminName;
-		this.adminContact = adminContact;
+		this.admissionCommiteeMemberId = admissionCommiteeMemberId;
+		this.admissionCommiteeMemberName = admissionCommiteeMemberName;
+		this.admissionCommiteeMemberContact = admissionCommiteeMemberContact;
 	}
 
-	public int getAdminId() {
-		return adminId;
+	public int getAdmissionCommiteeMemberId() {
+		return admissionCommiteeMemberId;
 	}
 
-	public void setAdminId(int adminId) {
-		this.adminId = adminId;
+	public void setAdmissionCommiteeMemberId(int admissionCommiteeMemberId) {
+		this.admissionCommiteeMemberId = admissionCommiteeMemberId;
 	}
 
-	public String getAdminName() {
-		return adminName;
+	public String getAdmissionCommiteeMemberName() {
+		return admissionCommiteeMemberName;
 	}
 
-	public void setAdminName(String adminName) {
-		this.adminName = adminName;
+	public void setAdmissionCommiteeMemberName(String admissionCommiteeMemberName) {
+		this.admissionCommiteeMemberName = admissionCommiteeMemberName;
 	}
 
-	public String getAdminContact() {
-		return adminContact;
+	public String getAdmissionCommiteeMemberContact() {
+		return admissionCommiteeMemberContact;
 	}
 
-	public void setAdminContact(String adminContact) {
-		this.adminContact = adminContact;
+	public void setAdmissionCommiteeMemberContact(String admissionCommiteeMemberContact) {
+		this.admissionCommiteeMemberContact = admissionCommiteeMemberContact;
 	}
 
 	public Set<Admission> getAdmission() {
@@ -87,6 +86,5 @@ public class AdmissionCommiteeMember extends UniversityStaffMember implements Se
 	public void setAdmission(Set<Admission> admission) {
 		this.admission = admission;
 	}
-	
 
 }
