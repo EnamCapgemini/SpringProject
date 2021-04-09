@@ -9,11 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-<<<<<<< Updated upstream
 import com.cg.mts.exceptions.ApplicantNotFoundException;
-=======
+
 import com.cg.mts.exceptions.AdmissionIdNotFoundException;
->>>>>>> Stashed changes
+
 import com.cg.mts.exceptions.CourseNotFoundException;
 import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
 import com.cg.mts.exceptions.DuplicateStaffCredentialsException;
@@ -67,7 +66,6 @@ public class ApplicationErrorHandler {
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
 	
-<<<<<<< Updated upstream
 	@ExceptionHandler(EmptyDataException.class)
 	public ResponseEntity<?> handleEmptyData(EmptyDataException ex) {
 		Map<String, Object> errorBody = new LinkedHashMap<>();
@@ -81,12 +79,18 @@ public class ApplicationErrorHandler {
 	@ExceptionHandler(ApplicantNotFoundException.class)
 	public ResponseEntity<?> handleApplicantNotFound(ApplicantNotFoundException ex){
 		Map<String, Object> errorBody = new LinkedHashMap<>();
-=======
+		errorBody.put("error", "Not Found");
+		errorBody.put("timestamp", LocalDateTime.now());
+		errorBody.put("details", ex.getMessage());
+
+		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
+	}
+
 	@ExceptionHandler(AdmissionIdNotFoundException.class)
 	public ResponseEntity<?> handleAdmissionId(AdmissionIdNotFoundException ex) {
 		Map<String, Object> errorBody = new LinkedHashMap<>();
 
->>>>>>> Stashed changes
+
 		errorBody.put("error", "Not Found");
 		errorBody.put("timestamp", LocalDateTime.now());
 		errorBody.put("details", ex.getMessage());
