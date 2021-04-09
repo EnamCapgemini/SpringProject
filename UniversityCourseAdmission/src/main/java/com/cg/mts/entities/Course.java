@@ -40,6 +40,11 @@ public class Course implements Serializable{
 	
 	
 
+
+	@OneToOne
+	@JoinColumn(name="course_Id")
+	private Admission admission;
+
 	
 
 	public Course(){}
