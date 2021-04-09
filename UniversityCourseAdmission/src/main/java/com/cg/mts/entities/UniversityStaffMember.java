@@ -78,5 +78,21 @@ public class UniversityStaffMember implements Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	
+	
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+
+	public void addCourses(Course c) {
+		c.setUniversitystaff(this);
+		this.getCourses().add(c);
+	}
+	
 
 }

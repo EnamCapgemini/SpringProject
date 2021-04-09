@@ -1,10 +1,16 @@
 package com.cg.mts.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -33,7 +39,14 @@ public class AdmissionCommiteeMember implements Serializable{
 	@Length(min = 2, max = 50, message = "Contact invalid")
 	@Column(name = "adminContact")
 	private String adminContact;
-
+	
+	@OneToMany(mappedBy="admissioncommitee",cascade=CascadeType.ALL)
+	private Set<Admission>  admission = new HashSet<>();
+	
+//	@OneToMany(mappedBy="admissions",cascade=CascadeType.ALL)
+//	@Enumerated(EnumType.STRING)
+//	private Set<AdmissionStatus> admissionstatus = new HashSet<>();
+	
 	public AdmissionCommiteeMember() {
 		super();
 	}
@@ -68,5 +81,14 @@ public class AdmissionCommiteeMember implements Serializable{
 	public void setAdminContact(String adminContact) {
 		this.adminContact = adminContact;
 	}
+
+	public Set<Admission> getAdmission() {
+		return admission;
+	}
+
+	public void setAdmission(Set<Admission> admission) {
+		this.admission = admission;
+	}
+	
 
 }

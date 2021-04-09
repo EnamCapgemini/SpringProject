@@ -99,4 +99,14 @@ public class Course implements Serializable{
 		this.courseFees = courseFees;
 	}
 
+	public UniversityStaffMember getUniversitystaff() {
+		return universitystaff;
+	}
+
+	public void setUniversitystaff(UniversityStaffMember universitystaff) {
+		this.universitystaff = universitystaff;
+	}
+	
+	
+
 }

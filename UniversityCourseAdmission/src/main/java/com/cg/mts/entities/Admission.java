@@ -7,7 +7,12 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+<<<<<<< Updated upstream
 import javax.persistence.OneToOne;
+=======
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+>>>>>>> Stashed changes
 import javax.persistence.Table;
 
 @Entity
@@ -31,9 +36,16 @@ public class Admission implements Serializable{
 	@Column(name = "STATUS")
 	private AdmissionStatus status;
 	
+<<<<<<< Updated upstream
 	@OneToOne(mappedBy="admission")
 	private Applicant applicant;
 	
+=======
+	@ManyToOne
+	@JoinColumn(name="adminId")
+	private AdmissionCommiteeMember admissioncommitee;
+
+>>>>>>> Stashed changes
 	public Admission() {
 		super();
 	}
@@ -86,5 +98,6 @@ public class Admission implements Serializable{
 	public void setStatus(AdmissionStatus status) {
 		this.status = status;
 	}
+	
 
 }
