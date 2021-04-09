@@ -26,7 +26,7 @@ public class AdmissionCommiteeMemberController {
 		
 		service.save(acm);
 		
-		return new ResponseEntity<>("University Staff Member is registered successfully!", HttpStatus.OK);
+		return new ResponseEntity<>("Commitee Member saved successfully!", HttpStatus.OK);
 		
 	}
 	
