@@ -1,5 +1,7 @@
 package com.cg.mts.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,7 @@ public class AdmissionCommiteeMemberController {
 	AdmissionCommiteeMemberService service;
 	
 	@PostMapping("/addCommiteeMember")
-	public ResponseEntity<?> registerStaff( @RequestBody AdmissionCommiteeMember acm) {
+	public ResponseEntity<?> saveAdmissionCommiteeMember(@Valid @RequestBody AdmissionCommiteeMember acm) {
 		
 		service.save(acm);
 		
