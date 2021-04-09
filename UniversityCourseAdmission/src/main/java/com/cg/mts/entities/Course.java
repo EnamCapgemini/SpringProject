@@ -38,17 +38,9 @@ public class Course implements Serializable{
 	@NotNull(message="Fees is required")
 	private String courseFees;
 	
-	@ManyToOne
-	@JoinColumn(name="staff_Id")
-	private UniversityStaffMember universitystaff;
-
-	@OneToOne
-	@JoinColumn(name="applicant_Id")
-	private Admission admission;
 	
-	@ManyToOne
-	@JoinColumn(name="applicant_Id")
-	private Applicant applicant;
+
+	
 
 	public Course(){}
 
@@ -99,13 +91,6 @@ public class Course implements Serializable{
 		this.courseFees = courseFees;
 	}
 
-	public UniversityStaffMember getUniversitystaff() {
-		return universitystaff;
-	}
-
-	public void setUniversitystaff(UniversityStaffMember universitystaff) {
-		this.universitystaff = universitystaff;
-	}
 	
 	
 
