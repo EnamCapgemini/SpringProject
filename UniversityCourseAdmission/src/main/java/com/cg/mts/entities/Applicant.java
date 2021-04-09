@@ -1,5 +1,7 @@
 package com.cg.mts.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +14,10 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "applicant")
-public class Applicant {	
+public class Applicant implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@Column(name = "APPLICANT_ID")
 	private String applicantId;
