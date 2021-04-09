@@ -13,21 +13,19 @@ import com.cg.mts.entities.Course;
 import com.cg.mts.exceptions.CourseNotFoundException;
 import com.cg.mts.service.CourseService;
 
-
 @RestController
 @RequestMapping("/Courses")
 public class CourseController {
-	
+
 	@Autowired
 	CourseService service;
-	
-	@DeleteMapping("{cid}")
-public ResponseEntity<?> deleteCourseById( @RequestBody Course c) {
-		
-		service.deleteCourseById(c);
-		
-		return new ResponseEntity<>("Course deleted Successfully!", HttpStatus.OK);
-		
-	}}
-	
 
+	@DeleteMapping("{cid}")
+	public ResponseEntity<?> deleteCourseById(@RequestBody Course c) {
+
+		service.deleteCourseById(c);
+
+		return new ResponseEntity<>("Course deleted Successfully!", HttpStatus.OK);
+
+	}
+}

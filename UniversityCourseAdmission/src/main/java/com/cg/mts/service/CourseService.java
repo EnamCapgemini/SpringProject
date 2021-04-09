@@ -11,14 +11,13 @@ import com.cg.mts.repository.CourseRepository;
 public class CourseService {
 	@Autowired
 	CourseRepository repository;
-	
+
 	public boolean deleteCourseById(Course c) {
-		if(repository.existsById(c.getCourseId())) {
-			repository.deleteById(c.getCourseId()); 
-		return true;}
-		else
-			throw new CourseNotFoundException("course with id "+c.getCourseId()+"doesnt exist");
+		if (repository.existsById(c.getCourseId())) {
+			repository.deleteById(c.getCourseId());
+			return true;
+		} else
+			throw new CourseNotFoundException("course with id " + c.getCourseId() + "doesnt exist");
 	}
 
 }
-
