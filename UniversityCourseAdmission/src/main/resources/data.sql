@@ -1,5 +1,5 @@
 insert into course values(100,"B.com","3 years",LocalDate.now(),LocalDate.now().plus(3, ChronoUnit.YEARS),"300000");
-insert into course values(200,"B.Sc Maths","3 years",LocalDate.now(),LocalDate.now().plus(3, ChronoUnit.YEARS),"350000");
+insert into course values(200,"B.Sc Math","3 years",LocalDate.now(),LocalDate.now().plus(3, ChronoUnit.YEARS),"350000");
 insert into course values(210,"B.Sc Physics","3 years",LocalDate.now(),LocalDate.now().plus(3, ChronoUnit.YEARS),"350000");
 insert into course values(220,"B.Sc Chemistry","3 years",LocalDate.now(),LocalDate.now().plus(3, ChronoUnit.YEARS),"350000");
 insert into course values(310,"B.Tech ME","4 years",LocalDate.now(),LocalDate.now().plus(4, ChronoUnit.YEARS),"700000");
