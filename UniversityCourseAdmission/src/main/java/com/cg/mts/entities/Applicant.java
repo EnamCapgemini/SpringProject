@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -129,12 +131,14 @@ public class Applicant implements Serializable {
 	public void setAdmission(Admission admission) {
 		this.admission = admission;
 	}
+	@Enumerated(EnumType.STRING)
 	public AdmissionStatus getStatus() {
 		return status;
 	}
 	public void setStatus(AdmissionStatus status) {
 		this.status = status;
 	}
+	@Enumerated(EnumType.STRING)
 	public Gender getGender() {
 		return gender;
 	}
