@@ -13,3 +13,10 @@ insert into AdmissionCommiteeMember values(400, "Dhruv", "765@gmail.com");
 insert into AdmissionCommiteeMember values(200, "Doga", "001@hotmail.com");
 insert into AdmissionCommiteeMember values(600, "Parmanu", "888@yandex.com");
 insert into AdmissionCommiteeMember values(300, "Gangadhar", "1580@gmail.com");
+
+
+insert into UniversityStaffs values(10023,"Abc54tc_98","Coordinator");
+insert into UniversityStaffs values(10024,"a_ctBG6709","Head");
+insert into UniversityStaffs values(10025,"Admission_21","Admission Committee");
+insert into UniversityStaffs values(10026,"committeeM_2M","Admission Committee");
+insert into UniversityStaffs values(10027,"Faculty_56","Faculty");
