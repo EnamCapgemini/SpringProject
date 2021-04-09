@@ -27,3 +27,4 @@ insert into StaffCredentials values(101,"pass@123");
 insert into StaffCredentials values(105,"pass@456");
 
 insert into applicant values(100,"pritam","das","903384727","b.tech",76,(10,310,100,LocalDate.now(),AdmissionStatus.PENDING),310,Gender.MALE,"nabapally durgapur west bengal-721322","jkk@gmail.com");
+insert into applicant values(200,"priyam","dan","90378527","b.tech",66,(20,320,200,LocalDate.now(),AdmissionStatus.PENDING),320,Gender.FEMALE,"nabapally durgapur maharashtra-214322","tyrui@gmail.com");
