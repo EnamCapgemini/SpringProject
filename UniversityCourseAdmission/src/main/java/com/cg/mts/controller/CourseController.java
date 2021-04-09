@@ -18,7 +18,7 @@ public class CourseController {
 	@Autowired
 	CourseService service;
 
-	@DeleteMapping("{cid}")
+	@DeleteMapping("{/cid}")
 	public ResponseEntity<?> deleteCourseById(@RequestBody Course c) {
 
 		service.deleteCourseById(c);
