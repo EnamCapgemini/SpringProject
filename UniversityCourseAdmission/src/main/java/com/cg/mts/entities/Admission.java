@@ -33,6 +33,7 @@ public class Admission implements Serializable{
 
 	@Column(name = "ADMISSION_DATE")
 	private LocalDate admissionDate;
+	
 	@Column(name = "STATUS")
 	private AdmissionStatus status;
 	
