@@ -43,7 +43,7 @@ public class Course implements Serializable{
 	private UniversityStaffMember universitystaff;
 
 	@OneToOne
-	@JoinColumn(name="applicant_Id")
+	@JoinColumn(name="course_Id")
 	private Admission admission;
 	
 	@ManyToOne
