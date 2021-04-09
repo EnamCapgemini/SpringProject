@@ -24,7 +24,7 @@ public class Applicant implements Serializable {
 
 	@Id
 	@Column(name = "APPLICANT_ID")
-	private String applicantId;
+	private int applicantId;
 
 	@Column(name = "APPLICANT_FIRSTNAME")
 	private String applicantFirstName;
@@ -53,18 +53,18 @@ public class Applicant implements Serializable {
 	@JoinColumn(name = "ADMISSION_ID")
 	private Admission admission;
 
-	@OneToOne
-	@JoinColumn(name = "COURSE")
-	private Course course; ////////////////
+	/*@OneToOne
+	@JoinColumn(name = "COURSE")*/
+	private int courseId;
 
 	@Column(name = "GENDER")
 	@NotEmpty(message = "gender should not be empty")
 	private Gender gender;
 
-	@OneToOne
-	@JoinColumn(name = "ADDRESS")
+	/*@OneToOne
+	@JoinColumn(name = "ADDRESS")*/
 	@NotEmpty(message = "address should not be empty")
-	private Address address;
+	private String address;
 
 	@Column(name = "EMAIL_ID")
 	@NotEmpty(message = "email should not be empty")
@@ -76,8 +76,8 @@ public class Applicant implements Serializable {
 
 	}
 
-	public Applicant(String applicantId, String applicantFirstName, String applicantLastName, String mobileNumber,
-			String applicantDegree, int applicantGraduationPercent, Gender gender, Address address, String emailId) {
+	public Applicant(int applicantId, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,
+			Admission admission,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId) {
 		super();
 		this.applicantId = applicantId;
 		this.applicantFirstName = applicantFirstName;
@@ -86,17 +86,17 @@ public class Applicant implements Serializable {
 		this.applicantDegree = applicantDegree;
 		this.applicantGraduationPercent = applicantGraduationPercent;
 		this.admission = admission;
-		this.course = course;
+		this.courseId = courseId;
 		this.gender = gender;
 		this.address = address;
 		this.emailId = emailId;
 	}
 
-	public String getApplicantId() {
+	public int getApplicantId() {
 		return applicantId;
 	}
 
-	public void setApplicantId(String applicantId) {
+	public void setApplicantId(int applicantId) {
 		this.applicantId = applicantId;
 	}
 
@@ -148,19 +148,19 @@ public class Applicant implements Serializable {
 		this.admission = admission;
 	}
 
-	public Course getCourse() {
-		return course;
+	public int getCourse() {
+		return courseId;
 	}
 
-	public void setCourse(Course course) {
-		this.course = course;
-	}
+	public void setCourse(int course) {
+		this.courseId = course;
+	}	
 
-	public Address getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
