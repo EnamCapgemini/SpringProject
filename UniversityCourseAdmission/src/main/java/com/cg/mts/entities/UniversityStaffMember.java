@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @SuppressWarnings("deprecation")
 @Entity
-@Table(name = "UniversityStaffs")
+@Table(name = "UNIVERSITYSTAFFS")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class UniversityStaffMember implements Serializable {
 
