@@ -1,5 +1,6 @@
 package com.cg.mts.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,8 +11,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "admission")
-public class Admission {
+public class Admission implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@Column(name = "ADMISSION_Id")
 	private int admissionId;
