@@ -89,10 +89,7 @@ public class UniversityStaffMember implements Serializable {
 		this.courses = courses;
 	}
 
-	public void addCourses(Course c) {
-		c.setUniversitystaff(this);
-		this.getCourses().add(c);
-	}
+
 	
 
 }
