@@ -21,38 +21,44 @@ public class Applicant {
 	@NotEmpty(message="applicant name should not be empty")
 	@NotNull(message="applicant name is required")
 	@Length(min=4,max=15,message="${name.length.error}")
+	@Column(name = "APPLICANT_NAME")
 	private String applicantName;
 	
 	
 	@NotEmpty(message="mobile number should not be empty")
 	@NotNull(message="mobile number is required")
 	@Length(min=10,max=10,message="${phone.length.error}")	
+	@Column(name = "PH_NO")
 	private String mobileNumber;
 	
 	
 	@NotEmpty(message="degree should not be empty")
 	@NotNull(message="degree is required")
 	@Length(min=3,max=10,message="${degree.length.error}")
+	@Column(name = "DEGREE")
 	private String applicantDegree;
 	
 	
 	@NotEmpty(message="percent should not be empty")
 	@NotNull(message="percent is required")
+	@Column(name = "GRAD_PER")
 	private int applicantGraduationPercent;
 	
+	@Column(name = "ADMISSION")
 	private Admission admission;
 	
+	@Column(name = "ADMISSION_STATUS")
 	private AdmissionStatus status;
 	
-	
+	@Column(name = "GENDER")
 	@NotEmpty(message="gender should not be empty")
 	private Gender gender;
 	
-	
+	@Column(name = "ADDRESS")
 	@NotEmpty(message="address should not be empty")
 	private Address address;
 	
-	
+	@Column(name = "EMAIL_ID")
 	@NotEmpty(message="email should not be empty")
 	@NotNull(message="email is required")
 	@Email(message = "email should be valid")
@@ -63,15 +69,7 @@ public class Applicant {
 		
 	}
 	
-	public Applicant(String applicantId,
-			@NotEmpty(message = "applicant name should not be empty") @NotNull(message = "applicant name is required") @Length(min = 4, max = 15, message = "${name.length.error}") String applicantName,
-			@NotEmpty(message = "mobile number should not be empty") @NotNull(message = "mobile number is required") @Length(min = 10, max = 10, message = "${phone.length.error}") String mobileNumber,
-			@NotEmpty(message = "degree should not be empty") @NotNull(message = "degree is required") @Length(min = 3, max = 10, message = "${degree.length.error}") String applicantDegree,
-			@NotEmpty(message = "percent should not be empty") @NotNull(message = "percent is required") int applicantGraduationPercent,
-			Admission admission, AdmissionStatus status,
-			@NotEmpty(message = "gender should not be empty") Gender gender,
-			@NotEmpty(message = "address should not be empty") Address address,
-			@NotEmpty(message = "email should not be empty") @NotNull(message = "email is required") @Email(message = "email should be valid") String emailId) {
+	public Applicant(String applicantId,String applicantName, String mobileNumber, String applicantDegree,int applicantGraduationPercent,Admission admission, AdmissionStatus status,Gender gender, Address address, String emailId) {
 		super();
 		this.applicantId = applicantId;
 		this.applicantName = applicantName;
