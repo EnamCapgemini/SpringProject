@@ -20,32 +20,30 @@ import org.hibernate.validator.constraints.NotEmpty;
 @SuppressWarnings("deprecation")
 @Entity
 @Table(name = "AdmissionCommiteeMember")
-public class AdmissionCommiteeMember implements Serializable{
+public class AdmissionCommiteeMember extends UniversityStaffMember implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "adminId")
+	@Column(name = "ADMISSION_COMMITEE_MEMBER_ID")
 	private int adminId;
 
 	@NotEmpty(message = "Name must be to given")
 	@NotNull(message = "Name is required")
 	@Length(min = 5, max = 20, message = "Name not between 5-20 letters")
-	@Column(name = "adminName")
+	@Column(name = "ADMISSION_COMMITEE_MEMBER_NAME")
 	private String adminName;
 
 	@NotEmpty(message = "Contact must be to given")
 	@NotNull(message = "Contact is required")
 	@Length(min = 2, max = 50, message = "Contact invalid")
-	@Column(name = "adminContact")
+	@Column(name = "ADMISSION_COMMITEE_MEMBER_CONTACT")
 	private String adminContact;
 	
 	@OneToMany(mappedBy="admissioncommitee",cascade=CascadeType.ALL)
 	private Set<Admission>  admission = new HashSet<>();
 	
-//	@OneToMany(mappedBy="admissions",cascade=CascadeType.ALL)
-//	@Enumerated(EnumType.STRING)
-//	private Set<AdmissionStatus> admissionstatus = new HashSet<>();
+
 	
 	public AdmissionCommiteeMember() {
 		super();
