@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @SuppressWarnings("deprecation")
 @Entity
 
-@Table(name = "AdmissionCommiteeMember")
+@Table(name = "ADMISSION_COMMITEE_MEMBER")
 @PrimaryKeyJoinColumn(name="STAFF_ID")
 public class AdmissionCommiteeMember extends UniversityStaffMember implements Serializable{
 
