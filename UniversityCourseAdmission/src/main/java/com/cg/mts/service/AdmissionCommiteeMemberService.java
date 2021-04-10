@@ -20,7 +20,7 @@ public class AdmissionCommiteeMemberService {
 
 		if (repository.existsById(e.getAdmissionCommiteeMemberId())) {
 			throw new DuplicateAdmissionCommiteeMemberException(
-					"Employee with id : " + e.getAdmissionCommiteeMemberId() + " already exists.");
+					"Admission Commitee Member with id : " + e.getAdmissionCommiteeMemberId() + " already exists.");
 		}
 		repository.save(e);
 	}
