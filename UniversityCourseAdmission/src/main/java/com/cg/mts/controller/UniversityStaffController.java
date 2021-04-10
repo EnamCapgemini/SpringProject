@@ -74,6 +74,16 @@ public class UniversityStaffController {
 		return "Staff Role Updated Succesfully";
 	}
 	
+	@PatchMapping("/{staffId}/{staffPassword}")
+	public String updateStaffPassword(@PathVariable("staffId")int id,@PathVariable("staffPassword")String password) {
+		UniversityStaffMember staff=universityService.getStaff(id);
+		if(staff==null)
+			return "Staff data with id: "+id+" Not Exists";
+		staff.setPassword(password);
+		universityService.updateStaff(staff);
+		return "Staff Password Updated Succesfully";
+	}
+	
 	@DeleteMapping("/{staffId}")
 	public String deleteStaffMember(@PathVariable("staffId") int sId) {
 		if(universityService.deleteStaff(sId))

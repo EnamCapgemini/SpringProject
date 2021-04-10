@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -45,8 +46,6 @@ public class Course implements Serializable{
 	private String courseFees;
 	
 	
-
-
 	@OneToOne
 	@JoinColumn(name="COURSE_ID")
 	private Admission admission;

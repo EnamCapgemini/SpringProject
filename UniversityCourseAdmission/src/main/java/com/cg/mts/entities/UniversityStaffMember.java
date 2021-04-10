@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKey;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -45,7 +48,7 @@ public class UniversityStaffMember implements Serializable {
 	@Column(name="STAFF_ROLE")
 	private String role;
 	
-	//@OneToMany(mappedBy ="courses",cascade=CascadeType.ALL)
+	//@OneToMany(mappedBy ="staffs",cascade=CascadeType.ALL)
 	@ElementCollection
 	private Set<Course> courses = new HashSet<>();
 
