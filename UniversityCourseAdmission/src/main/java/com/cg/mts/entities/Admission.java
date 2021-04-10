@@ -89,6 +89,8 @@ public class Admission implements Serializable{
 	public void setAdmissionDate(LocalDate admissionDate) {
 		this.admissionDate = admissionDate;
 	}
+
+
 	@Enumerated(EnumType.STRING)
 	public AdmissionStatus getStatus() {
 		return status;
