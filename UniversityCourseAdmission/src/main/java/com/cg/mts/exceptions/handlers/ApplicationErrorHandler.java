@@ -14,6 +14,7 @@ import com.cg.mts.exceptions.ApplicantNotFoundException;
 import com.cg.mts.exceptions.AdmissionIdNotFoundException;
 
 import com.cg.mts.exceptions.CourseNotFoundException;
+import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
 import com.cg.mts.exceptions.DuplicateStaffCredentialsException;
 import com.cg.mts.exceptions.EmptyDataException;
@@ -70,12 +71,24 @@ public class ApplicationErrorHandler {
 	public ResponseEntity<?> handleEmptyData(EmptyDataException ex) {
 		Map<String, Object> errorBody = new LinkedHashMap<>();
 
-		errorBody.put("error", "Data Not Found");
+		errorBody.put("error", "Empty database");
 		errorBody.put("timestamp", LocalDateTime.now());
 		errorBody.put("details", ex.getMessage());
 
 		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(DataNotFoundException.class)
+	public ResponseEntity<?> handleDataNotFound(DataNotFoundException ex){
+		Map<String, Object> errorBody = new LinkedHashMap<>();
+
+		errorBody.put("error", ex.getOperation()+" failed");
+		errorBody.put("timestamp", LocalDateTime.now());
+		errorBody.put("details", ex.getMessage());
+
+		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
+	}
+	
 	@ExceptionHandler(ApplicantNotFoundException.class)
 	public ResponseEntity<?> handleApplicantNotFound(ApplicantNotFoundException ex){
 		Map<String, Object> errorBody = new LinkedHashMap<>();

@@ -33,7 +33,8 @@ public class UniversityStaffMember implements Serializable {
 
 	@NotEmpty(message = "Password must have to given")
 	@NotNull(message = "Password can't be Null")
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\\\S+$).{8, 20}$", message = "Password must contains one uppercase letter, one lowercase letter, one digit and a special character. Don't use any WhiteSapce.")
+	//@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@_])(?=\\S+$).{8, 20}$", message = "Password must contains one uppercase letter, one lowercase letter, one digit and a special character. Don't use any WhiteSapce.")
+	
 	@Length(min = 8, max = 20,message = "Password length should be 8-20 characters")
 	@Column(name="STAFF_PASSWORD")
 	private String password;
