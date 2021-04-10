@@ -78,7 +78,6 @@ public class ApplicationErrorHandler {
 
 		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
 	}
-<<<<<<< Updated upstream
 	
 	@ExceptionHandler(DataNotFoundException.class)
 	public ResponseEntity<?> handleDataNotFound(DataNotFoundException ex){
@@ -91,9 +90,7 @@ public class ApplicationErrorHandler {
 		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
 	}
 	
-=======
 
->>>>>>> Stashed changes
 	@ExceptionHandler(ApplicantNotFoundException.class)
 	public ResponseEntity<?> handleApplicantNotFound(ApplicantNotFoundException ex) {
 		Map<String, Object> errorBody = new LinkedHashMap<>();
