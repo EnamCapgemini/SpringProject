@@ -48,7 +48,7 @@ public class Course implements Serializable{
 
 
 	@OneToOne
-	@JoinColumn(name="course_Id")
+	@JoinColumn(name="COURSE_ID")
 	private Admission admission;
 
 	
