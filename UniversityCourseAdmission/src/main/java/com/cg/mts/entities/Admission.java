@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 import javax.persistence.OneToOne;
@@ -31,6 +33,7 @@ public class Admission implements Serializable{
 	@Column(name = "ADMISSION_DATE")
 	private LocalDate admissionDate;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS")
 	private AdmissionStatus status;
 
@@ -87,6 +90,8 @@ public class Admission implements Serializable{
 		this.admissionDate = admissionDate;
 	}
 
+
+	@Enumerated(EnumType.STRING)
 	public AdmissionStatus getStatus() {
 		return status;
 	}
