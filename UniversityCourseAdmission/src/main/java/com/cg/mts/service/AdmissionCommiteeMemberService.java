@@ -38,7 +38,7 @@ public class AdmissionCommiteeMemberService {
 	}
 
 	public boolean updateAdmissionCommiteeMember(AdmissionCommiteeMember e) {
-		if (repository.existsById(e.getAdmissionCommiteeMemberId())) {
+		if (repository.existsById(e.getStaffId())) {
 			repository.save(e);
 			return true;
 		}
