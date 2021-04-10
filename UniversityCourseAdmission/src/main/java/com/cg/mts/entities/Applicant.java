@@ -40,8 +40,8 @@ public class Applicant implements Serializable {
 
 	@NotEmpty(message = "degree should not be empty")
 	@NotNull(message = "degree is required")
-	@Length(min = 3, max = 10, message = "${degree.length.error}")
-	@Column(name = "DEGREE")
+	//@Length(min = 3, max = 10, message = "${degree.length.error}")
+	@Column(name = "DEGREE",length = 20)
 	private String applicantDegree;
 
 	@NotEmpty(message = "percent should not be empty")
