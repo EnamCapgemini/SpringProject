@@ -42,7 +42,7 @@ public class Admission implements Serializable{
 	
 
 	@ManyToOne
-	@JoinColumn(name="admissionCommiteeMemberId")
+	@JoinColumn(name="ADMISSION_COMMITEE_STAFF_ID")
 	private AdmissionCommiteeMember admissioncommitee;
 
 	public Admission() {
