@@ -17,6 +17,7 @@ import com.cg.mts.exceptions.AdmissionIdNotFoundException;
 import com.cg.mts.exceptions.CourseNotFoundException;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
+import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.exceptions.DuplicateStaffCredentialsException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.exceptions.StaffCredentialsNotFoundException;
@@ -67,7 +68,16 @@ public class ApplicationErrorHandler {
 
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
+	@ExceptionHandler(DuplicateDataException.class)
+	public ResponseEntity<?> handleDuplicateData(DuplicateDataException ex) {
+		Map<String, Object> errorBody = new LinkedHashMap<>();
 
+		errorBody.put("error", "DUPLICATE DATA EXISTS");
+		errorBody.put("timestamp", LocalDateTime.now());
+		errorBody.put("details", ex.getMessage());
+
+		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
+	}
 	@ExceptionHandler(EmptyDataException.class)
 	public ResponseEntity<?> handleEmptyData(EmptyDataException ex) {
 		Map<String, Object> errorBody = new LinkedHashMap<>();

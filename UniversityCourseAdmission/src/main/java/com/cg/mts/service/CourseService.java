@@ -11,6 +11,7 @@ import com.cg.mts.entities.Course;
 import com.cg.mts.exceptions.ApplicantNotFoundException;
 import com.cg.mts.exceptions.CourseNotFoundException;
 import com.cg.mts.exceptions.DuplicateCourseException;
+import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.CourseRepository;
 
 @Service
@@ -26,7 +27,7 @@ public class CourseService {
 	return false;
 	}
 	
-	public void saveCourse(Course c) throws DuplicateCourseException {
+	public void saveCourse(Course c) throws DuplicateDataException {
 		if (repository.existsById(c.getCourseId()))
 			throw new DuplicateCourseException("Course with" + c.getCourseId() + "Already exists");
 		repository.save(c);
