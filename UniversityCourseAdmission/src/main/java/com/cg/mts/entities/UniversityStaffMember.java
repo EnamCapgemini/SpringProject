@@ -2,7 +2,9 @@ package com.cg.mts.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collector;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -106,6 +108,8 @@ public class UniversityStaffMember implements Serializable {
 	public void setCourses(Set<Course> courses) {
 		this.courses = courses;
 	}
+
+	
 
 
 	
