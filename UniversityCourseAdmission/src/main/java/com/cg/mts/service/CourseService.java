@@ -9,26 +9,25 @@ import org.springframework.stereotype.Service;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.entities.Course;
 import com.cg.mts.exceptions.ApplicantNotFoundException;
-import com.cg.mts.exceptions.CourseNotFoundException;
-import com.cg.mts.exceptions.DuplicateCourseException;
-import com.cg.mts.repository.CourseRepository;
+import com.cg.mts.exceptions.DuplicateDataException;
+import com.cg.mts.repository.ICourseRepository;
 
 @Service
 public class CourseService {
 	@Autowired
-	CourseRepository repository;
+	ICourseRepository repository;
 	Course c;
 
-	public boolean deleteCourse(int id) {
+	public boolean removeCourse(int id) {
 		if(repository.existsById(id)) {
 			repository.deleteById(id); 
 		return true;}
 	return false;
 	}
 	
-	public void saveCourse(Course c) throws DuplicateCourseException {
+	public void addCourse(Course c) throws DuplicateDataException {
 		if (repository.existsById(c.getCourseId()))
-			throw new DuplicateCourseException("Course with" + c.getCourseId() + "Already exists");
+			throw new DuplicateDataException("Course with" + c.getCourseId() + "Already exists");
 		repository.save(c);
 	}
 
@@ -40,7 +39,7 @@ public class CourseService {
 		return false;
 	}
 
-	public Course getCourse(int id) {
+	public Course viewCourse(int id) {
 		Optional<Course> opt = repository.findById(id);
 		if (opt.isPresent())
 			return opt.get();
@@ -48,7 +47,7 @@ public class CourseService {
 
 	}
 	
-	public List<Course> getAllCourses() {
+	public List<Course> viewAllCourses() {
 		List<Course> list=(List<Course>) repository.findAll();
 		return list;
 	}

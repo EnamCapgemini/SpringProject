@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -34,7 +36,7 @@ public class Applicant implements Serializable {
 
 	@NotEmpty(message = "mobile number should not be empty")
 	@NotNull(message = "mobile number is required")
-	@Length(min = 10, max = 10, message = "${phone.length.error}")
+	@Length(min = 10, max = 10, message = "phone.length.error")
 	@Column(name = "PH_NO")
 	private String mobileNumber;
 
@@ -44,8 +46,8 @@ public class Applicant implements Serializable {
 	@Column(name = "DEGREE",length = 20)
 	private String applicantDegree;
 
-	@NotEmpty(message = "percent should not be empty")
 	@NotNull(message = "percent is required")
+	@Range(min=0,max=100)
 	@Column(name = "GRAD_PER")
 	private int applicantGraduationPercent;
 
@@ -59,7 +61,7 @@ public class Applicant implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "GENDER")
-	@NotEmpty(message = "gender should not be empty")
+	
 	private Gender gender;
 
 	/*@OneToOne

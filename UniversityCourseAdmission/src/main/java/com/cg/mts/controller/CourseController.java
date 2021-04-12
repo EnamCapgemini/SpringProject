@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.mts.entities.Course;
-import com.cg.mts.exceptions.CourseNotFoundException;
+import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.CourseService;
 
@@ -29,15 +29,15 @@ public class CourseController {
 	CourseService service;
 
 	@DeleteMapping("{cid}")
-	public String deleteCourse(@PathVariable("cid") int id) {
-		if(service.deleteCourse(id))
+	public String removeCourse(@PathVariable("cid") int id) {
+		if(service.removeCourse(id))
 			return "data deleted";
 		else
-			throw new CourseNotFoundException("Course with id to delete "+ id+"not found");
+			throw new DataNotFoundException("Delete","Course with id to delete "+ id+"not found");
 	}
 	@PostMapping
-	public String saveCourse(@Valid @RequestBody Course c) {
-		service.saveCourse(c);
+	public String addCourse(@Valid @RequestBody Course c) {
+		service.addCourse(c);
 		return "Course successsfully added";
 	}
 
@@ -46,20 +46,20 @@ public class CourseController {
 		if (service.updateCourse(c))
 			return "data updated";
 		else
-			throw new CourseNotFoundException("Course with id" + c.getCourseId() + "not found");
+			throw new DataNotFoundException("Update","Course with id" + c.getCourseId() + "not found");
 	}
 
 	@GetMapping("{cid}")
-	public ResponseEntity<?> getcourse(@PathVariable("cid") int courseId) {
-		Course c = service.getCourse(courseId);
+	public ResponseEntity<?> viewcourse(@PathVariable("cid") int courseId) {
+		Course c = service.viewCourse(courseId);
 		if (c == null)
-			throw new CourseNotFoundException("Course with id " + courseId + "not found");
+			throw new DataNotFoundException("Request","Course with id " + courseId + "not found");
 		return new ResponseEntity<Course>(c, HttpStatus.OK);
 	}
 
 	@GetMapping
-	public List<Course> getAllCourse() {
-		List<Course> list = service.getAllCourses();
+	public List<Course> viewAllCourse() {
+		List<Course> list = service.viewAllCourses();
 		if (list.size() == 0)
 			throw new EmptyDataException("No Courses in database");
 		return list;

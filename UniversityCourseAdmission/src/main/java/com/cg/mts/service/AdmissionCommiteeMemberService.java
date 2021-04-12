@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.AdmissionCommiteeMember;
-import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
+//import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
+import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.AdmissionCommiteeMemberRepository;
 
 @Service
@@ -19,7 +20,7 @@ public class AdmissionCommiteeMemberService {
 	public void saveAdmissionCommiteeMember(AdmissionCommiteeMember e) {
 
 		if (repository.existsById(e.getAdmissionCommiteeMemberId())) {
-			throw new DuplicateAdmissionCommiteeMemberException(
+			throw new DuplicateDataException(
 					"Admission Commitee Member with id : " + e.getAdmissionCommiteeMemberId() + " already exists.");
 		}
 		repository.save(e);
