@@ -22,7 +22,11 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("deprecation")
@@ -45,13 +49,14 @@ public class UniversityStaffMember implements Serializable {
 	@Column(name="STAFF_PASSWORD")
 	private String password;
 
+	
 	@NotEmpty(message = "Staff Role must have to given")
 	@NotNull(message = "Staff Role can't be Null")
 	@Length(min = 2, max = 20)
 	@Column(name="STAFF_ROLE")
 	private String role;
 	
-	//@OneToMany(mappedBy ="staffs",cascade=CascadeType.ALL)
+	@JsonInclude(Include.NON_EMPTY)
 	@ElementCollection
 	private Set<Course> courses = new HashSet<>();
 
@@ -74,6 +79,7 @@ public class UniversityStaffMember implements Serializable {
 	public void setStaffId(int staffId) {
 		this.staffId = staffId;
 	}
+
 
 	public String getPassword() {
 		return password;
