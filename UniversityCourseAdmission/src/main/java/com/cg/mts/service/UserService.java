@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.User;
-import com.cg.mts.exceptions.UserNotFoundException;
+import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.model.UserModel;
 import com.cg.mts.repository.UserRepository;
 
@@ -22,7 +22,7 @@ public class UserService {
 		User existUser = repository.findByUserName(user.getUserName());
 		
 		if(existUser == null) {
-			throw new UserNotFoundException("Username: "+user.getUserName()+" not found!");
+			throw new DataNotFoundException("Login", "Username: '"+user.getUserName()+"' not found!");
 		}
 		
 		if(existUser.getUserName().equals(user.getUserName()) && existUser.getPassword().equals(user.getPassword())) {
