@@ -8,20 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
-<<<<<<< HEAD
 import com.cg.mts.entities.User;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.exceptions.EmptyDataException;
-import com.cg.mts.repository.UniversityStaffRepository;
 import com.cg.mts.repository.UserRepository;
-=======
 //import com.cg.mts.exceptions.DuplicateCourseException;
 import com.cg.mts.exceptions.DuplicateDataException;
 //import com.cg.mts.exceptions.EmptyDataException;
 
 import com.cg.mts.repository.ICourseRepository;
 import com.cg.mts.repository.IUniversityStaffRepository;
->>>>>>> b890938893d4b4696a3da307e7cb14eb7c97d8ac
+
 
 @Service
 public class UniversityStaffService {
@@ -32,14 +29,11 @@ public class UniversityStaffService {
 	@Autowired
 	ICourseRepository courseRepo;
 	
-<<<<<<< HEAD
 	@Autowired
 	UserRepository userRepository;
 	
-	public List<UniversityStaffMember> getAllUniversitySatffs() {
-=======
+
 	public List<UniversityStaffMember> viewAllStaffs() {
->>>>>>> b890938893d4b4696a3da307e7cb14eb7c97d8ac
 		List<UniversityStaffMember> list=(List<UniversityStaffMember>) universityRepo.findAll();
 		return list;
 	}
