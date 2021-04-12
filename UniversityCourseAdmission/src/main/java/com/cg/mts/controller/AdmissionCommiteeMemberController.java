@@ -64,7 +64,7 @@ public class AdmissionCommiteeMemberController {
 			return "Admission Commitee member data updated";
 		else
 			throw new AdmissionCommiteeMemberNotFoundException(
-					"Admission Commitee Member with id" + acm.getAdmissionCommiteeMemberId() + "not found");
+					"Admission Commitee Member with id" + acm.getAdmissionCommiteeMemberId() + " not found");
 	}
 
 	@DeleteMapping("{acmid}")
@@ -73,7 +73,7 @@ public class AdmissionCommiteeMemberController {
 			return "Admission Commitee Member data deleted";
 		else
 			throw new AdmissionCommiteeMemberNotFoundException(
-					"Admission Commitee Member with id to delete " + id + "not found");
+					"Admission Commitee Member with id to delete " + id + " not found");
 	}
 
 	@PatchMapping("{​​​​​acmid}​​​​​/{​​​​​acmname}​​​​​")
@@ -85,6 +85,17 @@ public class AdmissionCommiteeMemberController {
 		acm.setAdmissionCommiteeMemberName(acmname);
 		service.updateAdmissionCommiteeMember(acm);
 		return "Admission Commitee Member name update sucessfull";
+	}
+	
+	@PatchMapping("{​​​​​acmid}​​​​​/{​​​​​acmcont}​​​​​")
+    public String updateAdmissionCommiteeMemberContact(@RequestParam("acmid") int acmid, @RequestParam("acmcont") String acmcont) {
+		AdmissionCommiteeMember acm = service.getAdmissionCommiteeMember(acmid);
+		if(acm == null)
+			return "Admission Commitee Member for contact update not found";
+		
+		acm.setAdmissionCommiteeMemberContact(acmcont);
+		service.updateAdmissionCommiteeMember(acm);
+		return "Admission Commitee Member contact update sucessfull";
 	}
 
 }
