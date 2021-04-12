@@ -57,7 +57,7 @@ public class AdmissionController {
 			throw new DataNotFoundException("detete","Admission with Id" +admissionId+ "not found");	
 	}
 	
-	@GetMapping("/{date}")
+	@GetMapping("/Date{date}")
 	public List<Admission> getAllByDate(@PathVariable("date") Admission admissionDate){
 		List<Admission> l = service.findAll();
 		if(l.size()==0)
