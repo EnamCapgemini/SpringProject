@@ -1,5 +1,7 @@
 package com.cg.mts.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.Applicant;
-import com.cg.mts.exceptions.ApplicantNotFoundException;
+import com.cg.mts.exceptions.DataNotFoundException;
+import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.ApplicantService;
 
 @RestController
@@ -28,10 +32,20 @@ public class ApplicantController {
 	public ResponseEntity<?> getApplicant(@PathVariable("appid") int applicantId){
 		Applicant applicant=service.viewApplicant(applicantId);
 		if(applicant==null)
-			throw new ApplicantNotFoundException("applicant with id "+applicantId+" not found");
+			throw new DataNotFoundException("request","applicant with id "+applicantId+" not found");
 		
 		return new ResponseEntity<Applicant>(applicant,HttpStatus.OK);
 	}
+	
+	@GetMapping("Status/{status}")
+	public List<Admission> getAllByStatus(@PathVariable("status") Admission status){
+		List<Admission> l = service.findAll();
+		if(l.size()==0)
+			throw new EmptyDataException("No Applicants");
+		return l;
+		
+	}
+	
 	@PostMapping
 	public String saveApplicant(@Valid @RequestBody Applicant applicant) {
 		service.addApplicant(applicant);
@@ -50,7 +64,7 @@ public class ApplicantController {
 		if(service.deleteApplicant(applicantId))
 			return "data deleted";
 		else
-			throw new  ApplicantNotFoundException("applicant with id "+applicantId+" not found");
+			throw new  DataNotFoundException("delete","applicant with id "+applicantId+" not found");
 	}
 	
 }

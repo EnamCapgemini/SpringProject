@@ -6,35 +6,52 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
+<<<<<<< HEAD
 import com.cg.mts.entities.User;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.repository.UniversityStaffRepository;
 import com.cg.mts.repository.UserRepository;
+=======
+//import com.cg.mts.exceptions.DuplicateCourseException;
+import com.cg.mts.exceptions.DuplicateDataException;
+//import com.cg.mts.exceptions.EmptyDataException;
+
+import com.cg.mts.repository.ICourseRepository;
+import com.cg.mts.repository.IUniversityStaffRepository;
+>>>>>>> b890938893d4b4696a3da307e7cb14eb7c97d8ac
 
 @Service
 public class UniversityStaffService {
 
 	@Autowired
-	UniversityStaffRepository universityRepo;
+	IUniversityStaffRepository universityRepo;
 	
+	@Autowired
+	ICourseRepository courseRepo;
+	
+<<<<<<< HEAD
 	@Autowired
 	UserRepository userRepository;
 	
 	public List<UniversityStaffMember> getAllUniversitySatffs() {
+=======
+	public List<UniversityStaffMember> viewAllStaffs() {
+>>>>>>> b890938893d4b4696a3da307e7cb14eb7c97d8ac
 		List<UniversityStaffMember> list=(List<UniversityStaffMember>) universityRepo.findAll();
 		return list;
 	}
 	
-	public UniversityStaffMember getStaff(int id) {
+	public UniversityStaffMember viewStaff(int id) {
 		Optional<UniversityStaffMember> opt=universityRepo.findById(id);
 		if(opt.isPresent())
 			return opt.get();
 		return null;
 	}
 	
-	public void saveStaff(UniversityStaffMember staff) throws DuplicateDataException{
+	public void addStaff(UniversityStaffMember staff) throws DuplicateDataException{
 		if(universityRepo.existsById(staff.getStaffId()))
 			throw new DuplicateDataException("Staff with id "+staff.getStaffId()+" already exists");
 		
@@ -52,11 +69,34 @@ public class UniversityStaffService {
 		return false;
 	}
 	
-	public boolean deleteStaff(int id) {
+	public boolean removeStaff(int id) {
 		if(universityRepo.existsById(id)) {
 			universityRepo.deleteById(id);
 			return true;
 		}
 		return false;
 	}
+	
+	public void addCourse(Course c) throws DuplicateDataException {
+		if (courseRepo.existsById(c.getCourseId()))
+			throw new DuplicateDataException("Course with" + c.getCourseId() + "Already exists");
+		courseRepo.save(c);
+	}
+
+	public boolean removeCourse(int id) {
+		if(courseRepo.existsById(id)) {
+			courseRepo.deleteById(id); 
+		return true;
+		}
+	return false;
+	}
+	
+	public boolean updateCourse(Course c) {
+		if (courseRepo.existsById(c.getCourseId())) {
+			courseRepo.save(c);
+			return true;
+		}
+		return false;
+	}
+
 }

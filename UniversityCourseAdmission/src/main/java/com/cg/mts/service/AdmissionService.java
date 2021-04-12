@@ -1,6 +1,10 @@
 package com.cg.mts.service;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +14,12 @@ import com.cg.mts.exceptions.AdmissionIdNotFoundException;
 import com.cg.mts.exceptions.DuplicateAdmissionException;
 import com.cg.mts.repository.AdmissionRepository;
 
+
 @Service
 public class AdmissionService {
+	
+	@PersistenceContext
+	  private EntityManager em;
 	
 	@Autowired
 	AdmissionRepository repository;
@@ -49,5 +57,9 @@ public class AdmissionService {
             return opt.get();
         return null;
     } 
+	
+	public List<Admission> findAll(){
+		return em.createQuery("Select admissionDate from Admisson admissionDate ",Admission.class).getResultList();
+	}
 
 }
