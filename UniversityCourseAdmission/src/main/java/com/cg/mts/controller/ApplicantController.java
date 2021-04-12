@@ -49,7 +49,6 @@ public class ApplicantController {
 	@PostMapping
 	public String saveApplicant(@Valid @RequestBody Applicant applicant) {
 		service.addApplicant(applicant);
-		
 		return "data saved";	
 	}
 	

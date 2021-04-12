@@ -13,6 +13,7 @@ import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
+import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.ApplicantRepository;
 @Service
 public class ApplicantService {
@@ -23,10 +24,10 @@ public class ApplicantService {
 	@Autowired
 	ApplicantRepository repository;
 	
-	public boolean addApplicant(Applicant applicant) {
-		
+	public void addApplicant(Applicant applicant) throws DuplicateDataException {
+		if(repository.existsById(applicant.getApplicantId()))
+			throw new DuplicateDataException("Applicant with id "+applicant.getApplicantId()+" already exists!..");
 		repository.save(applicant);
-		return true;
 	}
 	
 	public boolean updateApplicant(Applicant applicant) {
