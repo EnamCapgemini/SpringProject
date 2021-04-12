@@ -30,16 +30,16 @@ public class UniversityStaffController {
 	UniversityStaffService universityService;
 	
 	@GetMapping
-	public List<UniversityStaffMember> getAllStaffs(){
-		List<UniversityStaffMember> list=universityService.getAllUniversitySatffs();
+	public List<UniversityStaffMember> viewAllStaffs(){
+		List<UniversityStaffMember> list=universityService.viewAllStaffs();
 		if(list.size()==0)
 			throw new EmptyDataException("No University Satff in Database.");
 		return list;
 	}
 	
 	@GetMapping("/{staffId}")
-	public ResponseEntity<?> getStaffMember(@PathVariable("staffId") int sid){
-		UniversityStaffMember staff=universityService.getStaff(sid);
+	public ResponseEntity<?> viewStaff(@PathVariable("staffId") int sid){
+		UniversityStaffMember staff=universityService.viewStaff(sid);
 		if(staff==null)
 			throw new DataNotFoundException("Request", "Staff with id "+sid+" not found");
 		else
@@ -47,46 +47,27 @@ public class UniversityStaffController {
 	}
 	
 	@PostMapping
-	public String saveStaffMember(@Valid @RequestBody UniversityStaffMember staff) {
-		if(universityService.getStaff(staff.getStaffId())==null)
+	public String addStaff(@Valid @RequestBody UniversityStaffMember staff) {
+		if(universityService.viewStaff(staff.getStaffId())==null)
 		{
-			universityService.saveStaff(staff);
+			universityService.addStaff(staff);
 			return "Data saved Succesfully";
 		}
 		return "Duplicate Staff ID";
 	}
 	
 	@PutMapping
-	public String updateStaffMember(@Valid @RequestBody UniversityStaffMember staff) {
+	public String updateStaff(@Valid @RequestBody UniversityStaffMember staff) {
 		if(universityService.updateStaff(staff))
 			return "Staff data updated";
 		else
 			throw new DataNotFoundException("Update", "Staff with id "+staff.getStaffId()+" not found");
 	}
 	
-	@PatchMapping("/{staffId}/{staffRole}")
-	public String updateStaffRole(@PathVariable("staffId")int id,@PathVariable("staffRole")String role) {
-		UniversityStaffMember staff=universityService.getStaff(id);
-		if(staff==null)
-			return "Staff data with id: "+id+" Not Exists";
-		staff.setRole(role);
-		universityService.updateStaff(staff);
-		return "Staff Role Updated Succesfully";
-	}
-	
-	@PatchMapping("/{staffId}/{staffPassword}")
-	public String updateStaffPassword(@PathVariable("staffId")int id,@PathVariable("staffPassword")String password) {
-		UniversityStaffMember staff=universityService.getStaff(id);
-		if(staff==null)
-			return "Staff data with id: "+id+" Not Exists";
-		staff.setPassword(password);
-		universityService.updateStaff(staff);
-		return "Staff Password Updated Succesfully";
-	}
 	
 	@DeleteMapping("/{staffId}")
-	public String deleteStaffMember(@PathVariable("staffId") int sId) {
-		if(universityService.deleteStaff(sId))
+	public String removeStaff(@PathVariable("staffId") int sId) {
+		if(universityService.removeStaff(sId))
 			return "Staff Data Deleted Succesfully";
 		else
 			throw new DataNotFoundException("Delete", "Staff with id "+sId+" not found");
