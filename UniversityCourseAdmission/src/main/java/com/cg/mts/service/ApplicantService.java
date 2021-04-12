@@ -41,12 +41,12 @@ public class ApplicantService {
 
 	}
 	public boolean deleteApplicant(int id) {
-		if(!(repository.existsById(id))) {
-			throw new DataNotFoundException("delete","Applicant with id "+id+" not found!..");
+		if(repository.existsById(id)) {
+			repository.deleteById(id);
+			return true;
 		} 
 		else {
-		repository.deleteById(id);
-		 return true;
+		 return false;
 		}
 	}
 	public Applicant viewApplicant(int applicant) {
