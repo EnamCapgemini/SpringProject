@@ -7,15 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.UniversityStaffMember;
+import com.cg.mts.entities.User;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.repository.UniversityStaffRepository;
+import com.cg.mts.repository.UserRepository;
 
 @Service
 public class UniversityStaffService {
 
 	@Autowired
 	UniversityStaffRepository universityRepo;
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	public List<UniversityStaffMember> getAllUniversitySatffs() {
 		List<UniversityStaffMember> list=(List<UniversityStaffMember>) universityRepo.findAll();
@@ -33,6 +38,8 @@ public class UniversityStaffService {
 		if(universityRepo.existsById(staff.getStaffId()))
 			throw new DuplicateDataException("Staff with id "+staff.getStaffId()+" already exists");
 		
+			userRepository.save(new User("moot", staff.getPassword(), staff.getRole(), true));
+			
 			universityRepo.save(staff);
 		}
 	

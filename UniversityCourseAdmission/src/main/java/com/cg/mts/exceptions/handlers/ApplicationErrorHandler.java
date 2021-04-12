@@ -20,7 +20,7 @@ import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.exceptions.DuplicateStaffCredentialsException;
 import com.cg.mts.exceptions.EmptyDataException;
-import com.cg.mts.exceptions.StaffCredentialsNotFoundException;
+import com.cg.mts.exceptions.UserNotFoundException;
 
 @ControllerAdvice
 public class ApplicationErrorHandler {
@@ -36,8 +36,8 @@ public class ApplicationErrorHandler {
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler(StaffCredentialsNotFoundException.class)
-	public ResponseEntity<?> handleMissingEmployee(StaffCredentialsNotFoundException ex) {
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<?> handleMissingUser(UserNotFoundException ex) {
 		Map<String, Object> errorBody = new LinkedHashMap<>();
 
 		errorBody.put("error", "Not Found");
