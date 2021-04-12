@@ -38,8 +38,8 @@ public class ApplicantController {
 	}
 	
 	@GetMapping("Status/{status}")
-	public List<Admission> getAllByStatus(@PathVariable("status") Admission status){
-		List<Admission> l = service.findAll();
+	public List<Applicant> getAllByStatus(@PathVariable("status") Admission status){
+		List<Applicant> l = service.findAll();
 		if(l.size()==0)
 			throw new EmptyDataException("No Applicants");
 		return l;
