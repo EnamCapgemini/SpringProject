@@ -33,7 +33,7 @@ public class ApplicantController {
 		return new ResponseEntity<Applicant>(applicant,HttpStatus.OK);
 	}
 	@PostMapping
-	public String saveApplicant(@RequestBody Applicant applicant) {
+	public String saveApplicant(@Valid @RequestBody Applicant applicant) {
 		service.addApplicant(applicant);
 		
 		return "data saved";	
