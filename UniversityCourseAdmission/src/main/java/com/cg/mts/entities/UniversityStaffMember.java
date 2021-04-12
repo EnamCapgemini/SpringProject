@@ -22,6 +22,9 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @SuppressWarnings("deprecation")
 @Entity
 @Table(name = "UNIVERSITYSTAFFS")

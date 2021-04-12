@@ -7,9 +7,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
+//import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,14 +23,17 @@ import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.UniversityStaffService;
 
+
 @RestController
 @RequestMapping("/UniversityStaffs")
+
 public class UniversityStaffController {
 
 	@Autowired
 	UniversityStaffService universityService;
 	
 	@GetMapping
+	
 	public List<UniversityStaffMember> viewAllStaffs(){
 		List<UniversityStaffMember> list=universityService.viewAllStaffs();
 		if(list.size()==0)
@@ -72,6 +76,5 @@ public class UniversityStaffController {
 		else
 			throw new DataNotFoundException("Delete", "Staff with id "+sId+" not found");
 	}
-	
 
 }

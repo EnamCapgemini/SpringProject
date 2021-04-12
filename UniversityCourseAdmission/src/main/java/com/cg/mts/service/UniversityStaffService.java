@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
-import com.cg.mts.exceptions.DuplicateCourseException;
+//import com.cg.mts.exceptions.DuplicateCourseException;
 import com.cg.mts.exceptions.DuplicateDataException;
-import com.cg.mts.exceptions.EmptyDataException;
-import com.cg.mts.repository.CourseRepository;
+//import com.cg.mts.exceptions.EmptyDataException;
+
+import com.cg.mts.repository.ICourseRepository;
 import com.cg.mts.repository.IUniversityStaffRepository;
 
 @Service
@@ -21,7 +22,7 @@ public class UniversityStaffService {
 	IUniversityStaffRepository universityRepo;
 	
 	@Autowired
-	CourseRepository courseRepo;
+	ICourseRepository courseRepo;
 	
 	public List<UniversityStaffMember> viewAllStaffs() {
 		List<UniversityStaffMember> list=(List<UniversityStaffMember>) universityRepo.findAll();
@@ -59,16 +60,17 @@ public class UniversityStaffService {
 		return false;
 	}
 	
-	public void addCourse(Course c) throws DuplicateCourseException {
+	public void addCourse(Course c) throws DuplicateDataException {
 		if (courseRepo.existsById(c.getCourseId()))
-			throw new DuplicateCourseException("Course with" + c.getCourseId() + "Already exists");
+			throw new DuplicateDataException("Course with" + c.getCourseId() + "Already exists");
 		courseRepo.save(c);
 	}
 
 	public boolean removeCourse(int id) {
 		if(courseRepo.existsById(id)) {
 			courseRepo.deleteById(id); 
-		return true;}
+		return true;
+		}
 	return false;
 	}
 	
