@@ -17,7 +17,7 @@ public class UserService {
 	UserRepository repository;
 	
 
-	public ResponseEntity<?> signInd(UserModel user) {
+	public ResponseEntity<?> signIn(UserModel user) {
 		
 		User existUser = repository.findByUserName(user.getUserName());
 		

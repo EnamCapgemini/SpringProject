@@ -22,7 +22,7 @@ public class UserController {
 	public ResponseEntity<?> singIn(@RequestBody UserModel user) {
 		
 		
-		return service.signInd(user);
+		return service.signIn(user);
 		
 	}
 

@@ -1,5 +1,7 @@
 package com.cg.mts.model;
 
+import com.cg.mts.entities.User;
+
 public class UserModel {
 
 	private String userName;
@@ -31,5 +33,12 @@ public class UserModel {
 		this.password = password;
 	}
 	
-	
+	public static UserModel toUserModel(User user) {
+		
+		UserModel userModel = new UserModel();
+		userModel.setUserName(user.getUserName());
+		userModel.setPassword(user.getPassword());
+		
+		return userModel;
+	}
 }
