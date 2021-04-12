@@ -26,6 +26,10 @@ public class AdmissionCommiteeMemberService {
 		repository.save(e);
 	}
 
+	public AdmissionCommiteeMember getUserbyAdmissionCommiteeMemberId(int id) {
+		return repository.findByAdmissionCommiteeMemberId(id);
+	}
+
 	public AdmissionCommiteeMember getAdmissionCommiteeMember(int id) {
 		Optional<AdmissionCommiteeMember> opt = repository.findById(id);
 		if (opt.isPresent())
@@ -39,7 +43,7 @@ public class AdmissionCommiteeMemberService {
 	}
 
 	public boolean updateAdmissionCommiteeMember(AdmissionCommiteeMember e) {
-		if (repository.existsById(e.getStaffId())) {
+		if (repository.existsByAdmissionCommiteeMemberId(e.getAdmissionCommiteeMemberId())) {
 			repository.save(e);
 			return true;
 		}

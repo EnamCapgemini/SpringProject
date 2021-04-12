@@ -41,7 +41,15 @@ public class AdmissionCommiteeMemberController {
 
 	}
 
-	@GetMapping("{acmid}")
+	@GetMapping("/getUserByAdmissionCommiteeMemberId/{acmid}")
+	public ResponseEntity<?> findUserByAdmissionCommiteeMemberId(@PathVariable("acmid") int id) {
+		AdmissionCommiteeMember acm = service.getUserbyAdmissionCommiteeMemberId(id);
+		if (acm == null)
+			throw new DataNotFoundException("Request", "Admission Commitee Member with id " + id + " not found");
+		return new ResponseEntity<>(acm, HttpStatus.OK);
+	}
+
+	@GetMapping("/getUserByStaffId/{acmid}")
 	public ResponseEntity<?> getAdmissionCommiteeMember(@PathVariable("acmid") int memId) {
 		AdmissionCommiteeMember acm = service.getAdmissionCommiteeMember(memId);
 		if (acm == null)
@@ -78,7 +86,7 @@ public class AdmissionCommiteeMemberController {
 	@PatchMapping("{​​​​​acmid}​​​​​/{​​​​​acmname}​​​​​")
 	public String updateAdmissionCommiteeMemberName(@RequestParam("acmid") int acmid,
 			@RequestParam("acmname") String acmname) {
-		AdmissionCommiteeMember acm = service.getAdmissionCommiteeMember(acmid);
+		AdmissionCommiteeMember acm = service.getUserbyAdmissionCommiteeMemberId(acmid);
 		if (acm == null)
 			throw new DataNotFoundException("Update",
 					"Admission Commitee Member with name to update with id " + acmid + " not found");
@@ -91,7 +99,7 @@ public class AdmissionCommiteeMemberController {
 	@PatchMapping("{​​​​​acmid}​​​​​/{​​​​​acmcont}​​​​​")
 	public String updateAdmissionCommiteeMemberContact(@RequestParam("acmid") int acmid,
 			@RequestParam("acmcont") String acmcont) {
-		AdmissionCommiteeMember acm = service.getAdmissionCommiteeMember(acmid);
+		AdmissionCommiteeMember acm = service.getUserbyAdmissionCommiteeMemberId(acmid);
 		if (acm == null)
 			throw new DataNotFoundException("Update",
 					"Admission Commitee Member with contact to update with id " + acmid + " not found");
