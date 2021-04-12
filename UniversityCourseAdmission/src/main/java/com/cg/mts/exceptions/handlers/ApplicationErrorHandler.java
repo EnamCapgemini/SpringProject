@@ -14,7 +14,6 @@ import com.cg.mts.entities.AdmissionCommiteeMember;
 import com.cg.mts.exceptions.AdmissionCommiteeMemberNotFoundException;
 import com.cg.mts.exceptions.AdmissionIdNotFoundException;
 
-import com.cg.mts.exceptions.CourseNotFoundException;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
 import com.cg.mts.exceptions.DuplicateDataException;
@@ -58,16 +57,7 @@ public class ApplicationErrorHandler {
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler(CourseNotFoundException.class)
-	public ResponseEntity<?> handleDuplicate(CourseNotFoundException ex) {
-		Map<String, Object> errorBody = new LinkedHashMap<>();
-
-		errorBody.put("error", "Not Found");
-		errorBody.put("timestamp", LocalDateTime.now());
-		errorBody.put("details", ex.getMessage());
-
-		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
-	}
+	
 	@ExceptionHandler(DuplicateDataException.class)
 	public ResponseEntity<?> handleDuplicateData(DuplicateDataException ex) {
 		Map<String, Object> errorBody = new LinkedHashMap<>();
