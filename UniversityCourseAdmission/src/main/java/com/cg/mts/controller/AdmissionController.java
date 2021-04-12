@@ -1,5 +1,7 @@
 package com.cg.mts.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.mts.entities.Admission;
 import com.cg.mts.exceptions.AdmissionIdNotFoundException;
+import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.AdmissionService;
 
 @RestController
@@ -52,6 +55,15 @@ public class AdmissionController {
 			return "Data Deleted";
 		else
 			throw new AdmissionIdNotFoundException("Admission with Id" +admissionId+ "not found");	
+	}
+	
+	@GetMapping("/{date}")
+	public List<Admission> getAllByDate(@PathVariable("date") Admission admissionDate){
+		List<Admission> l = service.findAll();
+		if(l.size()==0)
+			throw new EmptyDataException("No Admissions");
+		return l;
+		
 	}
 	
 }
