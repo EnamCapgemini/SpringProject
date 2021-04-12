@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Admission;
+import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.repository.ApplicantRepository;
@@ -53,9 +54,9 @@ public class ApplicantService {
 			return opt.get();
 		return null;
 	}
-	public List<Admission> findAll(){
+	public List<Applicant> findAll(){
 	
-		return em.createQuery("select r.status from Admission r join Applicant c on r.applicantId = c.applicantId",Admission.class).getResultList();
+		return em.createQuery("select r.status from Admission r join Applicant c on r.applicantId = c.applicantId",Applicant.class).getResultList();
 		 
 	}
 }
