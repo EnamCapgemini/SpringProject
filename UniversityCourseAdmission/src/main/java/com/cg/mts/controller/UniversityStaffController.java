@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJacksonValue;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PatchMapping;
@@ -23,10 +23,6 @@ import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.UniversityStaffService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import springfox.documentation.spring.web.json.Json;
 
 
 @RestController
@@ -46,7 +42,7 @@ public class UniversityStaffController {
 	}
 	
 	@GetMapping("/{staffId}")
-	public ResponseEntity<?> viewStaff(@PathVariable("staffId") int sid) throws JsonProcessingException {
+	public ResponseEntity<?> viewStaff(@PathVariable("staffId") int sid) {
 		UniversityStaffMember staff=universityService.viewStaff(sid);
 		if(staff==null)
 			throw new DataNotFoundException("Request", "Staff with id "+sid+" not found");
