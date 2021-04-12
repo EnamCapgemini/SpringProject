@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Admission;
-import com.cg.mts.exceptions.AdmissionIdNotFoundException;
-import com.cg.mts.exceptions.DuplicateAdmissionException;
+import com.cg.mts.exceptions.DataNotFoundException;
+import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.AdmissionRepository;
 
 
@@ -24,15 +24,15 @@ public class AdmissionService {
 	@Autowired
 	AdmissionRepository repository;
 	
-	public void addAdmission(Admission a) throws DuplicateAdmissionException{
+	public void addAdmission(Admission a) throws DuplicateDataException{
 		if(repository.existsById(a.getAdmissionId()))
-			throw new DuplicateAdmissionException("Admission with" +a.getAdmissionId() +"already exists...");
+			throw new DuplicateDataException("Admission with" +a.getAdmissionId() +"already exists...");
 		repository.save(a);
 	}
 	
 	public boolean updateAdmission(Admission a) {
 		if(!(repository.existsById(a.getAdmissionId()))) {
-			throw new AdmissionIdNotFoundException("Admission with id"+a.getAdmissionId()+"not found...");
+			throw new DataNotFoundException("update","Admission with id"+a.getAdmissionId()+"not found...");
 		}
 		else {
 			repository.save(a);
@@ -42,7 +42,7 @@ public class AdmissionService {
 	
 	public boolean deleteAdmission(int id) {
 		if(!(repository.existsById(id))) {
-			throw new AdmissionIdNotFoundException("Admission with id"+id+"not found...");
+			throw new DataNotFoundException("delete","Admission with id"+id+"not found...");
 		}
 		else {
 			repository.deleteById(id);

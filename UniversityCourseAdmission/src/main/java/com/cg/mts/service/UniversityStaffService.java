@@ -8,12 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
+import com.cg.mts.entities.User;
+import com.cg.mts.exceptions.DuplicateDataException;
+import com.cg.mts.exceptions.EmptyDataException;
+import com.cg.mts.repository.UserRepository;
 //import com.cg.mts.exceptions.DuplicateCourseException;
 import com.cg.mts.exceptions.DuplicateDataException;
 //import com.cg.mts.exceptions.EmptyDataException;
 
 import com.cg.mts.repository.ICourseRepository;
 import com.cg.mts.repository.IUniversityStaffRepository;
+
 
 @Service
 public class UniversityStaffService {
@@ -24,6 +29,10 @@ public class UniversityStaffService {
 	@Autowired
 	ICourseRepository courseRepo;
 	
+	@Autowired
+	UserRepository userRepository;
+	
+
 	public List<UniversityStaffMember> viewAllStaffs() {
 		List<UniversityStaffMember> list=(List<UniversityStaffMember>) universityRepo.findAll();
 		return list;
@@ -40,6 +49,8 @@ public class UniversityStaffService {
 		if(universityRepo.existsById(staff.getStaffId()))
 			throw new DuplicateDataException("Staff with id "+staff.getStaffId()+" already exists");
 		
+			userRepository.save(new User("moot", staff.getPassword(), staff.getRole(), true));
+			
 			universityRepo.save(staff);
 		}
 	

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.mts.entities.Admission;
-import com.cg.mts.exceptions.AdmissionIdNotFoundException;
+import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.AdmissionService;
 
@@ -32,7 +32,7 @@ public class AdmissionController {
 	public ResponseEntity<?> getCourse(@PathVariable("aid") int admissionId) {
 		Admission c = service.getAdmission(admissionId);
 		if (c == null)
-			throw new AdmissionIdNotFoundException("Admission with id " + admissionId + "not found");
+			throw new DataNotFoundException("request","Admission with id " + admissionId + "not found");
 		return new ResponseEntity<Admission>(c, HttpStatus.OK);
 	}
 	
@@ -54,7 +54,7 @@ public class AdmissionController {
 		if(service.deleteAdmission(admissionId))
 			return "Data Deleted";
 		else
-			throw new AdmissionIdNotFoundException("Admission with Id" +admissionId+ "not found");	
+			throw new DataNotFoundException("detete","Admission with Id" +admissionId+ "not found");	
 	}
 	
 	@GetMapping("/{date}")

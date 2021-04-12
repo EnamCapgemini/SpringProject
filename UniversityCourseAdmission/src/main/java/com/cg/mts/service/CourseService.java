@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.entities.Course;
-import com.cg.mts.exceptions.ApplicantNotFoundException;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.ICourseRepository;
 
