@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 //import com.cg.mts.entities.AdmissionCommiteeMember;
 //import com.cg.mts.exceptions.AdmissionCommiteeMemberNotFoundException;
-import com.cg.mts.exceptions.AdmissionIdNotFoundException;
 
 import com.cg.mts.exceptions.DataNotFoundException;
 
@@ -33,19 +32,6 @@ public class ApplicationErrorHandler {
 
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
-
-	@ExceptionHandler(UserNotFoundException.class)
-	public ResponseEntity<?> handleMissingUser(UserNotFoundException ex) {
-		Map<String, Object> errorBody = new LinkedHashMap<>();
-
-		errorBody.put("error", "Not Found");
-		errorBody.put("timestamp", LocalDateTime.now());
-		errorBody.put("details", ex.getMessage());
-
-		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
-	}
-
-
 	
 	@ExceptionHandler(DuplicateDataException.class)
 	public ResponseEntity<?> handleDuplicateData(DuplicateDataException ex) {
@@ -78,17 +64,5 @@ public class ApplicationErrorHandler {
 
 		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
 	}
-
-	@ExceptionHandler(AdmissionIdNotFoundException.class)
-	public ResponseEntity<?> handleAdmissionId(AdmissionIdNotFoundException ex) {
-		Map<String, Object> errorBody = new LinkedHashMap<>();
-
-		errorBody.put("error", "Not Found");
-		errorBody.put("timestamp", LocalDateTime.now());
-		errorBody.put("details", ex.getMessage());
-
-		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
-	}
-
 	
 }
