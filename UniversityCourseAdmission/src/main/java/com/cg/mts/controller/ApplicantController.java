@@ -40,7 +40,7 @@ public class ApplicantController {
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<?> updateApplicant(@RequestBody Applicant applicant){
+	public ResponseEntity<?> updateApplicant(@Valid @RequestBody Applicant applicant){
 		service.updateApplicant(applicant);
 		return new ResponseEntity<>("Applicant data saved successfully!!...",HttpStatus.OK);
 	}
