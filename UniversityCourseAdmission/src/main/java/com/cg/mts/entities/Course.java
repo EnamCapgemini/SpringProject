@@ -50,7 +50,8 @@ public class Course implements Serializable{
 	@JoinColumn(name="COURSE_ID")
 	private Admission admission;
 
-	
+	@ManyToOne
+	private UniversityStaffMember universitystaffs;
 
 	public Course(){}
 

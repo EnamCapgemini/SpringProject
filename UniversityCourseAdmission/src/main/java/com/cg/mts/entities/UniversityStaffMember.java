@@ -59,7 +59,8 @@ public class UniversityStaffMember implements Serializable {
 	private String role;
 	
 	@JsonInclude(Include.NON_EMPTY)
-	@ElementCollection
+	//@ElementCollection
+	@OneToMany(mappedBy = "universitystaffs")
 	private Set<Course> courses = new HashSet<>();
 
 	public UniversityStaffMember() {

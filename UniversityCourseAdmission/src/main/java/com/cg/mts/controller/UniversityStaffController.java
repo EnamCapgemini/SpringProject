@@ -2,9 +2,16 @@ package com.cg.mts.controller;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.validation.Valid;
 
+import org.h2.command.ddl.CreateView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -18,9 +25,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
+import com.cg.mts.service.CourseService;
 import com.cg.mts.service.UniversityStaffService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,6 +41,9 @@ public class UniversityStaffController {
 
 	@Autowired
 	UniversityStaffService universityService;
+	
+	@Autowired
+	CourseService courseService;
 	
 	@GetMapping
 	public List<UniversityStaffMember> viewAllStaffs(){
@@ -75,6 +87,28 @@ public class UniversityStaffController {
 			return "Staff Data Deleted Succesfully";
 		else
 			throw new DataNotFoundException("Delete", "Staff with id "+sId+" not found");
+	}
+	
+	@GetMapping("/findCourseDetailsWithID/{courseId}")
+	//@Query("Select c.* from COURSE c JOIN UNIVERSITYSTAFFS u where c.UNIVERSITYSTAFFS_STAFF_ID=u.STAFF_ID")
+	public ResponseEntity<?> getCourse(@PathVariable("courseId") int id) {
+		//UniversityStaffMember staff=universityService.viewStaff(sid);
+		Course c=courseService.viewCourse(id);
+		if(c==null)
+			throw new DataNotFoundException("Request", "course with id "+id+" not found.");
+		else
+			return new ResponseEntity<Course>(c,HttpStatus.OK);
+	}
+	
+	//@GetMapping("/findCourseDetailsWithID/{courseId}")
+	//@Query("Select c.* from COURSE c JOIN UNIVERSITYSTAFFS u where u.STAFF_ID=c.UNIVERSITYSTAFFS_STAFF_ID")
+	
+	@DeleteMapping("/deleteCourseUsingID/{courseId}")
+	public String removeCourseByStaff(@PathVariable("courseId") int id) {
+		if(courseService.removeCourse(id))
+			return "course Data Deleted Succesfully";
+		else
+			throw new DataNotFoundException("Delete", "Course with id "+id+" not found");
 	}
 
 }
