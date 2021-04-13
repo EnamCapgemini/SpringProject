@@ -12,4 +12,5 @@ public interface ICourseService {
 	boolean removeCourse(int id);
 	Course viewCourse(int id);
 	List<Course> viewAllCourses();
+	
 }
