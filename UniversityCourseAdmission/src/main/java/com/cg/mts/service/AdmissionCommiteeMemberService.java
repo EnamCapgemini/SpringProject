@@ -4,17 +4,24 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.AdmissionCommiteeMember;
+import com.cg.mts.entities.AdmissionStatus;
+import com.cg.mts.entities.Applicant;
 //import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.AdmissionCommiteeMemberRepository;
 
-@Service
-public class AdmissionCommiteeMemberService {
+@Component
+public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberService {
 
 	@Autowired
+	
 	AdmissionCommiteeMemberRepository repository;
 
 	public void saveAdmissionCommiteeMember(AdmissionCommiteeMember e) {
@@ -50,12 +57,23 @@ public class AdmissionCommiteeMemberService {
 		return false;
 	}
 
+	@Transactional
 	public boolean deleteAdmissionCommiteeMember(int id) {
-		if (repository.existsById(id)) {
-			repository.deleteById(id);
+		if (repository.existsByAdmissionCommiteeMemberId(id)) {
+			repository.deleteByAdmissionCommiteeMemberId(id);
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void provideAdmissionResult(Applicant ap, Admission ad) {
+		
+		if(ap.getApplicantGraduationPercent() > 60) {
+			ad.setStatus(AdmissionStatus.CONFIRMED);
+		}else {
+			ad.setStatus(AdmissionStatus.REJECTED);
+		}
 	}
 
 }

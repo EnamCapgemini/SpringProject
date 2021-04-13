@@ -1,6 +1,7 @@
 package com.cg.mts.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -106,6 +107,7 @@ public class UniversityStaffController {
 	}
 	
 	
+	
 	@PostMapping("/addCourseByStaff")
 	public String addCourse(@Valid @RequestBody Course c) {
 		if(courseService.viewCourse(c.getCourseId())==null)
@@ -131,6 +133,15 @@ public class UniversityStaffController {
 			return "course Data Deleted Succesfully";
 		else
 			throw new DataNotFoundException("Delete", "Course with id "+id+" not found");
+	}
+	
+	
+	@GetMapping("/findAllCoursesUnderThisStaffID/{staffID}")
+	public Set<Course> viewAllCourses(@PathVariable("staffID")int id){
+		Set<Course> set=universityService.viewAllCoursesUnderThisStaffId(id);
+		if(set.size()==0)
+			throw new EmptyDataException("No Courses under this Staff ID.");
+		return set;
 	}
 
 }

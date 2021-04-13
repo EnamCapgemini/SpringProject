@@ -60,7 +60,7 @@ public class UniversityStaffMember implements Serializable {
 	
 	@JsonInclude(Include.NON_EMPTY)
 	//@ElementCollection
-	@OneToMany(mappedBy = "universitystaffs")
+	@OneToMany(mappedBy = "universitystaffs",cascade = CascadeType.ALL)
 	private Set<Course> courses = new HashSet<>();
 
 	public UniversityStaffMember() {

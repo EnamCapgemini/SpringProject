@@ -2,6 +2,7 @@ package com.cg.mts.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,9 +78,6 @@ public class UniversityStaffService implements IUniversityStaffService{
 		courseRepo.save(c);
 	}
 
-
-	
-	
 	public boolean removeCourse(int id) {
 		if(courseRepo.existsById(id)) {
 			courseRepo.deleteById(id); 
@@ -95,5 +93,11 @@ public class UniversityStaffService implements IUniversityStaffService{
 		}
 		return false;
 	}
+
+	public Set<Course> viewAllCoursesUnderThisStaffId(int id) {
+		Set<Course> set=(Set<Course>) universityRepo.getAllCoursesByStaffId(id);
+		return set;
+	}
+
 
 }

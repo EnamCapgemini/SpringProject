@@ -1,6 +1,7 @@
 package com.cg.mts.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
@@ -15,4 +16,5 @@ public interface IUniversityStaffService {
 	void addCourse(Course c);
 	boolean removeCourse(int id);
 	boolean updateCourse(Course c);
+	Set<Course> viewAllCoursesUnderThisStaffId(int id);
 }
