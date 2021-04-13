@@ -14,9 +14,8 @@ import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.AdmissionRepository;
 
-
 @Service
-public class AdmissionService {
+public class AdmissionService implements IAdmissionService {
 	
 	@PersistenceContext
 	  private EntityManager em;
