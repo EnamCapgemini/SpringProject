@@ -5,8 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.Valid;
+import javax.websocket.Session;
 
 import org.h2.command.ddl.CreateView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,10 @@ public class UniversityStaffController {
 	
 	@Autowired
 	CourseService courseService;
+	
+	@PersistenceContext
+    EntityManager entityManager;
+
 	
 	@GetMapping
 	public List<UniversityStaffMember> viewAllStaffs(){
@@ -89,8 +95,7 @@ public class UniversityStaffController {
 			throw new DataNotFoundException("Delete", "Staff with id "+sId+" not found");
 	}
 	
-	@GetMapping("/findCourseDetailsWithID/{courseId}")
-	//@Query("Select c.* from COURSE c JOIN UNIVERSITYSTAFFS u where c.UNIVERSITYSTAFFS_STAFF_ID=u.STAFF_ID")
+	@GetMapping("/findCourseDetailsWithCourseID/{courseId}")
 	public ResponseEntity<?> getCourse(@PathVariable("courseId") int id) {
 		//UniversityStaffMember staff=universityService.viewStaff(sid);
 		Course c=courseService.viewCourse(id);
@@ -100,10 +105,27 @@ public class UniversityStaffController {
 			return new ResponseEntity<Course>(c,HttpStatus.OK);
 	}
 	
-	//@GetMapping("/findCourseDetailsWithID/{courseId}")
-	//@Query("Select c.* from COURSE c JOIN UNIVERSITYSTAFFS u where u.STAFF_ID=c.UNIVERSITYSTAFFS_STAFF_ID")
 	
-	@DeleteMapping("/deleteCourseUsingID/{courseId}")
+	@PostMapping("/addCourseByStaff")
+	public String addCourse(@Valid @RequestBody Course c) {
+		if(courseService.viewCourse(c.getCourseId())==null)
+		{
+			courseService.addCourse(c);
+			return "Course Details saved Succesfully";
+		}
+		return "Duplicate Course ID";
+	}
+	
+	@PutMapping("/updateCourseDetails")
+	public String updateCourse(@Valid @RequestBody Course c) {
+		if(courseService.updateCourse(c))
+			return "Course Details Updated";
+		else
+			throw new DataNotFoundException("Update", "Course with id "+c.getCourseId()+" not found");
+	}
+	
+	
+	@DeleteMapping("/deleteCourseUsingCourseID/{courseId}")
 	public String removeCourseByStaff(@PathVariable("courseId") int id) {
 		if(courseService.removeCourse(id))
 			return "course Data Deleted Succesfully";

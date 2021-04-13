@@ -50,4 +50,5 @@ public class CourseService implements ICourseService{
 		List<Course> list=(List<Course>) repository.findAll();
 		return list;
 	}
+	
 }
