@@ -41,12 +41,12 @@ public class AdmissionService {
 	}
 	
 	public boolean deleteAdmission(int id) {
-		if(!(repository.existsById(id))) {
-			throw new DataNotFoundException("delete","Admission with id"+id+"not found...");
-		}
-		else {
+		if(repository.existsById(id)) {
 			repository.deleteById(id);
 			return true;
+		} 
+		else {
+		 return false;
 		}
 	}
 	
