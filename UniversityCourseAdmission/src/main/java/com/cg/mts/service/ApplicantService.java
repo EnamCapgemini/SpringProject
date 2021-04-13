@@ -14,7 +14,7 @@ import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateDataException;
-import com.cg.mts.repository.ApplicantRepository;
+import com.cg.mts.repository.IApplicantRepository;
 @Service
 public class ApplicantService {
 	
@@ -22,7 +22,7 @@ public class ApplicantService {
 	private EntityManager em;
 	
 	@Autowired
-	ApplicantRepository repository;
+	IApplicantRepository repository;
 	
 	public void addApplicant(Applicant applicant) throws DuplicateDataException {
 		if(repository.existsById(applicant.getApplicantId()))
@@ -55,9 +55,9 @@ public class ApplicantService {
 			return opt.get();
 		return null;
 	}
-	public List<Applicant> findAll(){
+	/*public List<Applicant> findAll(){
 	
 		return em.createQuery("select r.status from Admission r join Applicant c on r.applicantId = c.applicantId",Applicant.class).getResultList();
 		 
-	}
+	}*/
 }

@@ -17,7 +17,7 @@ import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.Gender;
-import com.cg.mts.repository.ApplicantRepository;
+import com.cg.mts.repository.IApplicantRepository;
 import com.cg.mts.service.ApplicantService;
 
 @SpringBootTest
@@ -27,7 +27,7 @@ class TestApplicant {
 	private ApplicantService service;
 
 	@MockBean
-	private ApplicantRepository repository;
+	private IApplicantRepository repository;
 	
 	
 	@Test
