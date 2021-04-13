@@ -32,7 +32,7 @@ public class Admission implements Serializable{
 	@Column(name = "APPLICANT_ID")
 	private int applicantId;
 
-	//@JsonFormat
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name = "ADMISSION_DATE")
 	private LocalDate admissionDate;
 	
