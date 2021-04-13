@@ -33,15 +33,6 @@ public class ApplicantController {
 		return new ResponseEntity<Applicant>(applicant,HttpStatus.OK);
 	}
 	
-	/*@GetMapping("Status/{status}")
-	public List<Applicant> getAllByStatus(@PathVariable("status") AdmissionStatus status){
-		List<Applicant> l = service.findAll();
-		if(l.size()==0)
-			throw new EmptyDataException("No Applicants");
-		return l;
-		
-	}*/
-	
 	@PostMapping
 	public String saveApplicant(@Valid @RequestBody Applicant applicant) {
 		service.addApplicant(applicant);
@@ -62,4 +53,12 @@ public class ApplicantController {
 			throw new  DataNotFoundException("delete","applicant with id "+applicantId+" not found");
 	}
 	
+	/*@GetMapping("Status/{status}")
+	public List<Applicant> getAllByStatus(@PathVariable("status") AdmissionStatus status){
+		List<Applicant> l = service.findAll();
+		if(l.size()==0)
+			throw new EmptyDataException("No Applicants");
+		return l;
+		
+	}*/
 }

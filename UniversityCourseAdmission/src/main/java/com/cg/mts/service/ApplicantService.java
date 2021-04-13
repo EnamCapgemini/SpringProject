@@ -46,8 +46,8 @@ public class ApplicantService implements IApplicantService{
 		 return false;
 		}
 	}
-	public Applicant viewApplicant(int applicant) {
-		Optional<Applicant> opt=repository.findById(applicant);
+	public Applicant viewApplicant(int id) {
+		Optional<Applicant> opt=repository.findById(id);
 		if(opt.isPresent())
 			return opt.get();
 		return null;
