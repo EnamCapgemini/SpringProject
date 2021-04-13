@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.mts.entities.Course;
@@ -56,7 +57,14 @@ public class CourseController {
 			throw new DataNotFoundException("Request","Course with id " + courseId + "not found");
 		return new ResponseEntity<Course>(c, HttpStatus.OK);
 	}
+	/*@GetMapping("/showcoursenamesstartinwith" )
+    public List<Course> findBystartsEndsWith() {
 
+		List<Course> list = service.findBystartsEndsWith();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Courses in database");
+		return list;
+}*/
 	@GetMapping
 	public List<Course> viewAllCourse() {
 		List<Course> list = service.viewAllCourses();
@@ -64,4 +72,6 @@ public class CourseController {
 			throw new EmptyDataException("No Courses in database");
 		return list;
 	}
+	
+	
 }
