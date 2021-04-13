@@ -12,7 +12,7 @@ import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.ICourseRepository;
 
 @Service
-public class CourseService {
+public class CourseService implements ICourseService{
 	@Autowired
 	ICourseRepository repository;
 	Course c;
