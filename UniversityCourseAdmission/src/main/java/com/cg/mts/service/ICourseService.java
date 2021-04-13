@@ -12,9 +12,5 @@ public interface ICourseService {
 	boolean removeCourse(int id);
 	Course viewCourse(int id);
 	List<Course> viewAllCourses();
-<<<<<<< HEAD
-	
-=======
-	/*List<Course> findBystartsEndsWith();*/
->>>>>>> 99e6feaacbd7c53cd68eb3873e6c765f748a3696
+
 }
