@@ -1,8 +1,6 @@
 package com.cg.mts.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.User;
@@ -11,13 +9,13 @@ import com.cg.mts.model.UserModel;
 import com.cg.mts.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService implements IUserService {
 
 	@Autowired
 	UserRepository repository;
-	
 
-	public ResponseEntity<?> signIn(UserModel user) {
+	@Override
+	public boolean signIn(UserModel user) {
 		
 		User existUser = repository.findByUserName(user.getUserName());
 		
@@ -29,16 +27,16 @@ public class UserService {
 			existUser.setLoggedIn(true);
 			repository.save(existUser);
 			
-			return new ResponseEntity<>("User Login successful!", HttpStatus.OK);
+			return true;
 		}
 		else {
-			return new ResponseEntity<>("UserName or Password not match!", HttpStatus.BAD_REQUEST);
+			return false;
 		}
 		
 	}
 	
-	
-	public ResponseEntity<?> logOut(String userName) {
+	@Override
+	public boolean logOut(String userName) {
 		
 		User existUser = repository.findByUserName(userName);
 		
@@ -50,10 +48,10 @@ public class UserService {
 			existUser.setLoggedIn(false);
 			repository.save(existUser);
 			
-			return new ResponseEntity<>("User Logout successful!", HttpStatus.OK);
+			return true;
 		}
 		else {
-			return new ResponseEntity<>("Please login first!", HttpStatus.BAD_REQUEST);
+			return false;
 		}
 	}
 	

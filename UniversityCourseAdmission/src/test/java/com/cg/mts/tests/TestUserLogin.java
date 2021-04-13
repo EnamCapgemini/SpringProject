@@ -32,14 +32,13 @@ class TestUserLogin {
 	@Test
 	public void userLoginTest() {
 		UserModel userModel = new UserModel("root", "pass@123");
-		assertEquals(HttpStatus.OK,service.signIn(userModel).getStatusCode());
+		assertTrue(service.signIn(userModel));
 	}
 	
 	@Test
 	public void loginWithInvalidPasswordTest() {
 		UserModel userModel = new UserModel("root", "pass@651");
-		
-		assertEquals(HttpStatus.BAD_REQUEST,service.signIn(userModel).getStatusCode());
+		assertFalse(service.signIn(userModel));
 	}
 	
 	@Test
@@ -69,8 +68,7 @@ class TestUserLogin {
 	@Test
 	public void logoutTest() {
 		String userName = "root";
-		
-		assertEquals(HttpStatus.OK, service.logOut(userName).getStatusCode());
+		assertTrue(service.logOut(userName));
 	}
 	
 
