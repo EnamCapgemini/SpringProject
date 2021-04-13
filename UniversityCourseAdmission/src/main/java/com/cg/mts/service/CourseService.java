@@ -15,6 +15,7 @@ import com.cg.mts.repository.ICourseRepository;
 public class CourseService implements ICourseService{
 	@Autowired
 	ICourseRepository repository;
+	
 	Course c;
 
 	public boolean removeCourse(int id) {
@@ -49,5 +50,17 @@ public class CourseService implements ICourseService{
 	public List<Course> viewAllCourses() {
 		List<Course> list=(List<Course>) repository.findAll();
 		return list;
+	}
+	
+/*	public List<Course> findByNameEndsWith(String courseName) {
+
+        var cities = (List<City>) repository.findByNameEndsWith(name);
+        return cities;
+    }*/
+
+	public List<Course> findBystartsEndsWith() {
+		
+		List<Course>  coursenames=(List<Course>)repository.findBystartsEndsWith();
+		return coursenames;
 	}
 }
