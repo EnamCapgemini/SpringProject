@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.mts.entities.Admission;
+import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
@@ -38,7 +38,7 @@ public class ApplicantController {
 	}
 	
 	@GetMapping("Status/{status}")
-	public List<Applicant> getAllByStatus(@PathVariable("status") Admission status){
+	public List<Applicant> getAllByStatus(@PathVariable("status") AdmissionStatus status){
 		List<Applicant> l = service.findAll();
 		if(l.size()==0)
 			throw new EmptyDataException("No Applicants");
