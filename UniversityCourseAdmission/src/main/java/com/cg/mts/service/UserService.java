@@ -27,6 +27,7 @@ public class UserService {
 		
 		if(existUser.getUserName().equals(user.getUserName()) && existUser.getPassword().equals(user.getPassword())) {
 			existUser.setLoggedIn(true);
+			repository.save(existUser);
 			
 			return new ResponseEntity<>("User Login successful!", HttpStatus.OK);
 		}
@@ -34,6 +35,26 @@ public class UserService {
 			return new ResponseEntity<>("UserName or Password not match!", HttpStatus.BAD_REQUEST);
 		}
 		
+	}
+	
+	
+	public ResponseEntity<?> logOut(String userName) {
+		
+		User existUser = repository.findByUserName(userName);
+		
+		if(existUser == null) {
+			throw new DataNotFoundException("Logout", "Username: '"+userName+"' not found!");
+		}
+		
+		if(existUser.isLoggedIn()) {
+			existUser.setLoggedIn(false);
+			repository.save(existUser);
+			
+			return new ResponseEntity<>("User Logout successful!", HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>("Please login first!", HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	

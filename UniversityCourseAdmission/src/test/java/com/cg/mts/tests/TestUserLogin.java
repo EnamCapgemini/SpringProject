@@ -44,7 +44,34 @@ class TestUserLogin {
 	
 	@Test
 	public void loginWithInvalidUserNameTest() {
-		assertNull(repository.findByUserName("wrong"));
+		UserModel userModel = new UserModel("invalidName", "pass@354");
+		
+		Exception exception = assertThrows(RuntimeException.class, () -> {
+	        service.signIn(userModel);
+	    });
+		
+		assertNotNull(exception);
 	}
+	
+	@Test
+	public void logoutWithInvalidUserNameTest() {
+		
+		String userName = "invalidName";
+		
+		Exception exception = assertThrows(RuntimeException.class, () -> {
+			service.logOut(userName);
+		});
+		
+		assertNotNull(exception);
+		
+	}
+	
+	@Test
+	public void logoutTest() {
+		String userName = "root";
+		
+		assertEquals(HttpStatus.OK, service.logOut(userName).getStatusCode());
+	}
+	
 
 }
