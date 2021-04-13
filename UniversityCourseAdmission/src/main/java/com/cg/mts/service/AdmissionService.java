@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.cg.mts.entities.Admission;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateDataException;
-import com.cg.mts.repository.AdmissionRepository;
+import com.cg.mts.repository.IAdmissionRepository;
 
 @Service
 public class AdmissionService implements IAdmissionService {
@@ -21,7 +21,7 @@ public class AdmissionService implements IAdmissionService {
 	  private EntityManager em;
 	
 	@Autowired
-	AdmissionRepository repository;
+	IAdmissionRepository repository;
 	
 	public void addAdmission(Admission a) throws DuplicateDataException{
 		if(repository.existsById(a.getAdmissionId()))
