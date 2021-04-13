@@ -52,18 +52,15 @@ public class CourseService implements ICourseService{
 		return list;
 	}
 	
-<<<<<<< HEAD
 /*	public List<Course> findByNameEndsWith(String courseName) {
 
         var cities = (List<City>) repository.findByNameEndsWith(name);
         return cities;
-    }*/
-
+   
 	public List<Course> findBystartsEndsWith() {
 		
 		List<Course>  coursenames=(List<Course>)repository.findBystartsEndsWith();
 		return coursenames;
-	}
-=======
->>>>>>> 8481f0a2833765328a2cc9c1a803eccc02272c22
+	} }*/
+
 }
