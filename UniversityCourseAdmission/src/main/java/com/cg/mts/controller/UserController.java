@@ -23,7 +23,6 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<?> singIn(@RequestBody UserModel user) {
 		
-		
 		return service.signIn(user);
 		
 	}
