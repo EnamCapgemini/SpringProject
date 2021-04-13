@@ -44,7 +44,6 @@ public class TestCourse {
 	@Test
 	public void removeCourseTest() {
 		Course c=new Course(220,"B.Sc Math","3 YEARS",LocalDate.now(),LocalDate.now(),"400000");
-		//service.removeStaff(staff.getStaffId());
 		assertNotEquals(c, service.removeCourse(220));
 	}
 	@Test
