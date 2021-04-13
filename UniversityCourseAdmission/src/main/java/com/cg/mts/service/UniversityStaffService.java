@@ -21,7 +21,7 @@ import com.cg.mts.repository.IUniversityStaffRepository;
 
 
 @Service
-public class UniversityStaffService {
+public class UniversityStaffService implements IUniversityStaffService{
 
 	@Autowired
 	IUniversityStaffRepository universityRepo;

@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "ADMISSION")
 public class Admission implements Serializable{
@@ -30,6 +32,7 @@ public class Admission implements Serializable{
 	@Column(name = "APPLICANT_ID")
 	private int applicantId;
 
+	//@JsonFormat
 	@Column(name = "ADMISSION_DATE")
 	private LocalDate admissionDate;
 	
