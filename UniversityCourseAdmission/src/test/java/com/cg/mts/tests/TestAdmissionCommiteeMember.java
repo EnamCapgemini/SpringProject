@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cg.mts.entities.AdmissionCommiteeMember;
-import com.cg.mts.repository.AdmissionCommiteeMemberRepository;
+import com.cg.mts.repository.IAdmissionCommiteeMemberRepository;
 import com.cg.mts.service.AdmissionCommiteeMemberService;
 
 @SpringBootTest
@@ -25,7 +25,7 @@ class TestAdmissionCommiteeMember {
 	private AdmissionCommiteeMemberService service;
 
 	@MockBean
-	private AdmissionCommiteeMemberRepository repository;
+	private IAdmissionCommiteeMemberRepository repository;
 
 	@Test
 	public void getAllAdmissionCommiteeMembersTest() {

@@ -15,14 +15,14 @@ import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
 //import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
 import com.cg.mts.exceptions.DuplicateDataException;
-import com.cg.mts.repository.AdmissionCommiteeMemberRepository;
+import com.cg.mts.repository.IAdmissionCommiteeMemberRepository;
 
 @Component
 public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberService {
 
 	@Autowired
 	
-	AdmissionCommiteeMemberRepository repository;
+	IAdmissionCommiteeMemberRepository repository;
 
 	public void saveAdmissionCommiteeMember(AdmissionCommiteeMember e) {
 
@@ -57,7 +57,6 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 		return false;
 	}
 
-	@Transactional
 	public boolean deleteAdmissionCommiteeMember(int id) {
 		if (repository.existsByAdmissionCommiteeMemberId(id)) {
 			repository.deleteByAdmissionCommiteeMemberId(id);
