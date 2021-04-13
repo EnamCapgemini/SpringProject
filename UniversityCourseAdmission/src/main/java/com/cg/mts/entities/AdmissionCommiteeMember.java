@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -27,21 +28,26 @@ public class AdmissionCommiteeMember extends UniversityStaffMember implements Se
 	private static final long serialVersionUID = 1L;
 
 	//@Id
+	
+	@Valid
 	@Column(name = "ADMISSION_COMMITEE_MEMBER_ID")
 	private int admissionCommiteeMemberId;
 
+	@Valid
 	@NotEmpty(message = "Name must be to given")
 	@NotNull(message = "Name is required")
 	@Length(min = 5, max = 20, message = "Name not between 5-20 letters")
 	@Column(name = "ADMISSION_COMMITEE_MEMBER_NAME")
 	private String admissionCommiteeMemberName;
 
+	@Valid
 	@NotEmpty(message = "Contact must be to given")
 	@NotNull(message = "Contact is required")
 	@Length(min = 2, max = 50, message = "Contact invalid")
 	@Column(name = "ADMISSION_COMMITEE_MEMBER_CONTACT")
 	private String admissionCommiteeMemberContact;
 
+	@Valid
 	@OneToMany(mappedBy = "admissioncommitee", cascade = CascadeType.ALL)
 	private Set<Admission> admission = new HashSet<>();
 
