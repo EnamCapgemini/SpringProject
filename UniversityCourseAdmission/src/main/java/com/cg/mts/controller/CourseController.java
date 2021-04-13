@@ -26,6 +26,7 @@ import com.cg.mts.service.CourseService;
 @RequestMapping("/Courses")
 public class CourseController {
 
+	private static final String String = null;
 	@Autowired
 	CourseService service;
 
@@ -57,14 +58,19 @@ public class CourseController {
 			throw new DataNotFoundException("Request","Course with id " + courseId + "not found");
 		return new ResponseEntity<Course>(c, HttpStatus.OK);
 	}
-	/*@GetMapping("/showcoursenamesstartinwith" )
-    public List<Course> findBystartsEndsWith() {
-
-		List<Course> list = service.findBystartsEndsWith();
+	@GetMapping("/ShowOnlyBTechCourses" )
+    	public List<Course> findCourseStartsWith() {
+		List<Course> list = service.findCourseStartsWith();
 		if (list.size() == 0)
 			throw new EmptyDataException("No Courses in database");
-		return list;
-}*/
+		return list;}
+	@GetMapping("/ShowOnlyBScCourses" )
+	public List<Course> ShowBScCourse() {
+	List<Course> list = service.ShowBScCourse();
+	if (list.size() == 0)
+		throw new EmptyDataException("No Courses in database");
+	return list;}
+
 	@GetMapping
 	public List<Course> viewAllCourse() {
 		List<Course> list = service.viewAllCourses();

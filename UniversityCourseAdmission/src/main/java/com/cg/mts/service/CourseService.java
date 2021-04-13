@@ -51,16 +51,16 @@ public class CourseService implements ICourseService{
 		List<Course> list=(List<Course>) repository.findAll();
 		return list;
 	}
-	
-/*	public List<Course> findByNameEndsWith(String courseName) {
 
-        var cities = (List<City>) repository.findByNameEndsWith(name);
-        return cities;
-   
-	public List<Course> findBystartsEndsWith() {
-		
-		List<Course>  coursenames=(List<Course>)repository.findBystartsEndsWith();
+	@Override
+	public List<Course> findCourseStartsWith() {
+		List<Course>  coursenames=(List<Course>)repository.findCourseStartsWith();
 		return coursenames;
-	} }*/
+	}
+	public List<Course> ShowBScCourse() {
+		List<Course>  coursenames=(List<Course>)repository.ShowBScCourse();
+		return coursenames;
+	}
+	 
 
 }
