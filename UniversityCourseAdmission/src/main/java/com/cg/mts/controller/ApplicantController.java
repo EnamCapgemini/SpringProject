@@ -1,7 +1,5 @@
 package com.cg.mts.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
-import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.ApplicantService;
 
 @RestController
@@ -36,15 +32,6 @@ public class ApplicantController {
 		
 		return new ResponseEntity<Applicant>(applicant,HttpStatus.OK);
 	}
-	
-	/*@GetMapping("Status/{status}")
-	public List<Applicant> getAllByStatus(@PathVariable("status") AdmissionStatus status){
-		List<Applicant> l = service.findAll();
-		if(l.size()==0)
-			throw new EmptyDataException("No Applicants");
-		return l;
-		
-	}*/
 	
 	@PostMapping
 	public String saveApplicant(@Valid @RequestBody Applicant applicant) {
@@ -66,4 +53,12 @@ public class ApplicantController {
 			throw new  DataNotFoundException("delete","applicant with id "+applicantId+" not found");
 	}
 	
+	/*@GetMapping("Status/{status}")
+	public List<Applicant> getAllByStatus(@PathVariable("status") AdmissionStatus status){
+		List<Applicant> l = service.findAll();
+		if(l.size()==0)
+			throw new EmptyDataException("No Applicants");
+		return l;
+		
+	}*/
 }

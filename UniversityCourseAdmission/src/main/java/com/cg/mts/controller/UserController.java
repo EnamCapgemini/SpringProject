@@ -1,6 +1,7 @@
 package com.cg.mts.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,14 +24,24 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<?> singIn(@RequestBody UserModel user) {
 		
-		return service.signIn(user);
+		if(service.signIn(user)) {
+			return new ResponseEntity<>("User Login successful!", HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>("UserName or Password not match!", HttpStatus.BAD_REQUEST);
+		}
 		
 	}
 	
 	@PutMapping("/logout/{name}")
 	public ResponseEntity<?> logOut(@PathVariable("name") String userName) {
 		
-		return service.logOut(userName);
+		if(service.logOut(userName)) {
+			return new ResponseEntity<>("User Logout successful!", HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>("Please login first!", HttpStatus.BAD_REQUEST);
+		}
 	}
 
 }

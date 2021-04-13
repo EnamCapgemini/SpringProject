@@ -12,7 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.AdmissionStatus;
-import com.cg.mts.repository.AdmissionRepository;
+import com.cg.mts.repository.IAdmissionRepository;
 import com.cg.mts.service.AdmissionService;
 
 @SpringBootTest
@@ -22,7 +22,7 @@ class TestAdmission {
 	private AdmissionService service;
 	
 	@MockBean
-	private AdmissionRepository repository;
+	private IAdmissionRepository repository;
 
 	@Test
 	public void addAdmission() {

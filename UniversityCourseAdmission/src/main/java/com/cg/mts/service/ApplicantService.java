@@ -1,6 +1,5 @@
 package com.cg.mts.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -9,14 +8,12 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.mts.entities.Admission;
-import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.IApplicantRepository;
 @Service
-public class ApplicantService {
+public class ApplicantService implements IApplicantService{
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -49,8 +46,8 @@ public class ApplicantService {
 		 return false;
 		}
 	}
-	public Applicant viewApplicant(int applicant) {
-		Optional<Applicant> opt=repository.findById(applicant);
+	public Applicant viewApplicant(int id) {
+		Optional<Applicant> opt=repository.findById(id);
 		if(opt.isPresent())
 			return opt.get();
 		return null;
