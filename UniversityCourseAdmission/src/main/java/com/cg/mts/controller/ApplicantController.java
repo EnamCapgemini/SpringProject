@@ -63,6 +63,14 @@ public class ApplicantController {
 			throw new EmptyDataException("No applicants with degree b.tech");
 		return list;
 	}
+	
+	@GetMapping("/show1stDivisionApplicants")
+	public List<Applicant> showAll1stDivision(){
+		List<Applicant> list=service.showAll1stDivision();
+		if(list.size()==0)
+			throw new EmptyDataException("No applicants more than 60%");
+		return list;
+	}
 	/*@GetMapping("Status/{status}")
 	public List<Applicant> getAllByStatus(@PathVariable("status") AdmissionStatus status){
 		List<Applicant> l = service.findAll();

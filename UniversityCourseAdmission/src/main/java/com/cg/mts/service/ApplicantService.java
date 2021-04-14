@@ -56,6 +56,12 @@ public class ApplicantService implements IApplicantService{
 		List<Applicant> degree=(List<Applicant>)repository.getBtechDegree();
 		return degree;
 	}
+	
+	@Override
+	public List<Applicant> showAll1stDivision(){
+		List<Applicant> per=(List<Applicant>)repository.showAll1stDivision();
+		return per;
+	}
 	/*public List<Applicant> findAll(){
 	
 		return em.createQuery("select r.status from Admission r join Applicant c on r.applicantId = c.applicantId",Applicant.class).getResultList();

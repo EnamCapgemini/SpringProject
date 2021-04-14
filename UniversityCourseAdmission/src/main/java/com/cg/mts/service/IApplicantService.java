@@ -10,4 +10,5 @@ public interface IApplicantService {
 	boolean deleteApplicant(int id);
 	Applicant viewApplicant(int id);
 	List<Applicant> getBtechDegree();
+	List<Applicant> showAll1stDivision();
 }
