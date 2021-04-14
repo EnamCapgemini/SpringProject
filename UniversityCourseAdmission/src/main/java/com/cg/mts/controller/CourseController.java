@@ -98,7 +98,7 @@ public class CourseController {
 			throw new EmptyDataException("No Courses in database");
 		return list;
 	}
-
+	
 	@GetMapping
 	public List<Course> viewAllCourse() {
 		List<Course> list = service.viewAllCourses();
