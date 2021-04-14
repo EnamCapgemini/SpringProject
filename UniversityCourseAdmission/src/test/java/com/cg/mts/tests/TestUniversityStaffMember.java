@@ -6,6 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,7 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
+import com.cg.mts.repository.ICourseRepository;
 import com.cg.mts.repository.IUniversityStaffRepository;
 import com.cg.mts.service.UniversityStaffService;
 
@@ -33,6 +36,9 @@ class TestUniversityStaffMember {
 	
 	@MockBean
 	private IUniversityStaffRepository repository;
+	
+	@MockBean
+	private ICourseRepository courseRepo;
 	
 	Logger logger=LoggerFactory.getLogger(TestUniversityStaffMember.class);
 	
@@ -85,5 +91,29 @@ class TestUniversityStaffMember {
 		//assertNotEquals(staff, service.removeStaff(700));
 		logger.info("Testing for deleteStaffs Completed");
 	}
+
+	/*
+	@Test
+	public void addCourse() {
+		logger.info("Testing for SaveCourse From StaffClass Started");
+		Course course1=new Course(500, "MCA", "3 YEARS", LocalDate.now(), LocalDate.now().plusYears(3), "950000");
+		when(courseRepo.save(course1)).thenReturn(course1);
+		assertEquals(course1, courseRepo.save(course1));
+		logger.info("Testing for SaveCourse From StaffClass Completed");
+		
+	}
+	
+	@Test
+	public void updateCourse() {
+		logger.info("Testing for UpdateCourse From StaffClass Started");
+		Course course1=new Course(500, "MCA", "3 YEARS", LocalDate.now(), LocalDate.now().plusYears(3), "950000");
+		when(courseRepo.save(course1)).thenReturn(course1);
+		course1.setCourseFees("900000");
+		course1.setCourseName("ph.D");
+		assertThat(courseRepo.findById(course1.getCourseId())).isNotEqualTo(course1);
+		logger.info("Testing for UpdateCourse From StaffClass Completed");
+	}
+	
+	*/
 
 }
