@@ -49,6 +49,11 @@ public class ApplicantService implements IApplicantService{
 		return null;
 	}
 	
+	@Override
+	public List<Applicant> get12thpass(){
+		List<Applicant> degree=(List<Applicant>)repository.get12thpass();
+		return degree;
+	}
 	
 	@Override
 	public List<Applicant> getBtechDegree(){
