@@ -71,6 +71,22 @@ public class ApplicantController {
 			throw new EmptyDataException("No applicants more than 60%");
 		return list;
 	}
+	
+	@GetMapping("/showMaleApplicants")
+	public List<Applicant> showMaleApplicants(){
+		List<Applicant> list=service.showMaleApplicants();
+		if(list.size()==0)
+			throw new EmptyDataException("No male applicants");
+		return list;
+	}
+	
+	@GetMapping("/showFemaleApplicants")
+	public List<Applicant> showFemaleApplicants(){
+		List<Applicant> list=service.showFemaleApplicants();
+		if(list.size()==0)
+			throw new EmptyDataException("No female applicants");
+		return list;
+	}
 	/*@GetMapping("Status/{status}")
 	public List<Applicant> getAllByStatus(@PathVariable("status") AdmissionStatus status){
 		List<Applicant> l = service.findAll();

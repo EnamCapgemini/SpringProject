@@ -61,7 +61,6 @@ public class Applicant implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "GENDER")
-	
 	private Gender gender;
 
 	/*@OneToOne
