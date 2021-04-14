@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.cg.mts.entities.Applicant;
 import com.cg.mts.entities.Course;
+import com.cg.mts.entities.Gender;
 import com.cg.mts.entities.UniversityStaffMember;
 import com.cg.mts.repository.ICourseRepository;
 import com.cg.mts.service.CourseService;
@@ -27,6 +29,15 @@ public class TestCourse {
 	@MockBean
 	private ICourseRepository repository;
 	
+	
+	
+	
+	@Test
+	public void viewCourse() {
+		Course c=new Course(220,"B.Sc Math","3 YEARS",LocalDate.now(),LocalDate.now(),"400000");
+		when(repository.save(c)).thenReturn(c);
+		assertNotEquals(c,repository.findById(c.getCourseId()));
+	}
 	@Test
 	public void viewAllCoursesTest() {
 		when(repository.findAll()).thenReturn(Stream.of(new Course(220,"B.Sc Math","3 YEARS",LocalDate.now(),LocalDate.now(),"400000"),new Course(260,"M.tech Civil","2 YEARS",LocalDate.now(),LocalDate.now(),"600000")).collect(Collectors.toList()));
@@ -53,5 +64,7 @@ public class TestCourse {
 		c=new  Course(220,"B.Sc Math","3 YEARS",LocalDate.now(),LocalDate.now(),"400000");
 		assertNotEquals(c, repository.save(c));
 	}
+	
+	
 
 }

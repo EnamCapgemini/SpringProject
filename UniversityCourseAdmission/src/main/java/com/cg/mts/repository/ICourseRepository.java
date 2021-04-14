@@ -33,7 +33,8 @@ public interface ICourseRepository extends CrudRepository<Course, Integer> {
     
     @Query("select c from Course c where c.courseDuration like '3%' ")
 	List<Course> year3CourseDuration();
-
+    
+    
 }
 
  
