@@ -17,5 +17,6 @@ public interface IAdmissionCommiteeMemberService {
 	boolean updateAdmissionCommiteeMember(AdmissionCommiteeMember e);
 	boolean deleteAdmissionCommiteeMember(int id);
 	void provideAdmissionResult(Applicant ap, Admission ad);
-	
+
+	String getStatusByIdGrad(int id,int grad);
 }

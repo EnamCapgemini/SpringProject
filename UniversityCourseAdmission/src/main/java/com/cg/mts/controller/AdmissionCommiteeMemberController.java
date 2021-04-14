@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.mts.entities.AdmissionCommiteeMember;
-
+import com.cg.mts.entities.AdmissionStatus;
 //import com.cg.mts.exceptions.AdmissionCommiteeMemberNotFoundException;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
@@ -107,6 +107,16 @@ public class AdmissionCommiteeMemberController {
 		acm.setAdmissionCommiteeMemberContact(acmcont);
 		service.updateAdmissionCommiteeMember(acm);
 		return "Admission Commitee Member contact update sucessfull";
+	}
+	
+	@PatchMapping("/change/{applicantId}/{grad}")
+	public String updateStatus(@PathVariable("applicantId") int id,@PathVariable("grad") int grad) {
+		String str=service.getStatusByIdGrad(id, grad);
+		if(grad>60)
+			str=AdmissionStatus.CONFIRMED.toString();
+		else
+			str=AdmissionStatus.REJECTED.toString();
+		return str;
 	}
 
 }

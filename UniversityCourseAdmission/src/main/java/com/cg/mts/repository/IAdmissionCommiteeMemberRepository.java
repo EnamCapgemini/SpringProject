@@ -21,4 +21,7 @@ public interface IAdmissionCommiteeMemberRepository extends JpaRepository<Admiss
 	@Transactional
 	@Query(value = "Delete from ADMISSION_COMMITEE_MEMBER acm where acm.ADMISSION_COMMITEE_MEMBER_ID = ?1", nativeQuery = true)
 	void deleteByAdmissionCommiteeMemberId(int admissionCommiteeMemberId);
+	
+	@Query("Select a.status from Admission a,Applicant ap where a.applicantId=:id and ap.applicantGraduationPercent=:grad")
+	String getStatusById(@Param("id")int id,@Param("grad")int grad);
 }
