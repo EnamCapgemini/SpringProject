@@ -24,9 +24,16 @@ public interface ICourseRepository extends CrudRepository<Course, Integer> {
     
     @Query("select c from Course c where c.courseName like 'B.Sc%' ")
 	List<Course> ShowBScCourse();
+    
+    @Query("select c from Course c where c.courseName like 'M.TECH%' ")
+   	List<Course> showMTechCourse();
+    
+    @Query("select c from Course c where c.courseDuration like '4%' ")
+	List<Course> year4CourseDuration();
+    
+    @Query("select c from Course c where c.courseDuration like '3%' ")
+	List<Course> year3CourseDuration();
+
 }
 
- /*   @Query("select c from Course c where c.courseName like b%")
-    List<Course> findBystartsEndsWith();
-*/
-
+ 

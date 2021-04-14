@@ -32,11 +32,12 @@ public class CourseController {
 
 	@DeleteMapping("{cid}")
 	public String removeCourse(@PathVariable("cid") int id) {
-		if(service.removeCourse(id))
+		if (service.removeCourse(id))
 			return "data deleted";
 		else
-			throw new DataNotFoundException("Delete","Course with id to delete "+ id+"not found");
+			throw new DataNotFoundException("Delete", "Course with id to delete " + id + "not found");
 	}
+
 	@PostMapping
 	public String addCourse(@Valid @RequestBody Course c) {
 		service.addCourse(c);
@@ -48,28 +49,55 @@ public class CourseController {
 		if (service.updateCourse(c))
 			return "data updated";
 		else
-			throw new DataNotFoundException("Update","Course with id" + c.getCourseId() + "not found");
+			throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");
 	}
 
 	@GetMapping("{cid}")
 	public ResponseEntity<?> viewcourse(@PathVariable("cid") int courseId) {
 		Course c = service.viewCourse(courseId);
 		if (c == null)
-			throw new DataNotFoundException("Request","Course with id " + courseId + "not found");
+			throw new DataNotFoundException("Request", "Course with id " + courseId + "not found");
 		return new ResponseEntity<Course>(c, HttpStatus.OK);
 	}
-	@GetMapping("/ShowOnlyBTechCourses" )
-    	public List<Course> findCourseStartsWith() {
+
+	@GetMapping("/ShowOnlyBTechCourses")
+	public List<Course> findCourseStartsWith() {
 		List<Course> list = service.findCourseStartsWith();
 		if (list.size() == 0)
 			throw new EmptyDataException("No Courses in database");
-		return list;}
-	@GetMapping("/ShowOnlyBScCourses" )
+		return list;
+	}
+
+	@GetMapping("/ShowOnlyBScCourses")
 	public List<Course> ShowBScCourse() {
-	List<Course> list = service.ShowBScCourse();
-	if (list.size() == 0)
-		throw new EmptyDataException("No Courses in database");
-	return list;}
+		List<Course> list = service.ShowBScCourse();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Courses in database");
+		return list;
+	}
+	@GetMapping("/ShowOnlyMTECHCourses")
+	public List<Course> showMTechCourse() {
+		List<Course> list = service.showMTechCourse();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Courses in database");
+		return list;
+	}
+
+	@GetMapping("/Show4YearCourses")
+	public List<Course> year4CourseDuration() {
+		List<Course> list = service.year4CourseDuration();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Courses in database");
+		return list;
+	}
+
+	@GetMapping("/Show3YearCourses")
+	public List<Course> year3CourseDuration() {
+		List<Course> list = service.year3CourseDuration();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Courses in database");
+		return list;
+	}
 
 	@GetMapping
 	public List<Course> viewAllCourse() {
@@ -78,6 +106,5 @@ public class CourseController {
 			throw new EmptyDataException("No Courses in database");
 		return list;
 	}
-	
-	
+
 }

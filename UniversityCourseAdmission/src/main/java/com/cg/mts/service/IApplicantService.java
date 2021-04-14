@@ -9,6 +9,9 @@ public interface IApplicantService {
 	boolean updateApplicant(Applicant applicant);
 	boolean deleteApplicant(int id);
 	Applicant viewApplicant(int id);
+	
 	List<Applicant> getBtechDegree();
 	List<Applicant> showAll1stDivision();
+	List<Applicant> showMaleApplicants();
+	List<Applicant> showFemaleApplicants();
 }

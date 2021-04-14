@@ -15,4 +15,10 @@ public interface IApplicantRepository extends CrudRepository<Applicant, Integer>
     
     @Query("select p from Applicant p where p.applicantGraduationPercent>60")
     List<Applicant> showAll1stDivision();
+    
+    @Query("select m from Applicant m where m.gender='MALE' ")
+    List<Applicant> showMaleApplicants();
+    
+    @Query("select f from Applicant f where f.gender='FEMALE' ")
+    List<Applicant> showFemaleApplicants();
 }

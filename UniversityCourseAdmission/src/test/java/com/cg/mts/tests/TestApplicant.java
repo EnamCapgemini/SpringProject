@@ -57,4 +57,9 @@ class TestApplicant {
 		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,null,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
 		assertNotEquals(applicant, service.deleteApplicant(5500));
 	}
+	
+	@Test
+	public void getBtechDegree() {
+		
+	}
 }
