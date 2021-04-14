@@ -14,7 +14,10 @@ public interface ICourseService {
 	List<Course> viewAllCourses();
     List<Course> findCourseStartsWith();
     List<Course> ShowBScCourse();
-
+    List<Course> showMTechCourse();
+    List<Course> year4CourseDuration();
+    List<Course> year3CourseDuration();
+    
 	/*List<Course> findBystartsEndsWith();*/
 
 }

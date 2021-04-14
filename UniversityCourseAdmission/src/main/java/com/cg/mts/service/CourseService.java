@@ -52,7 +52,7 @@ public class CourseService implements ICourseService{
 		return list;
 	}
 
-	@Override
+	
 	public List<Course> findCourseStartsWith() {
 		List<Course>  coursenames=(List<Course>)repository.findCourseStartsWith();
 		return coursenames;
@@ -61,6 +61,24 @@ public class CourseService implements ICourseService{
 		List<Course>  coursenames=(List<Course>)repository.ShowBScCourse();
 		return coursenames;
 	}
-	 
+	
+	
+	public List<Course> year3CourseDuration() {
+		List<Course>  coursenames=(List<Course>)repository.year3CourseDuration();
+		return coursenames;
+	}
 
+	@Override
+	public List<Course> year4CourseDuration() {
+		List<Course>  coursenames=(List<Course>)repository.year4CourseDuration();
+		return coursenames;
+	}
+
+	
+	public List<Course> showMTechCourse() {
+		List<Course>  coursenames=(List<Course>)repository.showMTechCourse();
+		return coursenames;
+	}
+
+	
 }
