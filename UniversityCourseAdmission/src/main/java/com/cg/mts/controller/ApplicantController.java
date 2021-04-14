@@ -56,6 +56,14 @@ public class ApplicantController {
 			throw new  DataNotFoundException("delete","applicant with id "+applicantId+" not found");
 	}
 	
+	@GetMapping("/show12thpassApplicants")
+	public List<Applicant> get12thpass(){
+		List<Applicant> list=service.get12thpass();
+		if(list.size()==0)
+			throw new EmptyDataException("No applicants with degree 12thpass");
+		return list;
+	}
+	
 	@GetMapping("/showBTechApplicants")
 	public List<Applicant> getBtechDegree(){
 		List<Applicant> list=service.getBtechDegree();
@@ -87,12 +95,4 @@ public class ApplicantController {
 			throw new EmptyDataException("No female applicants");
 		return list;
 	}
-	/*@GetMapping("Status/{status}")
-	public List<Applicant> getAllByStatus(@PathVariable("status") AdmissionStatus status){
-		List<Applicant> l = service.findAll();
-		if(l.size()==0)
-			throw new EmptyDataException("No Applicants");
-		return l;
-		
-	}*/
 }

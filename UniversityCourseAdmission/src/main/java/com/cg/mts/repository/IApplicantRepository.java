@@ -10,6 +10,9 @@ import com.cg.mts.entities.Applicant;
 @Repository
 public interface IApplicantRepository extends CrudRepository<Applicant, Integer> {
 
+	@Query("select d from Applicant d where d.applicantDegree like '12%' ")
+    List<Applicant> get12thpass();
+	
     @Query("select d from Applicant d where d.applicantDegree like 'B.Tech%' ")
     List<Applicant> getBtechDegree();
     

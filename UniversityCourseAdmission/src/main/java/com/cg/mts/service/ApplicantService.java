@@ -3,8 +3,6 @@ package com.cg.mts.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +50,12 @@ public class ApplicantService implements IApplicantService{
 	}
 	
 	@Override
+	public List<Applicant> get12thpass(){
+		List<Applicant> degree=(List<Applicant>)repository.get12thpass();
+		return degree;
+	}
+	
+	@Override
 	public List<Applicant> getBtechDegree(){
 		List<Applicant> degree=(List<Applicant>)repository.getBtechDegree();
 		return degree;
@@ -73,9 +77,5 @@ public class ApplicantService implements IApplicantService{
 		List<Applicant> female=(List<Applicant>)repository.showFemaleApplicants();
 		return female;
 	}
-	/*public List<Applicant> findAll(){
-	
-		return em.createQuery("select r.status from Admission r join Applicant c on r.applicantId = c.applicantId",Applicant.class).getResultList();
-		 
-	}*/
+
 }
