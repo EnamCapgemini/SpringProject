@@ -57,13 +57,14 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 		return false;
 	}
 
-	public boolean deleteAdmissionCommiteeMember(int id) {
-		if (repository.existsByAdmissionCommiteeMemberId(id)) {
-			repository.deleteByAdmissionCommiteeMemberId(id);
-			return true;
-		}
-		return false;
-	}
+//	@Override
+//	public boolean deleteAdmissionCommiteeMember(int id) {
+//		if (repository.existsByAdmissionCommiteeMemberId(id)) {
+//			repository.deleteByAdmissionCommiteeMemberId(id);
+//			return true;
+//		}
+//		return false;
+//	}
 
 	@Override
 	public void provideAdmissionResult(Applicant ap, Admission ad) {
@@ -78,11 +79,11 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 	
 	
 	
-	@Override
-	public String getStatusByIdGrad(int id,int grad) {
-		String status=repository.getStatusById(id, grad);
-		
-		return status;
-	}
+//	@Override
+//	public String getStatusByIdGrad(int id,int grad) {
+//		String status=repository.getStatusById(id, grad);
+//		
+//		return status;
+//	}
 
 }

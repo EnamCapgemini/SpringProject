@@ -17,11 +17,10 @@ public interface IAdmissionCommiteeMemberRepository extends JpaRepository<Admiss
 
 	boolean existsByAdmissionCommiteeMemberId(int admissionCommiteeMemberId);
 
-	@Modifying
-	@Transactional
-	@Query(value = "Delete from ADMISSION_COMMITEE_MEMBER acm where acm.ADMISSION_COMMITEE_MEMBER_ID = ?1", nativeQuery = true)
-	void deleteByAdmissionCommiteeMemberId(int admissionCommiteeMemberId);
 	
-	@Query("Select a.status from Admission a,Applicant ap where a.applicantId=:id and ap.applicantGraduationPercent=:grad")
-	String getStatusById(@Param("id")int id,@Param("grad")int grad);
+//	@Query("Delete from AdmissionCommiteeMember acm where acm.admissionCommiteeMemberId = ?1")
+//	void deleteByAdmissionCommiteeMemberId(int admissionCommiteeMemberId);
+	
+//	@Query("Select a.status from Admission a,Applicant ap where a.applicantId=:id and ap.applicantGraduationPercent=:grad")
+//	String getStatusById(@Param("id")int id,@Param("grad")int grad);
 }

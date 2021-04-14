@@ -74,14 +74,14 @@ public class AdmissionCommiteeMemberController {
 					"Admission Commitee Member with id" + acm.getAdmissionCommiteeMemberId() + " not found");
 	}
 
-	@DeleteMapping("{acmid}")
-	public String deleteAdmissionCommiteeMember(@PathVariable("acmid") int id) {
-		if (service.deleteAdmissionCommiteeMember(id))
-			return "Admission Commitee Member data deleted";
-		else
-			throw new DataNotFoundException("Delete",
-					"Admission Commitee Member with id to delete " + id + " not found");
-	}
+//	@DeleteMapping("{acmid}")
+//	public String deleteAdmissionCommiteeMember(@PathVariable("acmid") int id) {
+//		if (service.deleteAdmissionCommiteeMember(id))
+//			return "Admission Commitee Member data deleted";
+//		else
+//			throw new DataNotFoundException("Delete",
+//					"Admission Commitee Member with id to delete " + id + " not found");
+//	}
 
 	@PatchMapping("{​​​​​acmid}​​​​​/{​​​​​acmname}​​​​​")
 	public String updateAdmissionCommiteeMemberName(@RequestParam("acmid") int acmid,
@@ -109,14 +109,14 @@ public class AdmissionCommiteeMemberController {
 		return "Admission Commitee Member contact update sucessfull";
 	}
 	
-	@PatchMapping("/change/{applicantId}/{grad}")
-	public String updateStatus(@PathVariable("applicantId") int id,@PathVariable("grad") int grad) {
-		String str=service.getStatusByIdGrad(id, grad);
-		if(grad>60)
-			str=AdmissionStatus.CONFIRMED.toString();
-		else
-			str=AdmissionStatus.REJECTED.toString();
-		return str;
-	}
+//	@PatchMapping("/change/{applicantId}/{grad}")
+//	public String updateStatus(@PathVariable("applicantId") int id,@PathVariable("grad") int grad) {
+//		String str=service.getStatusByIdGrad(id, grad);
+//		if(grad>60)
+//			str=AdmissionStatus.CONFIRMED.toString();
+//		else
+//			str=AdmissionStatus.REJECTED.toString();
+//		return str;
+//	}
 
 }
