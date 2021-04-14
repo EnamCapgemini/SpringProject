@@ -136,7 +136,7 @@ public class UniversityStaffController {
 	}
 	
 	
-	@GetMapping("/findAllCoursesUnderThisStaffID/{staffID}")
+	@GetMapping("/findCoursesUnderStaffID/{staffID}")
 	public Set<Course> viewAllCourses(@PathVariable("staffID")int id){
 		Set<Course> set=universityService.viewAllCoursesUnderThisStaffId(id);
 		if(set.size()==0)
