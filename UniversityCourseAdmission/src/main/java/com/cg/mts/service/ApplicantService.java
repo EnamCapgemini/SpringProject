@@ -1,5 +1,6 @@
 package com.cg.mts.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -14,9 +15,6 @@ import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.IApplicantRepository;
 @Service
 public class ApplicantService implements IApplicantService{
-	
-	@PersistenceContext
-	private EntityManager em;
 	
 	@Autowired
 	IApplicantRepository repository;
@@ -51,6 +49,12 @@ public class ApplicantService implements IApplicantService{
 		if(opt.isPresent())
 			return opt.get();
 		return null;
+	}
+	
+	@Override
+	public List<Applicant> getBtechDegree(){
+		List<Applicant> degree=(List<Applicant>)repository.getBtechDegree();
+		return degree;
 	}
 	/*public List<Applicant> findAll(){
 	

@@ -1,5 +1,7 @@
 package com.cg.mts.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
+import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.ApplicantService;
 
 @RestController
@@ -53,6 +56,13 @@ public class ApplicantController {
 			throw new  DataNotFoundException("delete","applicant with id "+applicantId+" not found");
 	}
 	
+	@GetMapping("/showBTechApplicants")
+	public List<Applicant> getBtechDegree(){
+		List<Applicant> list=service.getBtechDegree();
+		if(list.size()==0)
+			throw new EmptyDataException("No applicants with degree b.tech");
+		return list;
+	}
 	/*@GetMapping("Status/{status}")
 	public List<Applicant> getAllByStatus(@PathVariable("status") AdmissionStatus status){
 		List<Applicant> l = service.findAll();

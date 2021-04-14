@@ -1,5 +1,7 @@
 package com.cg.mts.service;
 
+import java.util.List;
+
 import com.cg.mts.entities.Applicant;
 
 public interface IApplicantService {
@@ -7,4 +9,5 @@ public interface IApplicantService {
 	boolean updateApplicant(Applicant applicant);
 	boolean deleteApplicant(int id);
 	Applicant viewApplicant(int id);
+	List<Applicant> getBtechDegree();
 }
