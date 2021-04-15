@@ -18,6 +18,7 @@ public class CourseService implements ICourseService {
 
 	Course c;
 
+	// Method to remove course
 	public boolean removeCourse(int id) {
 		if (repository.existsById(id)) {
 			repository.deleteById(id);
@@ -26,12 +27,14 @@ public class CourseService implements ICourseService {
 		return false;
 	}
 
+	// Method to add course
 	public void addCourse(Course c) throws DuplicateDataException {
 		if (repository.existsById(c.getCourseId()))
 			throw new DuplicateDataException("Course with" + c.getCourseId() + "Already exists");
 		repository.save(c);
 	}
 
+	// Method to update course
 	public boolean updateCourse(Course c) {
 		if (repository.existsById(c.getCourseId())) {
 			repository.save(c);
@@ -40,6 +43,7 @@ public class CourseService implements ICourseService {
 		return false;
 	}
 
+	// Method to view course by course id
 	public Course viewCourse(int id) {
 		Optional<Course> opt = repository.findById(id);
 		if (opt.isPresent())
@@ -48,51 +52,61 @@ public class CourseService implements ICourseService {
 
 	}
 
+	// Method to view all courses
 	public List<Course> viewAllCourses() {
 		List<Course> list = (List<Course>) repository.findAll();
 		return list;
 	}
 
+	// Method to show all M.tech courses
 	public List<Course> showMTechCourse() {
 		List<Course> coursenames = (List<Course>) repository.showMTechCourse();
 		return coursenames;
 	}
 
+	// Method to show all B.tech courses
 	public List<Course> ShowBTechCourse() {
 		List<Course> coursenames = (List<Course>) repository.ShowBTechCourse();
 		return coursenames;
 	}
 
+	// Method to show all B.Sc courses
 	public List<Course> ShowBScCourse() {
 		List<Course> coursenames = (List<Course>) repository.ShowBScCourse();
 		return coursenames;
 	}
 
+	// Method to show all 3 year courses
 	public List<Course> year3CourseDuration() {
 		List<Course> coursenames = (List<Course>) repository.year3CourseDuration();
 		return coursenames;
 	}
 
+	// Method to show all 4 year courses
 	public List<Course> year4CourseDuration() {
 		List<Course> coursenames = (List<Course>) repository.year4CourseDuration();
 		return coursenames;
 	}
 
+	// Method to show all 2 year courses
 	public List<Course> year2CourseDuration() {
 		List<Course> coursenames = (List<Course>) repository.year2CourseDuration();
 		return coursenames;
 	}
 
+	// Method to show all courses costing 5 lakhs
 	public List<Course> fees5LacCourses() {
 		List<Course> coursefees = (List<Course>) repository.fees5LacCourses();
 		return coursefees;
 	}
 
+	// Method to show all courses costing 8 lakhs
 	public List<Course> fees8LacCourses() {
 		List<Course> coursefees = (List<Course>) repository.fees8LacCourses();
 		return coursefees;
 	}
 
+	// Method to show all courses costing 4 lakhs
 	public List<Course> fees4LacCourses() {
 		List<Course> coursefees = (List<Course>) repository.fees4LacCourses();
 		return coursefees;
