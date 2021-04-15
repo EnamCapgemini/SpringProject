@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Admission;
-import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.IAdmissionRepository;
 
@@ -31,13 +30,13 @@ public class AdmissionService implements IAdmissionService {
 	}
 
 	// Method to update admission
-	public boolean updateAdmission(Admission a) {
-		if (!(repository.existsById(a.getAdmissionId()))) {
-			throw new DataNotFoundException("update", "Admission with id" + a.getAdmissionId() + "not found...");
-		} else {
-			repository.save(a);
+	public boolean updateAdmission(Admission a, int aid) {
+		if (repository.existsById(aid)) {
+			repository.updateAdmissionTable(a.getAdmissionDate(), a.getStatus(), aid);
 			return true;
 		}
+		return false;
+
 	}
 
 	// Method to delete admission
