@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -31,8 +33,8 @@ public class Course implements Serializable {
 	@Column(name = "COURSE_NAME")
 	private String courseName;
 
-	@NotEmpty(message = "duration should not be empty")
-	@NotNull(message = "duration is required")
+	@NotEmpty(message = "Course Duration should not be empty")
+	@NotNull(message = "Course Duration is required")
 	@Column(name = "COURSE_DURATION")
 	private String courseDuration;
 
@@ -45,6 +47,7 @@ public class Course implements Serializable {
 	@NotEmpty(message = "Fees should not be empty")
 	@NotNull(message = "Fees is required")
 	@Column(name = "COURSE_FEES")
+	@Pattern(regexp = "^[0-9]{1,6}$", message = "It Should be within 6 digit figure")
 	private String courseFees;
 
 	@OneToOne

@@ -38,15 +38,15 @@ public class CourseController {
 			throw new DataNotFoundException("Delete", "Course with id to delete " + id + "not found");
 	}
 
-	@PostMapping
-	public String addCourse(@Valid @RequestBody Course c) {
-		service.addCourse(c);
+	@PostMapping("{sid}")
+	public String addCourse(@Valid @RequestBody Course c, @PathVariable("sid") int id) {
+		service.addCourse(c, id);
 		return "Course successsfully added";
 	}
 
-	@PutMapping
-	public String updateCourse(@Valid @RequestBody Course c) {
-		if (service.updateCourse(c))
+	@PutMapping("{cid}")
+	public String updateCourse(@Valid @RequestBody Course c, @PathVariable("cid") int id) {
+		if (service.updateCourse(c, id))
 			return "data updated";
 		else
 			throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");

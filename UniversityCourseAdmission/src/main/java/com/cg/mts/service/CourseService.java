@@ -28,16 +28,18 @@ public class CourseService implements ICourseService {
 	}
 
 	// Method to add course
-	public void addCourse(Course c) throws DuplicateDataException {
+	public void addCourse(Course c, int sid) throws DuplicateDataException {
 		if (repository.existsById(c.getCourseId()))
 			throw new DuplicateDataException("Course with" + c.getCourseId() + "Already exists");
-		repository.save(c);
+		repository.saveByStaffId(c.getCourseId(), c.getCourseDuration(), c.getCourseEndDate(), c.getCourseFees(),
+				c.getCourseName(), c.getCourseStartDate(), sid);
 	}
 
 	// Method to update course
-	public boolean updateCourse(Course c) {
+	public boolean updateCourse(Course c, int cid) {
 		if (repository.existsById(c.getCourseId())) {
-			repository.save(c);
+			repository.updateCourseDetails(c.getCourseName(), c.getCourseDuration(), c.getCourseStartDate(),
+					c.getCourseEndDate(), c.getCourseFees(), cid);
 			return true;
 		}
 		return false;

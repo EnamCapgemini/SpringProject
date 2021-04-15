@@ -35,16 +35,17 @@ public class AdmissionController {
 		return new ResponseEntity<Admission>(c, HttpStatus.OK);
 	}
 
-	@PostMapping
-	public String saveAdmission(@Valid @RequestBody Admission a) {
-		service.addAdmission(a);
+	@PostMapping("/{courseId}/{staffId}/{applicantId}")
+	public String saveAdmission(@Valid @RequestBody Admission a, @PathVariable("courseId") int cid,
+			@PathVariable("staffId") int sid, @PathVariable("applicantId") int aid) {
+		service.addAdmission(a, cid, sid, aid);
 
 		return "Data Saved";
 	}
 
 	@PutMapping("/update")
 	public ResponseEntity<?> updateAdmission(@RequestBody Admission a) {
-		service.updateAdmission(a);
+		service.updateAdmission(a, a.getAdmissionId());
 		return new ResponseEntity<>("Admission Data Saved Successfully", HttpStatus.OK);
 	}
 

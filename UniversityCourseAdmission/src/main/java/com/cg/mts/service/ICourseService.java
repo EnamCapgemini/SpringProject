@@ -6,9 +6,7 @@ import com.cg.mts.entities.Course;
 
 public interface ICourseService {
 
-	void addCourse(Course c);
-
-	boolean updateCourse(Course c);
+	void addCourse(Course c, int cid);
 
 	boolean removeCourse(int id);
 
