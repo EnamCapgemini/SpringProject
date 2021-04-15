@@ -23,10 +23,11 @@ public class AdmissionService implements IAdmissionService {
 	IAdmissionRepository repository;
 
 	// Method to add admission
-	public void addAdmission(Admission a) throws DuplicateDataException {
+	public void addAdmission(Admission a, int cid, int sid, int aid) throws DuplicateDataException {
 		if (repository.existsById(a.getAdmissionId()))
 			throw new DuplicateDataException("Admission with" + a.getAdmissionId() + "already exists...");
-		repository.save(a);
+		repository.saveByApplicantAndAdmissionCommiteeId(a.getAdmissionId(), a.getAdmissionDate(), cid,
+				a.getStatus().toString(), sid, aid);
 	}
 
 	// Method to update admission
