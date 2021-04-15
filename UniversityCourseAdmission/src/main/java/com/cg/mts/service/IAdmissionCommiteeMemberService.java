@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.AdmissionCommiteeMember;
+import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
 @Service
 public interface IAdmissionCommiteeMemberService {
@@ -16,7 +17,7 @@ public interface IAdmissionCommiteeMemberService {
 	List<AdmissionCommiteeMember> getAllAdmissionCommiteeMembers();
 	boolean updateAdmissionCommiteeMember(AdmissionCommiteeMember e);
 	//boolean deleteAdmissionCommiteeMember(int id);
-	void provideAdmissionResult(Applicant ap, Admission ad);
+	boolean provideAdmissionResult(int id, AdmissionStatus as);
 
 //	String getStatusByIdGrad(int id,int grad);
 }

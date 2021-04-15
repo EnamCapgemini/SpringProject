@@ -1,10 +1,12 @@
 package com.cg.mts.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -57,13 +59,13 @@ public class AdmissionController {
 			throw new DataNotFoundException("detete","Admission with Id" +admissionId+ "not found");	
 	}
 	
-	@GetMapping("/Date{date}")
-	public List<Admission> getAllByDate(@PathVariable("date") Admission admissionDate){
-		List<Admission> l = service.findAll();
-		if(l.size()==0)
-			throw new EmptyDataException("No Admissions");
-		return l;
+	@GetMapping("/Date/{date}")
+	public List<Admission> getAllByDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") String admissionDate){
 		
+		List<Admission> c = service.showAllByDate(admissionDate);
+		if (c == null)
+			throw new DataNotFoundException("request","Admission with date " + admissionDate + "not found");
+		return c;
 	}
 	
 }
