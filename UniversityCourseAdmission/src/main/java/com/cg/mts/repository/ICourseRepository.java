@@ -38,13 +38,13 @@ public interface ICourseRepository extends CrudRepository<Course, Integer> {
     @Query("select c from Course c where c.courseDuration like '3%' ")
 	List<Course> year3CourseDuration();
     
-<<<<<<< HEAD
+
     @Modifying
     @Transactional
     @Query(value="insert into Course values(?1,?2,?3,?4,?5,?6,?7)",nativeQuery = true)
     void saveByStaffId(int id,String duration,LocalDate end,String fees,String name,LocalDate start,int sId);
 
-=======
+
     @Query("select c from Course c where c.courseDuration like '2%' ")
 	List<Course> year2CourseDuration();
     
@@ -58,7 +58,7 @@ public interface ICourseRepository extends CrudRepository<Course, Integer> {
 	List<Course> fees4LacCourses();
     
     
->>>>>>> a00132f0ab6f28707e2f8cdc93ff8d2efd6f5a10
+
 }
 
  
