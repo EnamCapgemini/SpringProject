@@ -1,5 +1,6 @@
 package com.cg.mts.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,4 +24,7 @@ public interface IAdmissionCommiteeMemberRepository extends JpaRepository<Admiss
 	
 //	@Query("Select a.status from Admission a,Applicant ap where a.applicantId=:id and ap.applicantGraduationPercent=:grad")
 //	String getStatusById(@Param("id")int id,@Param("grad")int grad);
+	
+	
+
 }

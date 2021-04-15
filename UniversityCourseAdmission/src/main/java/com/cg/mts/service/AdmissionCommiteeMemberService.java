@@ -67,6 +67,7 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 	public boolean deleteAdmissionCommiteeMember(int id) {
 		if(repository.existsById(id)) {
 			repository.deleteById(id);
+			
 			return true;
 		}
 		return false;
