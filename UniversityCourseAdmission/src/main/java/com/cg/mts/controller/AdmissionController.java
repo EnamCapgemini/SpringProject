@@ -34,48 +34,48 @@ public class AdmissionController {
 	public ResponseEntity<?> getAdmission(@PathVariable("aid") int admissionId) {
 		Admission c = service.getAdmission(admissionId);
 		if (c == null)
-			throw new DataNotFoundException("request","Admission with id " + admissionId + "not found");
+			throw new DataNotFoundException("request", "Admission with id " + admissionId + "not found");
 		return new ResponseEntity<Admission>(c, HttpStatus.OK);
 	}
-	
+
 	@PostMapping
 	public String saveAdmission(@Valid @RequestBody Admission a) {
 		service.addAdmission(a);
-		
+
 		return "Data Saved";
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<?> updateAdmission(@RequestBody Admission a){
+	public ResponseEntity<?> updateAdmission(@RequestBody Admission a) {
 		service.updateAdmission(a);
-		return new ResponseEntity<>("Admission Data Saved Successfully",HttpStatus.OK);
+		return new ResponseEntity<>("Admission Data Saved Successfully", HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping("/{aid}")
 	public String deleteAdmission(@PathVariable("aid") int admissionId) {
-		if(service.deleteAdmission(admissionId))
+		if (service.deleteAdmission(admissionId))
 			return "Data Deleted";
 		else
-			throw new DataNotFoundException("detete","Admission with Id" +admissionId+ "not found");	
+			throw new DataNotFoundException("detete", "Admission with Id" + admissionId + "not found");
 	}
-	
+
 	@GetMapping("/Date/{date}")
-	public List<Admission> getAllByDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") String admissionDate){
-		
+	public List<Admission> getAllByDate(
+			@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") String admissionDate) {
+
 		List<Admission> c = service.showAllByDate(admissionDate);
 		if (c == null)
-			throw new DataNotFoundException("request","Admission with date " + admissionDate + "not found");
+			throw new DataNotFoundException("request", "Admission with date " + admissionDate + "not found");
 		return c;
 	}
-	
+
 	@GetMapping("/Course/{cid}")
-	public List<Admission> getAllByCourseId(@PathVariable("cid")  int courseId){
-		
+	public List<Admission> getAllByCourseId(@PathVariable("cid") int courseId) {
+
 		List<Admission> ad = service.showAllByCourseId(courseId);
 		if (ad == null)
-			throw new DataNotFoundException("request","Course with id " + courseId + "not found");
+			throw new DataNotFoundException("request", "Course with id " + courseId + "not found");
 		return ad;
 	}
-	
-	
+
 }
