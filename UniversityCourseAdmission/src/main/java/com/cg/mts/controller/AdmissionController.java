@@ -44,7 +44,7 @@ public class AdmissionController {
 
 	@PutMapping("/update")
 	public ResponseEntity<?> updateAdmission(@RequestBody Admission a) {
-		service.updateAdmission(a);
+		service.updateAdmission(a, a.getAdmissionId());
 		return new ResponseEntity<>("Admission Data Saved Successfully", HttpStatus.OK);
 	}
 
