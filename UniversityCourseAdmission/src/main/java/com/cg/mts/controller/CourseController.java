@@ -24,7 +24,6 @@ import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.CourseService;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/Courses")
 public class CourseController {
 
