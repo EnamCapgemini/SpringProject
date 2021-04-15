@@ -68,4 +68,14 @@ public class AdmissionController {
 		return c;
 	}
 	
+	@GetMapping("/Course/{cid}")
+	public List<Admission> getAllByCourseId(@PathVariable("cid")  int courseId){
+		
+		List<Admission> ad = service.showAllByCourseId(courseId);
+		if (ad == null)
+			throw new DataNotFoundException("request","Course with id " + courseId + "not found");
+		return ad;
+	}
+	
+	
 }
