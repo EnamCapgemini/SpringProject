@@ -20,7 +20,7 @@ public interface ICourseRepository extends CrudRepository<Course, Integer> {
 	
 
     @Query("select c from Course c where c.courseName like 'B.TECH%' ")
-	List<Course> findCourseStartsWith();
+	List<Course> ShowBTechCourse();
     
     @Query("select c from Course c where c.courseName like 'B.Sc%' ")
 	List<Course> ShowBScCourse();
@@ -33,6 +33,18 @@ public interface ICourseRepository extends CrudRepository<Course, Integer> {
     
     @Query("select c from Course c where c.courseDuration like '3%' ")
 	List<Course> year3CourseDuration();
+    
+    @Query("select c from Course c where c.courseDuration like '2%' ")
+	List<Course> year2CourseDuration();
+    
+    @Query("select c from Course c where c.courseFees like '5000%' ")
+	List<Course> fees5LacCourses();
+    
+    @Query("select c from Course c where c.courseFees like '8000%' ")
+	List<Course> fees8LacCourses();
+    
+    @Query("select c from Course c where c.courseFees like '4000%' ")
+	List<Course> fees4LacCourses();
     
     
 }

@@ -61,8 +61,8 @@ public class CourseController {
 	}
 
 	@GetMapping("/ShowOnlyBTechCourses")
-	public List<Course> findCourseStartsWith() {
-		List<Course> list = service.findCourseStartsWith();
+	public List<Course> ShowBTechCourse() {
+		List<Course> list = service.ShowBTechCourse();
 		if (list.size() == 0)
 			throw new EmptyDataException("No Courses in database");
 		return list;
@@ -94,6 +94,34 @@ public class CourseController {
 	@GetMapping("/Show3YearCourses")
 	public List<Course> year3CourseDuration() {
 		List<Course> list = service.year3CourseDuration();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Courses in database");
+		return list;
+	}
+	@GetMapping("/Show2YearCourses")
+	public List<Course> year2CourseDuration() {
+		List<Course> list = service.year2CourseDuration();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Courses in database");
+		return list;
+	}
+	@GetMapping("/Show5LacFeesCourses")
+	public List<Course> fees5LacCourses() {
+		List<Course> list = service.fees5LacCourses();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Courses in database");
+		return list;
+	}
+	@GetMapping("/Show8LacFeesCourses")
+	public List<Course> fees8LacCourses() {
+		List<Course> list = service.fees8LacCourses();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Courses in database");
+		return list;
+	}
+	@GetMapping("/Show4LacFeesCourses")
+	public List<Course> fees4LacCourses() {
+		List<Course> list = service.fees4LacCourses();
 		if (list.size() == 0)
 			throw new EmptyDataException("No Courses in database");
 		return list;

@@ -12,12 +12,16 @@ public interface ICourseService {
 	boolean removeCourse(int id);
 	Course viewCourse(int id);
 	List<Course> viewAllCourses();
-    List<Course> findCourseStartsWith();
+    List<Course> ShowBTechCourse();
     List<Course> ShowBScCourse();
     List<Course> showMTechCourse();
     List<Course> year4CourseDuration();
     List<Course> year3CourseDuration();
-    
-	/*List<Course> findBystartsEndsWith();*/
+    List<Course> year2CourseDuration();
+    List<Course> fees5LacCourses();
+    List<Course> fees8LacCourses();
+    List<Course> fees4LacCourses();
+
+	
 
 }

@@ -53,8 +53,8 @@ public class CourseService implements ICourseService{
 	}
 
 	
-	public List<Course> findCourseStartsWith() {
-		List<Course>  coursenames=(List<Course>)repository.findCourseStartsWith();
+	public List<Course> ShowBTechCourse() {
+		List<Course>  coursenames=(List<Course>)repository.ShowBTechCourse();
 		return coursenames;
 	}
 	public List<Course> ShowBScCourse() {
@@ -68,9 +68,13 @@ public class CourseService implements ICourseService{
 		return coursenames;
 	}
 
-	@Override
+	
 	public List<Course> year4CourseDuration() {
 		List<Course>  coursenames=(List<Course>)repository.year4CourseDuration();
+		return coursenames;
+	}
+	public List<Course> year2CourseDuration() {
+		List<Course>  coursenames=(List<Course>)repository.year2CourseDuration();
 		return coursenames;
 	}
 
@@ -78,6 +82,24 @@ public class CourseService implements ICourseService{
 	public List<Course> showMTechCourse() {
 		List<Course>  coursenames=(List<Course>)repository.showMTechCourse();
 		return coursenames;
+	}
+
+	
+	public List<Course> fees5LacCourses() {
+		List<Course>  coursefees=(List<Course>)repository.fees5LacCourses();
+		return coursefees;
+	}
+
+	
+	public List<Course> fees8LacCourses() {
+		List<Course>  coursefees=(List<Course>)repository.fees8LacCourses();
+		return coursefees;
+	}
+
+	
+	public List<Course> fees4LacCourses() {
+		List<Course>  coursefees=(List<Course>)repository.fees4LacCourses();
+		return coursefees;
 	}
 
 	
