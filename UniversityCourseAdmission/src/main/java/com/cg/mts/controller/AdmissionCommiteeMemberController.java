@@ -75,14 +75,14 @@ public class AdmissionCommiteeMemberController {
 					"Admission Commitee Member with id" + acm.getAdmissionCommiteeMemberId() + " not found");
 	}
 
-//	@DeleteMapping("{acmid}")
-//	public String deleteAdmissionCommiteeMember(@PathVariable("acmid") int id) {
-//		if (service.deleteAdmissionCommiteeMember(id))
-//			return "Admission Commitee Member data deleted";
-//		else
-//			throw new DataNotFoundException("Delete",
-//					"Admission Commitee Member with id to delete " + id + " not found");
-//	}
+	@DeleteMapping("{acmid}")
+	public String deleteAdmissionCommiteeMember(@PathVariable("acmid") int id) {
+		if (service.deleteAdmissionCommiteeMember(id))
+			return "Admission Commitee Member data deleted";
+		else
+			throw new DataNotFoundException("Delete",
+					"Admission Commitee Member with id to delete " + id + " not found");
+	}
 
 	@PatchMapping("{​​​​​acmid}​​​​​/{​​​​​acmname}​​​​​")
 	public String updateAdmissionCommiteeMemberName(@RequestParam("acmid") int acmid,

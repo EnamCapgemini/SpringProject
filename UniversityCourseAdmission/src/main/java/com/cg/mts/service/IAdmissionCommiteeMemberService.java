@@ -16,7 +16,7 @@ public interface IAdmissionCommiteeMemberService {
 	AdmissionCommiteeMember getAdmissionCommiteeMember(int id);
 	List<AdmissionCommiteeMember> getAllAdmissionCommiteeMembers();
 	boolean updateAdmissionCommiteeMember(AdmissionCommiteeMember e);
-	//boolean deleteAdmissionCommiteeMember(int id);
+	boolean deleteAdmissionCommiteeMember(int id);
 	boolean provideAdmissionResult(int id, AdmissionStatus as);
 
 //	String getStatusByIdGrad(int id,int grad);

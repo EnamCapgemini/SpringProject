@@ -63,14 +63,14 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 		return false;
 	}
 
-//	@Override
-//	public boolean deleteAdmissionCommiteeMember(int id) {
-//		if (repository.existsByAdmissionCommiteeMemberId(id)) {
-//			repository.deleteByAdmissionCommiteeMemberId(id);
-//			return true;
-//		}
-//		return false;
-//	}
+	@Override
+	public boolean deleteAdmissionCommiteeMember(int id) {
+		if(repository.existsById(id)) {
+			repository.deleteById(id);
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public boolean provideAdmissionResult(int adid, AdmissionStatus as) {
