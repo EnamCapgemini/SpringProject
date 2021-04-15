@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
 import com.cg.mts.entities.User;
+import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.repository.UserRepository;
@@ -72,10 +73,12 @@ public class UniversityStaffService implements IUniversityStaffService{
 		return false;
 	}
 	
-	public void addCourse(Course c,int id) throws DuplicateDataException {
+	public void addCourse(Course c,int staffId) throws DuplicateDataException {
 		if (courseRepo.existsById(c.getCourseId()))
-			throw new DuplicateDataException("Course with" + c.getCourseId() + "Already exists");
-		courseRepo.saveByStaffId(c.getCourseId(), c.getCourseDuration(),c.getCourseEndDate(), c.getCourseFees(), c.getCourseName(), c.getCourseStartDate(), id);
+			throw new DuplicateDataException("Course with id " + c.getCourseId() + " Already exists");
+		if(!universityRepo.existsById(staffId))
+			throw new DataNotFoundException("Checking","Staff with id " + staffId + " not present in database");
+		courseRepo.saveByStaffId(c.getCourseId(), c.getCourseDuration(),c.getCourseEndDate(), c.getCourseFees(), c.getCourseName(), c.getCourseStartDate(), staffId);
 	}
 
 	public boolean removeCourse(int id) {

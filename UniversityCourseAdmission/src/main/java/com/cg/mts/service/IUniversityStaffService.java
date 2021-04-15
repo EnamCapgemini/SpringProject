@@ -13,7 +13,7 @@ public interface IUniversityStaffService {
 	void addStaff(UniversityStaffMember staff);
 	boolean updateStaff(UniversityStaffMember staff);
 	boolean removeStaff(int id);
-	void addCourse(Course c,int id);
+	void addCourse(Course c,int staffId);
 	boolean removeCourse(int id);
 	boolean updateCourse(Course c);
 	Set<Course> viewAllCoursesUnderThisStaffId(int id);

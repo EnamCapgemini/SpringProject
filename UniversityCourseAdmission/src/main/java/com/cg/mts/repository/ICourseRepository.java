@@ -42,7 +42,7 @@ public interface ICourseRepository extends CrudRepository<Course, Integer> {
     @Modifying
     @Transactional
     @Query(value="insert into Course values(?1,?2,?3,?4,?5,?6,?7)",nativeQuery = true)
-    void saveByStaffId(int id,String duration,LocalDate end,String fees,String name,LocalDate start,int sId);
+    void saveByStaffId(int courseId,String duration,LocalDate end,String fees,String name,LocalDate start,int staffId);
 
 
     @Query("select c from Course c where c.courseDuration like '2%' ")
