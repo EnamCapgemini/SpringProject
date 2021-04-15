@@ -6,7 +6,7 @@ import com.cg.mts.entities.Admission;
 
 public interface IAdmissionService {
 
-	void addAdmission(Admission a);
+	void addAdmission(Admission a, int cid, int sid, int aid);
 
 	boolean deleteAdmission(int id);
 
