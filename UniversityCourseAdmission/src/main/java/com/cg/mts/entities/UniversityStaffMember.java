@@ -83,8 +83,7 @@ public class UniversityStaffMember implements Serializable {
 		this.staffId = staffId;
 	}
 
-<<<<<<< Updated upstream
-=======
+
 	public String getUsername() {
 		return username;
 	}
@@ -93,7 +92,7 @@ public class UniversityStaffMember implements Serializable {
 		this.username = username;
 	}
 
->>>>>>> Stashed changes
+
 	public String getPassword() {
 		return password;
 	}

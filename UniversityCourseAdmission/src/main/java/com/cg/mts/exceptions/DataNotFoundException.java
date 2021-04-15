@@ -1,5 +1,6 @@
 package com.cg.mts.exceptions;
 
+@SuppressWarnings("serial")
 public class DataNotFoundException extends RuntimeException {
 
 	private String operation;

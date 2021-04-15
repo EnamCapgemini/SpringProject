@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,10 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.AdmissionCommiteeMember;
 import com.cg.mts.entities.AdmissionStatus;
-//import com.cg.mts.exceptions.AdmissionCommiteeMemberNotFoundException;
+
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.AdmissionCommiteeMemberService;
@@ -33,7 +33,8 @@ public class AdmissionCommiteeMemberController {
 	@Autowired
 	AdmissionCommiteeMemberService service;
 
-	@PostMapping("/addCommiteeMember")
+	// To Save the Admission Committee Member details
+	@PostMapping("/addCommiteeMemberByStaffId")
 	public ResponseEntity<?> saveAdmissionCommiteeMember(@Valid @RequestBody AdmissionCommiteeMember acm) {
 
 		service.saveAdmissionCommiteeMember(acm);
@@ -42,22 +43,25 @@ public class AdmissionCommiteeMemberController {
 
 	}
 
+	// To Retrieve the Admission Committee Member Detail by Admission Committee Id
 	@GetMapping("/getUserByAdmissionCommiteeMemberId/{acmid}")
 	public ResponseEntity<?> findUserByAdmissionCommiteeMemberId(@PathVariable("acmid") int id) {
-		AdmissionCommiteeMember acm = service.getUserbyAdmissionCommiteeMemberId(id);
+		AdmissionCommiteeMember acm = service.getUserByAdmissionCommiteeMemberId(id);
 		if (acm == null)
 			throw new DataNotFoundException("Request", "Admission Commitee Member with id " + id + " not found");
 		return new ResponseEntity<>(acm, HttpStatus.OK);
 	}
 
+	// To Retrieve the Admission Committee Member Detail by Staff Id
 	@GetMapping("/getUserByStaffId/{acmid}")
 	public ResponseEntity<?> getAdmissionCommiteeMember(@PathVariable("acmid") int memId) {
-		AdmissionCommiteeMember acm = service.getAdmissionCommiteeMember(memId);
+		AdmissionCommiteeMember acm = service.getAdmissionCommiteeMemberByStaffId(memId);
 		if (acm == null)
 			throw new DataNotFoundException("Request", "Admission Commitee Member with id " + memId + " not found");
 		return new ResponseEntity<AdmissionCommiteeMember>(acm, HttpStatus.OK);
 	}
 
+	// To Retrieve all the Admission Committee Members details
 	@GetMapping
 	public List<AdmissionCommiteeMember> getAllAdmissionCommiteeMembers() {
 		List<AdmissionCommiteeMember> list = service.getAllAdmissionCommiteeMembers();
@@ -66,6 +70,7 @@ public class AdmissionCommiteeMemberController {
 		return list;
 	}
 
+	// To Update the Admission Committee Member detail
 	@PutMapping("/updateCommiteeMember")
 	public String updateAdmissionCommiteeMember(@Valid @RequestBody AdmissionCommiteeMember acm) {
 		if (service.updateAdmissionCommiteeMember(acm))
@@ -75,19 +80,33 @@ public class AdmissionCommiteeMemberController {
 					"Admission Commitee Member with id" + acm.getAdmissionCommiteeMemberId() + " not found");
 	}
 
-	@DeleteMapping("{acmid}")
+	// To Delete the Admission Committee Member detail by Staff Id
+	@DeleteMapping("/deleteUserByStaffId/{acmid}")
 	public String deleteAdmissionCommiteeMember(@PathVariable("acmid") int id) {
-		if (service.deleteAdmissionCommiteeMember(id))
+		if (service.deleteAdmissionCommiteeMemberByStaffId(id))
 			return "Admission Commitee Member data deleted";
 		else
-			throw new DataNotFoundException("Delete","Admission Commitee Member with id to delete " + id + " not found");
+			throw new DataNotFoundException("Delete",
+					"Admission Commitee Member with id to delete " + id + " not found");
 	}
-	
 
-	@PatchMapping("{​​​​​acmid}​​​​​/{​​​​​acmname}​​​​​")
+	// To Delete the Admission Committee Member detail by Admission Committee Id
+	@Transactional
+	@DeleteMapping("/deleteUserByAdmissionCommiteeMemberId/{acmid}")
+	public String deleteUserByAdmissionCommiteeMemberId(@PathVariable("acmid") int id) {
+		if (service.deleteUserByAdmissionCommiteeMemberId(id))
+			return "Admission Commitee Member data deleted";
+		else
+			throw new DataNotFoundException("Delete",
+					"Admission Commitee Member with id to delete " + id + " not found");
+
+	}
+
+	// To Update the Admission Committee Member Name by Admission Committee Id
+	@PatchMapping("/updateAdmissionCommiteeMemberName/{​​​​​acmid}​​​​​/{​​​​​acmname}​​​​​")
 	public String updateAdmissionCommiteeMemberName(@RequestParam("acmid") int acmid,
 			@RequestParam("acmname") String acmname) {
-		AdmissionCommiteeMember acm = service.getUserbyAdmissionCommiteeMemberId(acmid);
+		AdmissionCommiteeMember acm = service.getUserByAdmissionCommiteeMemberId(acmid);
 		if (acm == null)
 			throw new DataNotFoundException("Update",
 					"Admission Commitee Member with name to update with id " + acmid + " not found");
@@ -97,10 +116,11 @@ public class AdmissionCommiteeMemberController {
 		return "Admission Commitee Member name update sucessfull";
 	}
 
-	@PatchMapping("{​​​​​acmid}​​​​​/{​​​​​acmcont}​​​​​")
+	// To Update the Admission Committee Member Contact by Admission Committee Id
+	@PatchMapping("/updateAdmissionCommiteeMemberContact/{​​​​​acmid}​​​​​/{​​​​​acmcont}​​​​​")
 	public String updateAdmissionCommiteeMemberContact(@RequestParam("acmid") int acmid,
 			@RequestParam("acmcont") String acmcont) {
-		AdmissionCommiteeMember acm = service.getUserbyAdmissionCommiteeMemberId(acmid);
+		AdmissionCommiteeMember acm = service.getUserByAdmissionCommiteeMemberId(acmid);
 		if (acm == null)
 			throw new DataNotFoundException("Update",
 					"Admission Commitee Member with contact to update with id " + acmid + " not found");
@@ -110,24 +130,14 @@ public class AdmissionCommiteeMemberController {
 		return "Admission Commitee Member contact update sucessfull";
 	}
 
-//	@PatchMapping("/change/{applicantId}/{grad}")
-//	public String updateStatus(@PathVariable("applicantId") int id,@PathVariable("grad") int grad) {
-//		String str=service.getStatusByIdGrad(id, grad);
-//		if(grad>60)
-//			str=AdmissionStatus.CONFIRMED.toString();
-//		else
-//			str=AdmissionStatus.REJECTED.toString();
-//		return str;
-//	}
-
-	@PatchMapping("{​​​​​adid}​​​​​/{​​​​​adstatus}​​​​​")
+	// To Update the Admission Status by Admission Id
+	@PatchMapping("/updateAdmissionStatus/{​​​​​adid}​​​​​/{​​​​​adstatus}​​​​​")
 	public String updateAdmissionStatus(@RequestParam("adid") int adid,
 			@RequestParam("adstatus") AdmissionStatus adstatus) {
 		if (service.provideAdmissionResult(adid, adstatus))
-			return "Admission Result data of "+ adid +" updated";
+			return "Admission Result data of " + adid + " updated";
 		else
-			throw new DataNotFoundException("Update",
-					"Admission Commitee Member with id" + adid + " not found");
+			throw new DataNotFoundException("Update", "Admission Commitee Member with id" + adid + " not found");
 
 	}
 

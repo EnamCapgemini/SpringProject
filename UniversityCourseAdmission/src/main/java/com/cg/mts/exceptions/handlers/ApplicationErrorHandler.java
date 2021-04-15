@@ -53,9 +53,6 @@ public class ApplicationErrorHandler {
 
 		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
 	}
-<<<<<<< Updated upstream
-
-=======
 	
 	@ExceptionHandler(BadCredentialsException.class)
 	public ResponseEntity<?> handleBadCredentials(BadCredentialsException ex){
@@ -68,5 +65,4 @@ public class ApplicationErrorHandler {
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
 	
->>>>>>> Stashed changes
 }

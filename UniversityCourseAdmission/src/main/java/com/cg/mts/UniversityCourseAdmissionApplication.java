@@ -28,6 +28,7 @@ public class UniversityCourseAdmissionApplication {
 				.apiInfo(metaInfo());
 	}
 	private ApiInfo metaInfo() {
+		@SuppressWarnings("deprecation")
 		ApiInfo apiInfo=new ApiInfo("Spring Boot Test",
 				"Capgemini Spring Project",
 				"1.0",
