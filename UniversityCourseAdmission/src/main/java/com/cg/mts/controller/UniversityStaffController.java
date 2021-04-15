@@ -36,7 +36,6 @@ import com.cg.mts.service.CourseService;
 import com.cg.mts.service.UniversityStaffService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @RestController
 @RequestMapping("/UniversityStaffs")
 @JsonIgnoreProperties("Password")
@@ -44,104 +43,106 @@ public class UniversityStaffController {
 
 	@Autowired
 	UniversityStaffService universityService;
-	
+
 	@Autowired
 	CourseService courseService;
-	
-	@PersistenceContext
-    EntityManager entityManager;
 
-	
+	@PersistenceContext
+	EntityManager entityManager;
+
+	// To Retrieve All the University Staff Members Details
 	@GetMapping
-	public List<UniversityStaffMember> viewAllStaffs(){
-		List<UniversityStaffMember> list=universityService.viewAllStaffs();
-		if(list.size()==0)
+	public List<UniversityStaffMember> viewAllStaffs() {
+		List<UniversityStaffMember> list = universityService.viewAllStaffs();
+		if (list.size() == 0)
 			throw new EmptyDataException("No University Satff in Database.");
 		return list;
 	}
-	
+
+	// To Retrieve Staff Details for the given StaffId
 	@GetMapping("/{staffId}")
 	public ResponseEntity<?> viewStaff(@PathVariable("staffId") int sid) {
-		UniversityStaffMember staff=universityService.viewStaff(sid);
-		if(staff==null)
-			throw new DataNotFoundException("Request", "Staff with id "+sid+" not found");
+		UniversityStaffMember staff = universityService.viewStaff(sid);
+		if (staff == null)
+			throw new DataNotFoundException("Request", "Staff with id " + sid + " not found");
 		else
-			return new ResponseEntity<UniversityStaffMember>(staff,HttpStatus.OK);
+			return new ResponseEntity<UniversityStaffMember>(staff, HttpStatus.OK);
 	}
-	
+
+	// To Save University Staff Details
 	@PostMapping
 	public String addStaff(@Valid @RequestBody UniversityStaffMember staff) {
-		if(universityService.viewStaff(staff.getStaffId())==null)
-		{
+		if (universityService.viewStaff(staff.getStaffId()) == null) {
 			universityService.addStaff(staff);
 			return "Data saved Succesfully";
 		}
 		return "Duplicate Staff ID";
 	}
-	
+
+	// To Update the Staff Details
 	@PutMapping
 	public String updateStaff(@Valid @RequestBody UniversityStaffMember staff) {
-		if(universityService.updateStaff(staff))
+		if (universityService.updateStaff(staff))
 			return "Staff data updated";
 		else
-			throw new DataNotFoundException("Update", "Staff with id "+staff.getStaffId()+" not found");
+			throw new DataNotFoundException("Update", "Staff with id " + staff.getStaffId() + " not found");
 	}
-	
-	
+
+	// To Delete the Staff Details
 	@DeleteMapping("/{staffId}")
 	public String removeStaff(@PathVariable("staffId") int sId) {
-		if(universityService.removeStaff(sId))
+		if (universityService.removeStaff(sId))
 			return "Staff Data Deleted Succesfully";
 		else
-			throw new DataNotFoundException("Delete", "Staff with id "+sId+" not found");
+			throw new DataNotFoundException("Delete", "Staff with id " + sId + " not found");
 	}
-	
+
+	// To Retrieve Course Details using Course ID
 	@GetMapping("/findCourseDetailsWithCourseID/{courseId}")
 	public ResponseEntity<?> getCourse(@PathVariable("courseId") int id) {
-		//UniversityStaffMember staff=universityService.viewStaff(sid);
-		Course c=courseService.viewCourse(id);
-		if(c==null)
-			throw new DataNotFoundException("Request", "course with id "+id+" not found.");
+		// UniversityStaffMember staff=universityService.viewStaff(sid);
+		Course c = courseService.viewCourse(id);
+		if (c == null)
+			throw new DataNotFoundException("Request", "course with id " + id + " not found.");
 		else
-			return new ResponseEntity<Course>(c,HttpStatus.OK);
+			return new ResponseEntity<Course>(c, HttpStatus.OK);
 	}
-	
-	
-	
+
+	// To Retrieve Course Details of all the Courses Under a Staff
+	@GetMapping("/findCoursesUnderStaffID/{staffID}")
+	public Set<Course> viewAllCourses(@PathVariable("staffID") int id) {
+		Set<Course> set = universityService.viewAllCoursesUnderThisStaffId(id);
+		if (set.size() == 0)
+			throw new EmptyDataException("No Courses under this Staff ID.");
+		return set;
+	}
+
+	// To add a Course By a Staff
 	@PostMapping("/addCourseByStaff{staffId}")
-	public String addCourse(@Valid @PathVariable("staffId") int sId,@RequestBody Course c) {
-		if(courseService.viewCourse(c.getCourseId())==null)
-		{
-			universityService.addCourse(c,sId);
+	public String addCourse(@Valid @PathVariable("staffId") int sId, @RequestBody Course c) {
+		if (courseService.viewCourse(c.getCourseId()) == null) {
+			universityService.addCourse(c, sId);
 			return "Course Details saved Succesfully";
 		}
 		return "Duplicate Course ID";
 	}
-	
+
+	// To Update Course Details By a Staff
 	@PutMapping("/updateCourseDetails")
 	public String updateCourse(@Valid @RequestBody Course c) {
-		if(universityService.updateCourse(c, c.getCourseId()))
+		if (universityService.updateCourse(c, c.getCourseId()))
 			return "Course Details Updated";
 		else
-			throw new DataNotFoundException("Update", "Course with id "+c.getCourseId()+" not found");
+			throw new DataNotFoundException("Update", "Course with id " + c.getCourseId() + " not found");
 	}
-	
-	
+
+	// Delete Course Data
 	@DeleteMapping("/deleteCourseUsingCourseID/{courseId}")
 	public String removeCourseByStaff(@PathVariable("courseId") int id) {
-		if(courseService.removeCourse(id))
+		if (courseService.removeCourse(id))
 			return "course Data Deleted Succesfully";
 		else
-			throw new DataNotFoundException("Delete", "Course with id "+id+" not found");
-	}
-	
-	
-	@GetMapping("/findCoursesUnderStaffID/{staffID}")
-	public Set<Course> viewAllCourses(@PathVariable("staffID")int id){
-		Set<Course> set=universityService.viewAllCoursesUnderThisStaffId(id);
-		if(set.size()==0)
-			throw new EmptyDataException("No Courses under this Staff ID.");
-		return set;
+			throw new DataNotFoundException("Delete", "Course with id " + id + " not found");
 	}
 
 }

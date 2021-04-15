@@ -15,7 +15,7 @@ import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
 
 @Repository
-public interface IUniversityStaffRepository extends JpaRepository<UniversityStaffMember, Integer>{
+public interface IUniversityStaffRepository extends JpaRepository<UniversityStaffMember, Integer> {
 
 	@Query("select u.courses from UniversityStaffMember u where u.staffId=:id")
 	Set<Course> getAllCoursesByStaffId(@Param("id") int id);
