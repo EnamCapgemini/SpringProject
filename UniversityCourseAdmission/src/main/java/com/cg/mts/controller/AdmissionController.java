@@ -31,7 +31,7 @@ public class AdmissionController {
 	AdmissionService service;
 
 	@GetMapping("{aid}")
-	public ResponseEntity<?> getCourse(@PathVariable("aid") int admissionId) {
+	public ResponseEntity<?> getAdmission(@PathVariable("aid") int admissionId) {
 		Admission c = service.getAdmission(admissionId);
 		if (c == null)
 			throw new DataNotFoundException("request","Admission with id " + admissionId + "not found");
