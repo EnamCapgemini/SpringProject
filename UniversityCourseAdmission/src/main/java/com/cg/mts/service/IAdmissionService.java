@@ -10,6 +10,7 @@ public interface IAdmissionService {
 	boolean updateAdmission(Admission a);
 	boolean deleteAdmission(int id);
 	Admission getAdmission(int id);
-	List<Admission> findAll();
+	List<Admission> showAllByDate(String adDate);
+	List<Admission> showAllByCourseId(int id);
 
 }

@@ -8,4 +8,5 @@ import com.cg.mts.entities.Admission;
 @Repository
 public interface IAdmissionRepository extends CrudRepository<Admission, Integer> {
 
+	
 }
