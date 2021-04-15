@@ -44,7 +44,8 @@ public class Admission implements Serializable{
 	@Column(name = "STATUS")
 	private AdmissionStatus status;
 
-	@OneToOne(mappedBy="admission")
+	@OneToOne
+	//@JoinColumn("A")
 	private Applicant applicant;
 	
 

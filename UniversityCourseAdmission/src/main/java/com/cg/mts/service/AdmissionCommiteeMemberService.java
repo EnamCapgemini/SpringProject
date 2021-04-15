@@ -88,7 +88,6 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 	
 	
 	
-	
 //	@Override
 //	public String getStatusByIdGrad(int id,int grad) {
 //		String status=repository.getStatusById(id, grad);

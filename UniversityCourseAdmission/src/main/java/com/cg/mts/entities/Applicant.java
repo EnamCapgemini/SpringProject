@@ -51,9 +51,9 @@ public class Applicant implements Serializable {
 	@Column(name = "GRAD_PER")
 	private int applicantGraduationPercent;
 
-	@OneToOne
+	/*@OneToOne
 	@JoinColumn(name = "ADMISSION_ID")
-	private Admission admission;
+	private Admission admission;*/
 
 	/*@OneToOne
 	@JoinColumn(name = "COURSE")*/
@@ -78,8 +78,7 @@ public class Applicant implements Serializable {
 
 	}
 
-	public Applicant(int applicantId, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,
-			Admission admission,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId) {
+	public Applicant(int applicantId, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId) {
 		super();
 		this.applicantId = applicantId;
 		this.applicantFirstName = applicantFirstName;
@@ -87,7 +86,7 @@ public class Applicant implements Serializable {
 		this.mobileNumber = mobileNumber;
 		this.applicantDegree = applicantDegree;
 		this.applicantGraduationPercent = applicantGraduationPercent;
-		this.admission = admission;
+		//this.admission = admission;
 		this.courseId = courseId;
 		this.gender = gender;
 		this.address = address;
@@ -142,13 +141,7 @@ public class Applicant implements Serializable {
 		this.applicantGraduationPercent = applicantGraduationPercent;
 	}
 
-	public Admission getAdmission() {
-		return admission;
-	}
-
-	public void setAdmission(Admission admission) {
-		this.admission = admission;
-	}
+	
 
 	public int getCourse() {
 		return courseId;

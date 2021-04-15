@@ -32,7 +32,7 @@ class TestApplicant {
 	
 	@Test
 	public void addApplicant() {
-		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,null,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
+		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
 		when(repository.save(applicant)).thenReturn(applicant);
 		assertEquals(applicant, repository.save(applicant));
 	}
@@ -40,21 +40,21 @@ class TestApplicant {
 	@Test
 	public void viewApplicant() {
 		//Admission a=new Admission(10,220,550,LocalDate.now(),AdmissionStatus.PENDING);
-		Applicant applicant=new Applicant(550,"pritam","das","9874563210",300,null,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
+		Applicant applicant=new Applicant(550,"pritam","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
 		when(repository.save(applicant)).thenReturn(applicant);
 		assertNotEquals(applicant,repository.findById(applicant.getApplicantId()));
 	}
 	@Test
 	public void updateApplicant() {
-		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,null,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
+		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
 		when(repository.save(applicant)).thenReturn(applicant);
-		applicant=new Applicant(5500,"pritam","das","9870063210",300,null,"b.tech",60,Gender.MALE,"bakura","asd@gmail.com");
+		applicant=new Applicant(5500,"pritam","das","9870063210",300,"b.tech",60,Gender.MALE,"bakura","asd@gmail.com");
 		assertNotEquals(applicant, repository.save(applicant));
 	}
 	
 	@Test
 	public void deleteApplicant() {
-		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,null,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
+		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
 		assertNotEquals(applicant, service.deleteApplicant(5500));
 	}
 	

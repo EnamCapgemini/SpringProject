@@ -80,9 +80,9 @@ public class AdmissionCommiteeMemberController {
 		if (service.deleteAdmissionCommiteeMember(id))
 			return "Admission Commitee Member data deleted";
 		else
-			throw new DataNotFoundException("Delete",
-					"Admission Commitee Member with id to delete " + id + " not found");
+			throw new DataNotFoundException("Delete","Admission Commitee Member with id to delete " + id + " not found");
 	}
+	
 
 	@PatchMapping("{​​​​​acmid}​​​​​/{​​​​​acmname}​​​​​")
 	public String updateAdmissionCommiteeMemberName(@RequestParam("acmid") int acmid,
