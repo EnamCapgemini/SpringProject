@@ -33,8 +33,8 @@ public class Admission implements Serializable{
 	@Column(name = "COURSE_ID")
 	private int courseId;
 
-	@Column(name = "APPLICANT_ID")
-	private int applicantId;
+	//@Column(name = "APPLICANT_ID")
+	//private int applicantId;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")	
 	@Column(name = "ADMISSION_DATE")
@@ -45,7 +45,7 @@ public class Admission implements Serializable{
 	private AdmissionStatus status;
 
 	@OneToOne
-	//@JoinColumn("A")
+	//@JoinColumn(name="APPLICANT_ID")
 	private Applicant applicant;
 	
 
@@ -57,11 +57,10 @@ public class Admission implements Serializable{
 		super();
 	}
 
-	public Admission(int admissionId, int courseId, int applicantId, LocalDate admissionDate, AdmissionStatus status) {
+	public Admission(int admissionId, int courseId, LocalDate admissionDate, AdmissionStatus status) {
 		super();
 		this.admissionId = admissionId;
 		this.courseId = courseId;
-		this.applicantId = applicantId;
 		this.admissionDate = admissionDate;
 		this.status = status;
 	}
@@ -80,14 +79,6 @@ public class Admission implements Serializable{
 
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
-	}
-
-	public int getApplicantId() {
-		return applicantId;
-	}
-
-	public void setApplicantId(int applicantId) {
-		this.applicantId = applicantId;
 	}
 
 	public LocalDate getAdmissionDate() {
