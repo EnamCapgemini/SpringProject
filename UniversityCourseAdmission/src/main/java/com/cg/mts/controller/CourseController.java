@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import com.cg.mts.entities.Course;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.CourseService;
+import com.cg.mts.service.JwtUserDetailsService;
 
 @RestController
 @RequestMapping("/Courses")
@@ -30,7 +32,12 @@ public class CourseController {
 	@Autowired
 	CourseService service;
 
+	@Autowired
+	JwtUserDetailsService jwtUserDetailsService;
+
+	// Authorize before access
 	@DeleteMapping("{cid}")
+<<<<<<< Updated upstream
 	public String removeCourse(@PathVariable("cid") int id) {
 		if (service.removeCourse(id))
 			return "data deleted";
@@ -50,6 +57,51 @@ public class CourseController {
 			return "data updated";
 		else
 			throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");
+=======
+	public String removeCourse(@RequestHeader("Authorization") String token, @PathVariable("cid") int id) {
+
+		String role = jwtUserDetailsService.getRoleFromToken(token);
+		if(role.equalsIgnoreCase("STAFF")) {
+			if(service.removeCourse(id))
+				return "data deleted";
+			else
+				throw new DataNotFoundException("Delete","Course with id to delete "+ id+"not found");
+		}
+		else {
+			return "Invalid role!";
+		}
+
+
+	}
+	@PostMapping
+	public String addCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c) {
+		String role = jwtUserDetailsService.getRoleFromToken(token);
+		if(role.contentEquals("STAFF")) {
+			System.out.println(role);
+			service.addCourse(c);
+			return "Course successsfully added";
+
+		}
+		else {
+			return "Invalid role!";
+		}
+
+	}
+
+	@PutMapping
+	public String updateCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c) {
+		String role = jwtUserDetailsService.getRoleFromToken(token);
+		if(role.equalsIgnoreCase("STAFF")) {
+			if (service.updateCourse(c))
+				return "data updated";
+			else
+				throw new DataNotFoundException("Update","Course with id" + c.getCourseId() + "not found");
+		}
+		else {
+			return "Invalid role!";
+		}
+
+>>>>>>> Stashed changes
 	}
 
 	@GetMapping("{cid}")

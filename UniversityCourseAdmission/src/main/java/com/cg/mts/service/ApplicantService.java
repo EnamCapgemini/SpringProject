@@ -5,21 +5,39 @@ import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Applicant;
+import com.cg.mts.entities.DAOUser;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.IApplicantRepository;
+import com.cg.mts.repository.UserDao;
 @Service
 public class ApplicantService implements IApplicantService{
 	
 	@Autowired
 	IApplicantRepository repository;
 	
+	@Autowired
+	UserDao userRepository;
+	
+	@Autowired
+	private PasswordEncoder bcryptEncoder;
+	
 	public void addApplicant(Applicant applicant) throws DuplicateDataException {
 		if(repository.existsById(applicant.getApplicantId()))
 			throw new DuplicateDataException("Applicant with id "+applicant.getApplicantId()+" already exists!..");
+		
+		// User is added here in User table
+		DAOUser newUser = new DAOUser();
+		newUser.setUsername(applicant.getUsername());
+		newUser.setPassword(bcryptEncoder.encode(applicant.getPassword()));
+		newUser.setRole("APPLICANT");
+		newUser.setLoggedIn(true);
+		userRepository.save(newUser);
+		
 		repository.save(applicant);
 	}
 	
@@ -27,7 +45,7 @@ public class ApplicantService implements IApplicantService{
 		if(!(repository.existsById(applicant.getApplicantId()))) {
 			throw new DataNotFoundException("update","Applicant with id "+applicant.getApplicantId()+" not found!..");
 		}
-		else{
+		else{	
 			repository.save(applicant);
 			return true;
 		}
@@ -35,6 +53,7 @@ public class ApplicantService implements IApplicantService{
 	}
 	public boolean deleteApplicant(int id) {
 		if(repository.existsById(id)) {
+			
 			repository.deleteById(id);
 			return true;
 		} 

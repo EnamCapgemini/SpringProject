@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -52,5 +53,20 @@ public class ApplicationErrorHandler {
 
 		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
 	}
+<<<<<<< Updated upstream
 
+=======
+	
+	@ExceptionHandler(BadCredentialsException.class)
+	public ResponseEntity<?> handleBadCredentials(BadCredentialsException ex){
+		Map<String, Object> errorBody = new LinkedHashMap<>();
+
+		errorBody.put("error", "Login failed");
+		errorBody.put("timestamp", LocalDateTime.now());
+		errorBody.put("details", ex.getMessage());
+
+		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
+	}
+	
+>>>>>>> Stashed changes
 }

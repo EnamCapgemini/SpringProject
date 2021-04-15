@@ -5,21 +5,19 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 
-import com.cg.mts.entities.User;
-import com.cg.mts.model.UserModel;
-import com.cg.mts.repository.UserRepository;
-import com.cg.mts.service.UserService;
 
 
 @SpringBootTest
 class TestUserLogin {
 
+	/*
 	@Autowired
 	private UserService service;
 	
-	@Autowired
+	@MockBean
 	private UserRepository repository;
 	
 	@Test
@@ -70,6 +68,6 @@ class TestUserLogin {
 		String userName = "root";
 		assertTrue(service.logOut(userName));
 	}
-	
+	*/
 
 }

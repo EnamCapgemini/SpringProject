@@ -27,6 +27,12 @@ public class Applicant implements Serializable {
 	@Id
 	@Column(name = "APPLICANT_ID")
 	private int applicantId;
+	
+	@Column
+	private String username; // By Enam
+	
+	@Column
+	private String password; // By Enam
 
 	@Column(name = "APPLICANT_FIRSTNAME")
 	private String applicantFirstName;
@@ -78,9 +84,17 @@ public class Applicant implements Serializable {
 
 	}
 
+<<<<<<< Updated upstream
 	public Applicant(int applicantId, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId) {
+=======
+	// By Enanm
+	public Applicant(int applicantId, String username, String password, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,
+			Admission admission,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId) {
+>>>>>>> Stashed changes
 		super();
 		this.applicantId = applicantId;
+		this.username = username;
+		this.password = password;
 		this.applicantFirstName = applicantFirstName;
 		this.applicantLastName = applicantLastName;
 		this.mobileNumber = mobileNumber;
@@ -101,6 +115,24 @@ public class Applicant implements Serializable {
 		this.applicantId = applicantId;
 	}
 
+	// By Enam
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	// By Enam
+	
 	public String getApplicantFirstName() {
 		return applicantFirstName;
 	}

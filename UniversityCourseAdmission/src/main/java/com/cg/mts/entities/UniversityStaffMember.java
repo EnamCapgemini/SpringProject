@@ -43,6 +43,9 @@ public class UniversityStaffMember implements Serializable {
 	@Id
 	@Column(name = "STAFF_ID")
 	private int staffId;
+	
+	@Column
+	private String username;
 
 	@NotEmpty(message = "Password must have to given")
 	@NotNull(message = "Password can't be Null")
@@ -64,9 +67,10 @@ public class UniversityStaffMember implements Serializable {
 
 	}
 
-	public UniversityStaffMember(int staffId, String password, String role) {
+	public UniversityStaffMember(int staffId, String username, String password, String role) {
 		super();
 		this.staffId = staffId;
+		this.username = username;
 		this.password = password;
 		this.role = role;
 	}
@@ -79,6 +83,17 @@ public class UniversityStaffMember implements Serializable {
 		this.staffId = staffId;
 	}
 
+<<<<<<< Updated upstream
+=======
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+>>>>>>> Stashed changes
 	public String getPassword() {
 		return password;
 	}

@@ -34,6 +34,7 @@ class TestUniversityStaffMember {
 
 	@MockBean
 	private IUniversityStaffRepository repository;
+<<<<<<< Updated upstream
 
 	@MockBean
 	private ICourseRepository courseRepo;
@@ -41,6 +42,10 @@ class TestUniversityStaffMember {
 	Logger logger = LoggerFactory.getLogger(TestUniversityStaffMember.class);
 
 	// Testing for getting All the Staff Details
+=======
+	
+	/*
+>>>>>>> Stashed changes
 	@Test
 	public void getAllStaffsTest() {
 		logger.info("Testing for getAllStaffs Started");
@@ -98,5 +103,5 @@ class TestUniversityStaffMember {
 		// assertNotEquals(staff, service.removeStaff(700));
 		logger.info("Testing for deleteStaffs Completed");
 	}
-
+	*/
 }
