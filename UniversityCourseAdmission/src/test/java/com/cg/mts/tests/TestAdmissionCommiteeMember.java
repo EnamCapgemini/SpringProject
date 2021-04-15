@@ -51,11 +51,11 @@ class TestAdmissionCommiteeMember {
 		assertNotEquals(member, repository.save(member));
 	}
 
-//	@Test
-//	public void deleteMemberTest() {
-//		AdmissionCommiteeMember member = new AdmissionCommiteeMember(8000, "Kabran", "kabran.khan@capgemini.com");
-//		// service.removeMember(member.getAdmissionCommiteeMemberId());
-//		assertNotEquals(member, service.deleteAdmissionCommiteeMember(8000));
-//	}
+	@Test
+	public void deleteMemberTest() {
+		AdmissionCommiteeMember member = new AdmissionCommiteeMember(8000, "Kabran", "kabran.khan@capgemini.com");
+		// service.removeMember(member.getAdmissionCommiteeMemberId());
+		assertNotEquals(member, service.deleteAdmissionCommiteeMember(8000));
+	}
 
 }

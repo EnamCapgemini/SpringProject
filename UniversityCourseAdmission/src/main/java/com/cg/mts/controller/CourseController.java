@@ -24,7 +24,6 @@ import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.CourseService;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/Courses")
 public class CourseController {
 
@@ -52,6 +51,7 @@ public class CourseController {
 		else
 			throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");
 	}
+
 	@GetMapping("{cid}")
 	public ResponseEntity<?> viewcourse(@PathVariable("cid") int courseId) {
 		Course c = service.viewCourse(courseId);
@@ -75,6 +75,7 @@ public class CourseController {
 			throw new EmptyDataException("No Courses in database");
 		return list;
 	}
+
 	@GetMapping("/ShowOnlyMTECHCourses")
 	public List<Course> showMTechCourse() {
 		List<Course> list = service.showMTechCourse();
@@ -98,6 +99,7 @@ public class CourseController {
 			throw new EmptyDataException("No Courses in database");
 		return list;
 	}
+
 	@GetMapping("/Show2YearCourses")
 	public List<Course> year2CourseDuration() {
 		List<Course> list = service.year2CourseDuration();
@@ -105,6 +107,7 @@ public class CourseController {
 			throw new EmptyDataException("No Courses in database");
 		return list;
 	}
+
 	@GetMapping("/Show5LacFeesCourses")
 	public List<Course> fees5LacCourses() {
 		List<Course> list = service.fees5LacCourses();
@@ -112,6 +115,7 @@ public class CourseController {
 			throw new EmptyDataException("No Courses in database");
 		return list;
 	}
+
 	@GetMapping("/Show8LacFeesCourses")
 	public List<Course> fees8LacCourses() {
 		List<Course> list = service.fees8LacCourses();
@@ -119,6 +123,7 @@ public class CourseController {
 			throw new EmptyDataException("No Courses in database");
 		return list;
 	}
+
 	@GetMapping("/Show4LacFeesCourses")
 	public List<Course> fees4LacCourses() {
 		List<Course> list = service.fees4LacCourses();
@@ -126,7 +131,7 @@ public class CourseController {
 			throw new EmptyDataException("No Courses in database");
 		return list;
 	}
-	
+
 	@GetMapping
 	public List<Course> viewAllCourse() {
 		List<Course> list = service.viewAllCourses();
