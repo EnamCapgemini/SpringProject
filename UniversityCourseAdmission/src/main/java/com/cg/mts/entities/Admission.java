@@ -2,7 +2,6 @@ package com.cg.mts.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,17 +14,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "ADMISSION")
-public class Admission implements Serializable{
+public class Admission implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "ADMISSION_Id")
 	private int admissionId;
@@ -33,24 +30,19 @@ public class Admission implements Serializable{
 	@Column(name = "COURSE_ID")
 	private int courseId;
 
-	//@Column(name = "APPLICANT_ID")
-	//private int applicantId;
-
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name = "ADMISSION_DATE")
 	private LocalDate admissionDate;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS")
 	private AdmissionStatus status;
 
 	@OneToOne
-	//@JoinColumn(name="APPLICANT_ID")
 	private Applicant applicant;
-	
 
 	@ManyToOne
-	@JoinColumn(name="ADMISSION_COMMITEE_STAFF_ID")
+	@JoinColumn(name = "ADMISSION_COMMITEE_STAFF_ID")
 	private AdmissionCommiteeMember admissioncommitee;
 
 	public Admission() {
@@ -89,7 +81,6 @@ public class Admission implements Serializable{
 		this.admissionDate = admissionDate;
 	}
 
-
 	@Enumerated(EnumType.STRING)
 	public AdmissionStatus getStatus() {
 		return status;
@@ -98,6 +89,5 @@ public class Admission implements Serializable{
 	public void setStatus(AdmissionStatus status) {
 		this.status = status;
 	}
-	
 
 }
