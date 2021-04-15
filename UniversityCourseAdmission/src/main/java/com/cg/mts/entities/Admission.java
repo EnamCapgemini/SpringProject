@@ -39,6 +39,7 @@ public class Admission implements Serializable {
 	private AdmissionStatus status;
 
 	@OneToOne
+	@JoinColumn(name = "APPLICANT_APPLICANT_ID")
 	private Applicant applicant;
 
 	@ManyToOne
