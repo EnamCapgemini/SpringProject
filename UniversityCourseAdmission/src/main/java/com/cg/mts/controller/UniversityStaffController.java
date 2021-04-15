@@ -108,11 +108,11 @@ public class UniversityStaffController {
 	
 	
 	
-	@PostMapping("/addCourseByStaff")
-	public String addCourse(@Valid @RequestBody Course c) {
+	@PostMapping("/addCourseByStaff{staffId}")
+	public String addCourse(@Valid @PathVariable("staffId") int sId,@RequestBody Course c) {
 		if(courseService.viewCourse(c.getCourseId())==null)
 		{
-			courseService.addCourse(c);
+			universityService.addCourse(c,sId);
 			return "Course Details saved Succesfully";
 		}
 		return "Duplicate Course ID";

@@ -72,10 +72,10 @@ public class UniversityStaffService implements IUniversityStaffService{
 		return false;
 	}
 	
-	public void addCourse(Course c) throws DuplicateDataException {
+	public void addCourse(Course c,int id) throws DuplicateDataException {
 		if (courseRepo.existsById(c.getCourseId()))
 			throw new DuplicateDataException("Course with" + c.getCourseId() + "Already exists");
-		courseRepo.save(c);
+		courseRepo.saveByStaffId(c.getCourseId(), c.getCourseDuration(),c.getCourseEndDate(), c.getCourseFees(), c.getCourseName(), c.getCourseStartDate(), id);
 	}
 
 	public boolean removeCourse(int id) {
