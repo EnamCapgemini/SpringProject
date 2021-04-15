@@ -26,22 +26,22 @@ class TestAdmission {
 
 	@Test
 	public void addAdmission() {
-		Admission a = new Admission(100,1000,2000,LocalDate.now(),AdmissionStatus.PENDING);
+		Admission a = new Admission(100,1000,LocalDate.now(),AdmissionStatus.PENDING);
 		when(repository.save(a)).thenReturn(a);
 		assertEquals(a, repository.save(a));
 	}
 	
 	@Test
 	public void updateAdmission() {
-		Admission a = new Admission(100,1000,2000,LocalDate.now(),AdmissionStatus.PENDING);
+		Admission a = new Admission(100,1000,LocalDate.now(),AdmissionStatus.PENDING);
 		when(repository.save(a)).thenReturn(a);
-		a = new Admission(100,1000,200,LocalDate.now(),AdmissionStatus.APPLIED);
+		a = new Admission(100,100,LocalDate.now(),AdmissionStatus.APPLIED);
 		assertNotEquals(a,repository.save(a));
 	}
 	
 	@Test
 	public void deleteAdmission() {
-		Admission a = new Admission(100,1000,2000,LocalDate.now(),AdmissionStatus.PENDING);
+		Admission a = new Admission(100,1000,LocalDate.now(),AdmissionStatus.PENDING);
 		assertNotEquals(a,service.deleteAdmission(100));
 	}
 	
