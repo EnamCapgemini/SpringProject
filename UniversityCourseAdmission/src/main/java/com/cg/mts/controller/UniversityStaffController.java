@@ -120,7 +120,7 @@ public class UniversityStaffController {
 	
 	@PutMapping("/updateCourseDetails")
 	public String updateCourse(@Valid @RequestBody Course c) {
-		if(courseService.updateCourse(c))
+		if(universityService.updateCourse(c, c.getCourseId()))
 			return "Course Details Updated";
 		else
 			throw new DataNotFoundException("Update", "Course with id "+c.getCourseId()+" not found");

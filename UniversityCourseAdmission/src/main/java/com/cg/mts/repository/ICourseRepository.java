@@ -57,7 +57,10 @@ public interface ICourseRepository extends CrudRepository<Course, Integer> {
     @Query("select c from Course c where c.courseFees like '4000%' ")
 	List<Course> fees4LacCourses();
     
-    
+    @Modifying
+    @Transactional
+    @Query("update Course c set c.courseName=?1,c.courseDuration=?2,c.courseStartDate=?3,c.courseEndDate=?4,c.courseFees=?5 where c.courseId=?6")
+    void updateCourseDetails(String name,String duration,LocalDate start,LocalDate end,String fees,int cId);
 
 }
 

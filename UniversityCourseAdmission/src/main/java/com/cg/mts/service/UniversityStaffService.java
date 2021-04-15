@@ -89,9 +89,9 @@ public class UniversityStaffService implements IUniversityStaffService{
 	return false;
 	}
 	
-	public boolean updateCourse(Course c) {
-		if (courseRepo.existsById(c.getCourseId())) {
-			courseRepo.save(c);
+	public boolean updateCourse(Course c,int courseId) {
+		if (courseRepo.existsById(courseId)) {
+			courseRepo.updateCourseDetails(c.getCourseName(), c.getCourseDuration(), c.getCourseStartDate(), c.getCourseEndDate(), c.getCourseFees(), courseId);
 			return true;
 		}
 		return false;
@@ -101,6 +101,8 @@ public class UniversityStaffService implements IUniversityStaffService{
 		Set<Course> set=(Set<Course>) universityRepo.getAllCoursesByStaffId(id);
 		return set;
 	}
+
+	
 
 
 }
