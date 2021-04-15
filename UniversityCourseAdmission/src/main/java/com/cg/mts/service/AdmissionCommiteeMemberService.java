@@ -13,9 +13,11 @@ import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.AdmissionCommiteeMember;
 import com.cg.mts.entities.AdmissionStatus;
 import com.cg.mts.entities.Applicant;
+import com.cg.mts.exceptions.DataNotFoundException;
 //import com.cg.mts.exceptions.DuplicateAdmissionCommiteeMemberException;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.IAdmissionCommiteeMemberRepository;
+import com.cg.mts.repository.IAdmissionRepository;
 
 @Component
 public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberService {
@@ -24,6 +26,10 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 	
 	IAdmissionCommiteeMemberRepository repository;
 
+	@Autowired
+	
+	IAdmissionRepository repo;
+	
 	public void saveAdmissionCommiteeMember(AdmissionCommiteeMember e) {
 
 		if (repository.existsById(e.getAdmissionCommiteeMemberId())) {
@@ -67,12 +73,16 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 //	}
 
 	@Override
-	public void provideAdmissionResult(Applicant ap, Admission ad) {
+	public boolean provideAdmissionResult(int adid, AdmissionStatus as) {
 		
-		if(ap.getApplicantGraduationPercent() > 60) {
-			ad.setStatus(AdmissionStatus.CONFIRMED);
-		}else {
-			ad.setStatus(AdmissionStatus.REJECTED);
+		if(!(repo.existsById(adid))) {
+			throw new DataNotFoundException("update","Admission with id "+adid+" not found...");
+		}
+		else {
+			Admission ad = repo.findById(adid).get();
+			ad.setStatus(as);
+			repo.save(ad);
+			return true;
 		}
 	}
 	

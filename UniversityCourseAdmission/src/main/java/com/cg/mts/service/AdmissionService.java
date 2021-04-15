@@ -16,49 +16,53 @@ import com.cg.mts.repository.IAdmissionRepository;
 
 @Service
 public class AdmissionService implements IAdmissionService {
-	
+
 	@PersistenceContext
-	  private EntityManager em;
-	
+	private EntityManager em;
+
 	@Autowired
 	IAdmissionRepository repository;
-	
-	public void addAdmission(Admission a) throws DuplicateDataException{
-		if(repository.existsById(a.getAdmissionId()))
-			throw new DuplicateDataException("Admission with" +a.getAdmissionId() +"already exists...");
+
+	public void addAdmission(Admission a) throws DuplicateDataException {
+		if (repository.existsById(a.getAdmissionId()))
+			throw new DuplicateDataException("Admission with" + a.getAdmissionId() + "already exists...");
 		repository.save(a);
 	}
-	
+
 	public boolean updateAdmission(Admission a) {
-		if(!(repository.existsById(a.getAdmissionId()))) {
-			throw new DataNotFoundException("update","Admission with id"+a.getAdmissionId()+"not found...");
-		}
-		else {
+		if (!(repository.existsById(a.getAdmissionId()))) {
+			throw new DataNotFoundException("update", "Admission with id" + a.getAdmissionId() + "not found...");
+		} else {
 			repository.save(a);
 			return true;
 		}
 	}
-	
+
 	public boolean deleteAdmission(int id) {
-		if(repository.existsById(id)) {
+		if (repository.existsById(id)) {
 			repository.deleteById(id);
 			return true;
-		} 
-		else {
-		 return false;
+		} else {
+			return false;
 		}
 	}
-	
+
 	public Admission getAdmission(int id) {
-	       
-        Optional<Admission> opt = repository.findById(id);
-        if(opt.isPresent())
-            return opt.get();
-        return null;
-    } 
+
+		Optional<Admission> opt = repository.findById(id);
+		if (opt.isPresent())
+			return opt.get();
+		return null;
+	}
+
+	public List<Admission> showAllByDate(String adDate) {
+		return em.createQuery("Select a from Admission a where a.admissionDate = '" + adDate + "'", Admission.class)
+				.getResultList();
+	}
 	
-	public List<Admission> findAll(){
-		return em.createQuery("Select admissionDate from Admisson admissionDate ",Admission.class).getResultList();
+	public List<Admission> showAllByCourseId(int id) {
+		return em.createQuery("Select a from Admission a where a.courseId = '" + id + "'", Admission.class)
+				.getResultList();
 	}
 
 }
