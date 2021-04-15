@@ -1,8 +1,6 @@
 package com.cg.mts.controller;
 
-import java.time.LocalDate;
 import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.mts.entities.Admission;
 import com.cg.mts.exceptions.DataNotFoundException;
-import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.AdmissionService;
 
 @RestController
