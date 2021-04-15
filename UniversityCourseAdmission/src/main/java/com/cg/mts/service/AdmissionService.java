@@ -23,12 +23,14 @@ public class AdmissionService implements IAdmissionService {
 	@Autowired
 	IAdmissionRepository repository;
 
+	// Method to add admission
 	public void addAdmission(Admission a) throws DuplicateDataException {
 		if (repository.existsById(a.getAdmissionId()))
 			throw new DuplicateDataException("Admission with" + a.getAdmissionId() + "already exists...");
 		repository.save(a);
 	}
 
+	// Method to update admission
 	public boolean updateAdmission(Admission a) {
 		if (!(repository.existsById(a.getAdmissionId()))) {
 			throw new DataNotFoundException("update", "Admission with id" + a.getAdmissionId() + "not found...");
@@ -38,6 +40,7 @@ public class AdmissionService implements IAdmissionService {
 		}
 	}
 
+	// Method to delete admission
 	public boolean deleteAdmission(int id) {
 		if (repository.existsById(id)) {
 			repository.deleteById(id);
@@ -47,6 +50,7 @@ public class AdmissionService implements IAdmissionService {
 		}
 	}
 
+	// Method to find admission by admission id
 	public Admission getAdmission(int id) {
 
 		Optional<Admission> opt = repository.findById(id);
@@ -55,11 +59,13 @@ public class AdmissionService implements IAdmissionService {
 		return null;
 	}
 
+	// Method to view all admission by date
 	public List<Admission> showAllByDate(String adDate) {
 		return em.createQuery("Select a from Admission a where a.admissionDate = '" + adDate + "'", Admission.class)
 				.getResultList();
 	}
 
+	// Method to view all admission by course id
 	public List<Admission> showAllByCourseId(int id) {
 		return em.createQuery("Select a from Admission a where a.courseId = '" + id + "'", Admission.class)
 				.getResultList();
