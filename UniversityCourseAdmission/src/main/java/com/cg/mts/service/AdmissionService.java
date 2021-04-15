@@ -59,5 +59,10 @@ public class AdmissionService implements IAdmissionService {
 		return em.createQuery("Select a from Admission a where a.admissionDate = '" + adDate + "'", Admission.class)
 				.getResultList();
 	}
+	
+	public List<Admission> showAllByCourseId(int id) {
+		return em.createQuery("Select a from Admission a where a.courseId = '" + id + "'", Admission.class)
+				.getResultList();
+	}
 
 }
