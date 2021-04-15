@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +24,10 @@ import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.CourseService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/Courses")
 public class CourseController {
 
-	private static final String String = null;
 	@Autowired
 	CourseService service;
 
@@ -51,7 +52,6 @@ public class CourseController {
 		else
 			throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");
 	}
-
 	@GetMapping("{cid}")
 	public ResponseEntity<?> viewcourse(@PathVariable("cid") int courseId) {
 		Course c = service.viewCourse(courseId);
