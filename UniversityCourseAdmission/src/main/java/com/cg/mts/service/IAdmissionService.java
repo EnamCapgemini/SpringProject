@@ -8,8 +8,6 @@ public interface IAdmissionService {
 
 	void addAdmission(Admission a);
 
-	boolean updateAdmission(Admission a);
-
 	boolean deleteAdmission(int id);
 
 	Admission getAdmission(int id);
@@ -17,5 +15,7 @@ public interface IAdmissionService {
 	List<Admission> showAllByDate(String adDate);
 
 	List<Admission> showAllByCourseId(int id);
+
+	boolean updateAdmission(Admission a, int aid);
 
 }
