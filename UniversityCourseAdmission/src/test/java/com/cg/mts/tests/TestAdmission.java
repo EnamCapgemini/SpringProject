@@ -35,7 +35,11 @@ class TestAdmission {
 	public void updateAdmission() {
 		Admission a = new Admission(100,1000,LocalDate.now(),AdmissionStatus.PENDING);
 		when(repository.save(a)).thenReturn(a);
+<<<<<<< Updated upstream
 		a = new Admission(100,100,LocalDate.now(),AdmissionStatus.APPLIED);
+=======
+		a = new Admission(100,2000,LocalDate.now(),AdmissionStatus.APPLIED);
+>>>>>>> Stashed changes
 		assertNotEquals(a,repository.save(a));
 	}
 	
