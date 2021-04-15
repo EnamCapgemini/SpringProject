@@ -39,14 +39,14 @@ public class CourseController {
 	}
 
 	@PostMapping("{sid}")
-	public String addCourse(@Valid @RequestBody Course c,@PathVariable("sid") int id) {
-		service.addCourse(c,id);
+	public String addCourse(@Valid @RequestBody Course c, @PathVariable("sid") int id) {
+		service.addCourse(c, id);
 		return "Course successsfully added";
 	}
 
 	@PutMapping("{cid}")
-	public String updateCourse(@Valid @RequestBody  Course c,@PathVariable("cid") int id) {
-		if (service.updateCourse(c,id))
+	public String updateCourse(@Valid @RequestBody Course c, @PathVariable("cid") int id) {
+		if (service.updateCourse(c, id))
 			return "data updated";
 		else
 			throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");
