@@ -12,19 +12,20 @@ import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.ICourseRepository;
 
 @Service
-public class CourseService implements ICourseService{
+public class CourseService implements ICourseService {
 	@Autowired
 	ICourseRepository repository;
-	
+
 	Course c;
 
 	public boolean removeCourse(int id) {
-		if(repository.existsById(id)) {
-			repository.deleteById(id); 
-		return true;}
-	return false;
+		if (repository.existsById(id)) {
+			repository.deleteById(id);
+			return true;
+		}
+		return false;
 	}
-	
+
 	public void addCourse(Course c) throws DuplicateDataException {
 		if (repository.existsById(c.getCourseId()))
 			throw new DuplicateDataException("Course with" + c.getCourseId() + "Already exists");
@@ -46,61 +47,55 @@ public class CourseService implements ICourseService{
 		return null;
 
 	}
-	
+
 	public List<Course> viewAllCourses() {
-		List<Course> list=(List<Course>) repository.findAll();
+		List<Course> list = (List<Course>) repository.findAll();
 		return list;
 	}
 
-	
-	public List<Course> ShowBTechCourse() {
-		List<Course>  coursenames=(List<Course>)repository.ShowBTechCourse();
-		return coursenames;
-	}
-	public List<Course> ShowBScCourse() {
-		List<Course>  coursenames=(List<Course>)repository.ShowBScCourse();
-		return coursenames;
-	}
-	
-	
-	public List<Course> year3CourseDuration() {
-		List<Course>  coursenames=(List<Course>)repository.year3CourseDuration();
-		return coursenames;
-	}
-
-	
-	public List<Course> year4CourseDuration() {
-		List<Course>  coursenames=(List<Course>)repository.year4CourseDuration();
-		return coursenames;
-	}
-	public List<Course> year2CourseDuration() {
-		List<Course>  coursenames=(List<Course>)repository.year2CourseDuration();
-		return coursenames;
-	}
-
-	
 	public List<Course> showMTechCourse() {
-		List<Course>  coursenames=(List<Course>)repository.showMTechCourse();
+		List<Course> coursenames = (List<Course>) repository.showMTechCourse();
 		return coursenames;
 	}
 
-	
+	public List<Course> ShowBTechCourse() {
+		List<Course> coursenames = (List<Course>) repository.ShowBTechCourse();
+		return coursenames;
+	}
+
+	public List<Course> ShowBScCourse() {
+		List<Course> coursenames = (List<Course>) repository.ShowBScCourse();
+		return coursenames;
+	}
+
+	public List<Course> year3CourseDuration() {
+		List<Course> coursenames = (List<Course>) repository.year3CourseDuration();
+		return coursenames;
+	}
+
+	public List<Course> year4CourseDuration() {
+		List<Course> coursenames = (List<Course>) repository.year4CourseDuration();
+		return coursenames;
+	}
+
+	public List<Course> year2CourseDuration() {
+		List<Course> coursenames = (List<Course>) repository.year2CourseDuration();
+		return coursenames;
+	}
+
 	public List<Course> fees5LacCourses() {
-		List<Course>  coursefees=(List<Course>)repository.fees5LacCourses();
+		List<Course> coursefees = (List<Course>) repository.fees5LacCourses();
 		return coursefees;
 	}
 
-	
 	public List<Course> fees8LacCourses() {
-		List<Course>  coursefees=(List<Course>)repository.fees8LacCourses();
+		List<Course> coursefees = (List<Course>) repository.fees8LacCourses();
 		return coursefees;
 	}
 
-	
 	public List<Course> fees4LacCourses() {
-		List<Course>  coursefees=(List<Course>)repository.fees4LacCourses();
+		List<Course> coursefees = (List<Course>) repository.fees4LacCourses();
 		return coursefees;
 	}
 
-	
 }
