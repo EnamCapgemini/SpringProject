@@ -74,5 +74,5 @@ class TestApplicant {
 	}
 =======
 	*/
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 }

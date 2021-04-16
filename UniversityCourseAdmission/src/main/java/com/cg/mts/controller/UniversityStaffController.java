@@ -68,14 +68,9 @@ public class UniversityStaffController {
 		else
 			return new ResponseEntity<UniversityStaffMember>(staff, HttpStatus.OK);
 	}
-<<<<<<< Updated upstream
 
 	// To Save University Staff Details
 	@PostMapping
-=======
-	
-	@PostMapping()
->>>>>>> Stashed changes
 	public String addStaff(@Valid @RequestBody UniversityStaffMember staff) {
 		if (universityService.viewStaff(staff.getStaffId()) == null) {
 			universityService.addStaff(staff);

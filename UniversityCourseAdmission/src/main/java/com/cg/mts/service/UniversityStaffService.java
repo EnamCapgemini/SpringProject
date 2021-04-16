@@ -11,14 +11,8 @@ import org.springframework.stereotype.Service;
 import com.cg.mts.entities.Course;
 import com.cg.mts.entities.DAOUser;
 import com.cg.mts.entities.UniversityStaffMember;
-<<<<<<< Updated upstream
-import com.cg.mts.entities.User;
 import com.cg.mts.exceptions.DataNotFoundException;
-=======
->>>>>>> Stashed changes
-import com.cg.mts.exceptions.DuplicateDataException;
-import com.cg.mts.exceptions.EmptyDataException;
-//import com.cg.mts.exceptions.DuplicateCourseException;
+
 import com.cg.mts.exceptions.DuplicateDataException;
 //import com.cg.mts.exceptions.EmptyDataException;
 
@@ -36,15 +30,11 @@ public class UniversityStaffService implements IUniversityStaffService {
 	ICourseRepository courseRepo;
 
 	@Autowired
-<<<<<<< Updated upstream
-	UserRepository userRepository;
-=======
 	UserDao userRepository;
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
 
->>>>>>> Stashed changes
 
 	// Method to get All Staffs
 	public List<UniversityStaffMember> viewAllStaffs() {
@@ -52,10 +42,7 @@ public class UniversityStaffService implements IUniversityStaffService {
 		return list;
 	}
 
-<<<<<<< Updated upstream
 	// Method to get one Staff Details
-=======
->>>>>>> Stashed changes
 	public UniversityStaffMember viewStaff(int id) {
 		Optional<UniversityStaffMember> opt = universityRepo.findById(id);
 		if (opt.isPresent())
@@ -63,14 +50,8 @@ public class UniversityStaffService implements IUniversityStaffService {
 		return null;
 	}
 
-<<<<<<< Updated upstream
-	// Method to add Staff Details
-	public void addStaff(UniversityStaffMember staff) throws DuplicateDataException {
-		if (universityRepo.existsById(staff.getStaffId()))
-			throw new DuplicateDataException("Staff with id " + staff.getStaffId() + " already exists");
 
-		userRepository.save(new User("moot", staff.getPassword(), staff.getRole(), true));
-=======
+	// Method to add Staff Details as well User Details
 	public void addStaff(UniversityStaffMember staff) throws DuplicateDataException{
 		if(universityRepo.existsById(staff.getStaffId()))
 			throw new DuplicateDataException("Staff with id "+staff.getStaffId()+" already exists");
@@ -82,16 +63,12 @@ public class UniversityStaffService implements IUniversityStaffService {
 		newUser.setRole(staff.getRole());
 		newUser.setLoggedIn(false);
 		userRepository.save(newUser);
->>>>>>> Stashed changes
 
 		universityRepo.save(staff);
 	}
 
-<<<<<<< Updated upstream
-	// Method to update Staff Details
-=======
 
->>>>>>> Stashed changes
+	// Method to update Staff Details
 	public boolean updateStaff(UniversityStaffMember staff) {
 		if (universityRepo.existsById(staff.getStaffId())) {
 			universityRepo.save(staff);
@@ -100,26 +77,17 @@ public class UniversityStaffService implements IUniversityStaffService {
 		return false;
 	}
 
-<<<<<<< Updated upstream
-	// Method to remove Staff Details
-	public boolean removeStaff(int id) {
-		if (universityRepo.existsById(id)) {
-=======
+
 	public boolean removeStaff(int id) {
 		if(universityRepo.existsById(id)) {		
->>>>>>> Stashed changes
 			universityRepo.deleteById(id);
 			return true;
 		}
 		return false;
 	}
 
-<<<<<<< Updated upstream
 	// Method to Add courses By Staff
 	public void addCourse(Course c, int staffId) throws DuplicateDataException {
-=======
-	public void addCourse(Course c) throws DuplicateDataException {
->>>>>>> Stashed changes
 		if (courseRepo.existsById(c.getCourseId()))
 			throw new DuplicateDataException("Course with id " + c.getCourseId() + " Already exists");
 		if (!universityRepo.existsById(staffId))
@@ -130,29 +98,19 @@ public class UniversityStaffService implements IUniversityStaffService {
 
 	// Method to remove Course by Staff
 	public boolean removeCourse(int id) {
-<<<<<<< Updated upstream
 		if (courseRepo.existsById(id)) {
 			courseRepo.deleteById(id);
-=======
-		if(courseRepo.existsById(id)) {
-			courseRepo.deleteById(id); 
->>>>>>> Stashed changes
 			return true;
 		}
 		return false;
 	}
 
-<<<<<<< Updated upstream
+
 	// Method to update Course by Staff
 	public boolean updateCourse(Course c, int courseId) {
 		if (courseRepo.existsById(courseId)) {
 			courseRepo.updateCourseDetails(c.getCourseName(), c.getCourseDuration(), c.getCourseStartDate(),
 					c.getCourseEndDate(), c.getCourseFees(), courseId);
-=======
-	public boolean updateCourse(Course c) {
-		if (courseRepo.existsById(c.getCourseId())) {
-			courseRepo.save(c);
->>>>>>> Stashed changes
 			return true;
 		}
 		return false;

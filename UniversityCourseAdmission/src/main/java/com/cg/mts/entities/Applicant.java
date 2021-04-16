@@ -84,13 +84,10 @@ public class Applicant implements Serializable {
 
 	}
 
-<<<<<<< Updated upstream
-	public Applicant(int applicantId, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId) {
-=======
-	// By Enanm
+
+
 	public Applicant(int applicantId, String username, String password, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,
 			Admission admission,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId) {
->>>>>>> Stashed changes
 		super();
 		this.applicantId = applicantId;
 		this.username = username;

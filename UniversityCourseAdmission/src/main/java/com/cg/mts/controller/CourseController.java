@@ -35,29 +35,8 @@ public class CourseController {
 	@Autowired
 	JwtUserDetailsService jwtUserDetailsService;
 
+	
 	// Authorize before access
-	@DeleteMapping("{cid}")
-<<<<<<< Updated upstream
-	public String removeCourse(@PathVariable("cid") int id) {
-		if (service.removeCourse(id))
-			return "data deleted";
-		else
-			throw new DataNotFoundException("Delete", "Course with id to delete " + id + "not found");
-	}
-
-	@PostMapping("{sid}")
-	public String addCourse(@Valid @RequestBody Course c, @PathVariable("sid") int id) {
-		service.addCourse(c, id);
-		return "Course successsfully added";
-	}
-
-	@PutMapping("{cid}")
-	public String updateCourse(@Valid @RequestBody Course c, @PathVariable("cid") int id) {
-		if (service.updateCourse(c, id))
-			return "data updated";
-		else
-			throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");
-=======
 	public String removeCourse(@RequestHeader("Authorization") String token, @PathVariable("cid") int id) {
 
 		String role = jwtUserDetailsService.getRoleFromToken(token);
@@ -73,12 +52,12 @@ public class CourseController {
 
 
 	}
-	@PostMapping
-	public String addCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c) {
+	
+	@PostMapping("{sid}")
+	public String addCourse(@RequestHeader("Authorization") String token,@Valid @RequestBody Course c, @PathVariable("sid") int id) {
 		String role = jwtUserDetailsService.getRoleFromToken(token);
 		if(role.contentEquals("STAFF")) {
-			System.out.println(role);
-			service.addCourse(c);
+			service.addCourse(c, id);
 			return "Course successsfully added";
 
 		}
@@ -88,11 +67,11 @@ public class CourseController {
 
 	}
 
-	@PutMapping
-	public String updateCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c) {
+	@PutMapping("{cid}")
+	public String updateCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c, @PathVariable("cid") int id) {
 		String role = jwtUserDetailsService.getRoleFromToken(token);
 		if(role.equalsIgnoreCase("STAFF")) {
-			if (service.updateCourse(c))
+			if (service.updateCourse(c, id))
 				return "data updated";
 			else
 				throw new DataNotFoundException("Update","Course with id" + c.getCourseId() + "not found");
@@ -101,7 +80,6 @@ public class CourseController {
 			return "Invalid role!";
 		}
 
->>>>>>> Stashed changes
 	}
 
 	@GetMapping("{cid}")

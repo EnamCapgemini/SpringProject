@@ -34,7 +34,8 @@ class TestUniversityStaffMember {
 
 	@MockBean
 	private IUniversityStaffRepository repository;
-<<<<<<< Updated upstream
+	/*
+	<<<<<<< Updated upstream
 
 	@MockBean
 	private ICourseRepository courseRepo;
