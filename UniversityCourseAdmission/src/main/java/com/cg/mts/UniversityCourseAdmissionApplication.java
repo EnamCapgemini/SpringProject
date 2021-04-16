@@ -29,7 +29,7 @@ public class UniversityCourseAdmissionApplication {
 	}
 	private ApiInfo metaInfo() {
 		@SuppressWarnings("deprecation")
-		ApiInfo apiInfo=new ApiInfo("Spring Boot Test",
+		ApiInfo apiInfo=new ApiInfo("University Course Application Programme",
 				"Capgemini Spring Project",
 				"1.0",
 				"University Course Admission",

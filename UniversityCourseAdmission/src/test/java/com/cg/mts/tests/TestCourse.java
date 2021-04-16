@@ -30,13 +30,15 @@ public class TestCourse {
 	@MockBean
 	private ICourseRepository repository;
 
+	//test for viewing the course by id
 	@Test
 	public void viewCourse() {
 		Course c = new Course(220, "B.Sc Math", "3 YEARS", LocalDate.now(), LocalDate.now(), "400000");
 		Mockito.when(repository.save(c)).thenReturn(c);
 		assertNotEquals(c, repository.findById(c.getCourseId()));
 	}
-
+	
+	//test for viewing all the courses
 	@Test
 	public void viewAllCoursesTest() {
 		Mockito.when(repository.findAll())
@@ -47,6 +49,7 @@ public class TestCourse {
 		assertEquals(2, service.viewAllCourses().size());
 	}
 
+	//test for adding the course
 	@Test
 	public void addCourseTest() {
 		Course c = new Course(220, "B.Sc Math", "3 YEARS", LocalDate.now(), LocalDate.now(), "400000");
@@ -54,13 +57,15 @@ public class TestCourse {
 		assertEquals(c, repository.save(c));
 
 	}
-
+	
+	//test for removing the course
 	@Test
 	public void removeCourseTest() {
 		Course c = new Course(220, "B.Sc Math", "3 YEARS", LocalDate.now(), LocalDate.now(), "400000");
 		assertNotEquals(c, service.removeCourse(220));
 	}
-
+	
+	//test for updating the course
 	@Test
 	public void updateCourseTest() {
 		Course c = new Course(220, "B.Sc Math", "3 YEARS", LocalDate.now(), LocalDate.now(), "400000");

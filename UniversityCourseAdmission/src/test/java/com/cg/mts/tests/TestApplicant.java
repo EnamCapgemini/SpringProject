@@ -29,50 +29,38 @@ class TestApplicant {
 	@MockBean
 	private IApplicantRepository repository;
 	
-	/*
+	
 	@Test
 	public void addApplicant() {
-		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
+		Applicant applicant=new Applicant(5500,"user1","pritam","pass12","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com","applicant");
 		when(repository.save(applicant)).thenReturn(applicant);
 		assertEquals(applicant, repository.save(applicant));
 	}
 	
 	@Test
 	public void viewApplicant() {
-<<<<<<< Updated upstream
+
 		//Admission a=new Admission(10,220,550,LocalDate.now(),AdmissionStatus.PENDING);
-		Applicant applicant=new Applicant(550,"pritam","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
+		Applicant applicant=new Applicant(5500,"user1","pritam","pass12","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com","applicant");
 		when(repository.save(applicant)).thenReturn(applicant);
 		assertNotEquals(applicant,repository.findById(applicant.getApplicantId()));
 	}
-=======
-		Admission a=new Admission(10,220,550,LocalDate.now(),AdmissionStatus.APPLIED);
-		Applicant applicant=new Applicant(550,"pritam","das","9874563210",300,a,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
-		assertEquals(applicant,service.viewApplicant(550));
-	}*/
 	
-	/*
->>>>>>> Stashed changes
+	
+
 	@Test
 	public void updateApplicant() {
-		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
+		Applicant applicant=new Applicant(5500,"user1","pritam","pass12","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com","applicant");
 		when(repository.save(applicant)).thenReturn(applicant);
-		applicant=new Applicant(5500,"pritam","das","9870063210",300,"b.tech",60,Gender.MALE,"bakura","asd@gmail.com");
+		applicant=new Applicant(5500,"user1","pritam","pass12","das","9871113210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com","applicant");
 		assertNotEquals(applicant, repository.save(applicant));
 	}
 	
 	@Test
 	public void deleteApplicant() {
-		Applicant applicant=new Applicant(5500,"pritam","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com");
+		Applicant applicant=new Applicant(5500,"user1","pritam","pass12","das","9874563210",300,"b.tech",70,Gender.MALE,"dubrajpur","asd@gmail.com","applicant");
 		assertNotEquals(applicant, service.deleteApplicant(5500));
 	}
-<<<<<<< Updated upstream
-	
-	@Test
-	public void getBtechDegree() {
-		
-	}
-=======
-	*/
-//>>>>>>> Stashed changes
+
+
 }
