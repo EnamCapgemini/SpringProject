@@ -79,15 +79,16 @@ public class Applicant implements Serializable {
 	@NotNull(message = "email is required")
 	@Email(message = "email should be valid")
 	private String emailId;
-
+	
+	@Column(name="ROLE")
+	private String role;
 	public Applicant() {
 
 	}
 
 
 
-	public Applicant(int applicantId, String username, String password, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,
-			Admission admission,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId) {
+	public Applicant(int applicantId, String username, String password, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId,String role) {
 		super();
 		this.applicantId = applicantId;
 		this.username = username;
@@ -102,7 +103,20 @@ public class Applicant implements Serializable {
 		this.gender = gender;
 		this.address = address;
 		this.emailId = emailId;
+		this.role=role;
 	}
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
 
 	public int getApplicantId() {
 		return applicantId;
