@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,12 +21,16 @@ import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.ApplicantService;
+import com.cg.mts.service.JwtUserDetailsService;
 
 @RestController
 @RequestMapping("/applicants")
 public class ApplicantController {
 	@Autowired
 	ApplicantService service;
+	
+	@Autowired
+	JwtUserDetailsService jwtUserDetailsService;
 	
 	@GetMapping("/{appid}")
 	public ResponseEntity<?> getApplicant(@PathVariable("appid") int applicantId){
@@ -43,17 +48,30 @@ public class ApplicantController {
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<?> updateApplicant(@Valid @RequestBody Applicant applicant){
+	public ResponseEntity<?> updateApplicant(@RequestHeader("Authorization") String token,@Valid @RequestBody Applicant applicant){
+		String role = jwtUserDetailsService.getRoleFromToken(token);
+		if(role.equalsIgnoreCase("APPLICANT")) {
 		service.updateApplicant(applicant);
 		return new ResponseEntity<>("Applicant data saved successfully!!...",HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>("Invalid role!!...",HttpStatus.BAD_REQUEST);
+
+		}
 	}
 	
 	@DeleteMapping("/{appid}")
-	public String deleteApplicants(@PathVariable("appid") int applicantId) {
+	public String deleteApplicants(@RequestHeader("Authorization") String token,@PathVariable("appid") int applicantId) {
+		String role = jwtUserDetailsService.getRoleFromToken(token);
+		if(role.equalsIgnoreCase("APPLICANT")) {
 		if(service.deleteApplicant(applicantId))
 			return "data deleted";
 		else
 			throw new  DataNotFoundException("delete","applicant with id "+applicantId+" not found");
+		}
+		else {
+			return "Invalid Role..";
+		}
 	}
 	
 	@GetMapping("/show12thpassApplicants")
