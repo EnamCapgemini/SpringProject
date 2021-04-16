@@ -34,7 +34,7 @@ public class AdmissionCommiteeMemberController {
 	AdmissionCommiteeMemberService service;
 
 	// To Save the Admission Committee Member details
-	@PostMapping("/addCommiteeMemberByStaffId")
+	@PostMapping("/addCommiteeMember")
 	public ResponseEntity<?> saveAdmissionCommiteeMember(@Valid @RequestBody AdmissionCommiteeMember acm) {
 
 		service.saveAdmissionCommiteeMember(acm);
@@ -53,8 +53,8 @@ public class AdmissionCommiteeMemberController {
 	}
 
 	// To Retrieve the Admission Committee Member Detail by Staff Id
-	@GetMapping("/getUserByStaffId/{acmid}")
-	public ResponseEntity<?> getAdmissionCommiteeMember(@PathVariable("acmid") int memId) {
+	@GetMapping("/getUserByStaffId/{sid}")
+	public ResponseEntity<?> getAdmissionCommiteeMember(@PathVariable("sid") int memId) {
 		AdmissionCommiteeMember acm = service.getAdmissionCommiteeMemberByStaffId(memId);
 		if (acm == null)
 			throw new DataNotFoundException("Request", "Admission Commitee Member with id " + memId + " not found");
@@ -81,8 +81,8 @@ public class AdmissionCommiteeMemberController {
 	}
 
 	// To Delete the Admission Committee Member detail by Staff Id
-	@DeleteMapping("/deleteUserByStaffId/{acmid}")
-	public String deleteAdmissionCommiteeMember(@PathVariable("acmid") int id) {
+	@DeleteMapping("/deleteUserByStaffId/{sid}")
+	public String deleteAdmissionCommiteeMember(@PathVariable("sid") int id) {
 		if (service.deleteAdmissionCommiteeMemberByStaffId(id))
 			return "Admission Commitee Member data deleted";
 		else
