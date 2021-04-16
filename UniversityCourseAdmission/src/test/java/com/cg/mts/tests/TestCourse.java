@@ -68,5 +68,5 @@ public class TestCourse {
 		c = new Course(220, "B.Sc Math", "3 YEARS", LocalDate.now(), LocalDate.now(), "400000");
 		assertNotEquals(c, repository.save(c));
 	}
-
+	
 }
