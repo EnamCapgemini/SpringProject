@@ -29,8 +29,6 @@ class TestAdmission {
 
 		Admission a = new Admission(100, 1000, LocalDate.now(), AdmissionStatus.PENDING);
 
-		Admission a = new Admission(100,1000,LocalDate.now(),AdmissionStatus.PENDING);
-
 		when(repository.save(a)).thenReturn(a);
 		assertEquals(a, repository.save(a));
 	}
@@ -47,11 +45,6 @@ class TestAdmission {
 
 		assertNotEquals(a, repository.save(a));
 
-		Admission a = new Admission(100,1000,LocalDate.now(),AdmissionStatus.PENDING);
-		when(repository.save(a)).thenReturn(a);
-		a = new Admission(100,1001,LocalDate.now(),AdmissionStatus.APPLIED);
-		assertNotEquals(a,repository.save(a));
-
 	}
 
 	@Test
@@ -59,9 +52,6 @@ class TestAdmission {
 
 		Admission a = new Admission(100, 1000, LocalDate.now(), AdmissionStatus.PENDING);
 		assertNotEquals(a, service.deleteAdmission(100));
-
-		Admission a = new Admission(100,1000,LocalDate.now(),AdmissionStatus.PENDING);
-		assertNotEquals(a,service.deleteAdmission(100));
 
 	}
 

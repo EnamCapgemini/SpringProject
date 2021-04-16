@@ -37,6 +37,7 @@ public class CourseController {
 
 	
 	// Authorize before access
+	@DeleteMapping("{cid}")
 	public String removeCourse(@RequestHeader("Authorization") String token, @PathVariable("cid") int id) {
 
 		String role = jwtUserDetailsService.getRoleFromToken(token);
