@@ -92,10 +92,7 @@ public class UniversityStaffMember implements Serializable {
 		this.username = username;
 	}
 
-<<<<<<< HEAD
-=======
 
->>>>>>> ad948675344f0578f508755cc4d02db7467c4445
 	public String getPassword() {
 		return password;
 	}
