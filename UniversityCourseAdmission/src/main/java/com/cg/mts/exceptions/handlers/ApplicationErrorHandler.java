@@ -53,7 +53,10 @@ public class ApplicationErrorHandler {
 
 		return new ResponseEntity<>(errorBody, HttpStatus.NOT_FOUND);
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> ad948675344f0578f508755cc4d02db7467c4445
 	
 	@ExceptionHandler(BadCredentialsException.class)
 	public ResponseEntity<?> handleBadCredentials(BadCredentialsException ex){
@@ -66,5 +69,8 @@ public class ApplicationErrorHandler {
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> ad948675344f0578f508755cc4d02db7467c4445
 }
