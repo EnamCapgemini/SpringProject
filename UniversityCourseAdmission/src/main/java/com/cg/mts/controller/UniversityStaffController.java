@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +34,7 @@ import com.cg.mts.entities.UniversityStaffMember;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.CourseService;
+import com.cg.mts.service.JwtUserDetailsService;
 import com.cg.mts.service.UniversityStaffService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -46,6 +48,9 @@ public class UniversityStaffController {
 
 	@Autowired
 	CourseService courseService;
+
+	@Autowired
+	JwtUserDetailsService jwtUserDetailsService;
 
 	@PersistenceContext
 	EntityManager entityManager;
@@ -118,31 +123,50 @@ public class UniversityStaffController {
 	}
 
 	// To add a Course By a Staff
-	@PostMapping("/addCourseByStaff{staffId}")
-	public String addCourse(@Valid @PathVariable("staffId") int sId, @RequestBody Course c) {
+	@PostMapping("/addCourseByStaff/{staffId}")
+	public String addCourse(@RequestHeader("Authorization") String token, @Valid @PathVariable("staffId") int sId,
+			@RequestBody Course c) {
+		String role = jwtUserDetailsService.getRoleFromToken(token);
 		if (courseService.viewCourse(c.getCourseId()) == null) {
-			universityService.addCourse(c, sId);
-			return "Course Details saved Succesfully";
+			if (role.contentEquals("STAFF")) {
+				universityService.addCourse(c, sId);
+				return "Course Details saved Succesfully";
+			}
+			else {
+				return "Invalid role!";
+			}
 		}
 		return "Duplicate Course ID";
 	}
 
 	// To Update Course Details By a Staff
-	@PutMapping("/updateCourseDetails")
-	public String updateCourse(@Valid @RequestBody Course c) {
-		if (universityService.updateCourse(c, c.getCourseId()))
-			return "Course Details Updated";
-		else
-			throw new DataNotFoundException("Update", "Course with id " + c.getCourseId() + " not found");
+	@PutMapping("/updateCourseDetails/{courseId}")
+	public String updateCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c,
+			@PathVariable("courseId") int cid) {
+		String role = jwtUserDetailsService.getRoleFromToken(token);
+		if (role.equalsIgnoreCase("STAFF")) {
+			if (courseService.updateCourse(c, cid))
+				return "data updated";
+			else
+				throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");
+		} else {
+			return "Invalid role!";
+		}
 	}
 
 	// Delete Course Data
 	@DeleteMapping("/deleteCourseUsingCourseID/{courseId}")
-	public String removeCourseByStaff(@PathVariable("courseId") int id) {
-		if (courseService.removeCourse(id))
-			return "course Data Deleted Succesfully";
-		else
-			throw new DataNotFoundException("Delete", "Course with id " + id + " not found");
+	public String removeCourseByStaff(@RequestHeader("Authorization") String token, @PathVariable("courseId") int id) {
+		String role = jwtUserDetailsService.getRoleFromToken(token);
+		if (role.equalsIgnoreCase("STAFF")) {
+			if (courseService.removeCourse(id))
+				return "data deleted";
+			else
+				throw new DataNotFoundException("Delete", "Course with id " + id + " not found");
+		} else {
+			return "Invalid role!";
+		}
+
 	}
 
 }
