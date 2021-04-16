@@ -44,7 +44,11 @@ public class UniversityStaffMember implements Serializable {
 	@Column(name = "STAFF_ID")
 	private int staffId;
 	
-	@Column
+
+	@NotEmpty(message = "User Name must have to given")
+	@NotNull(message = "User Name can't be Null")
+	@Length(min = 2, max = 20)
+	@Column(name = "USERNAME")
 	private String username;
 
 	@NotEmpty(message = "Password must have to given")
