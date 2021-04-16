@@ -1,13 +1,13 @@
 package com.cg.mts.entities;
 
 import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -21,14 +21,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 
 @Table(name = "ADMISSION_COMMITEE_MEMBER")
-@PrimaryKeyJoinColumn(name="STAFF_ID")
-public class AdmissionCommiteeMember extends UniversityStaffMember implements Serializable{
-
+@PrimaryKeyJoinColumn(name = "STAFF_ID")
+public class AdmissionCommiteeMember extends UniversityStaffMember implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	//@Id
-	
+	// @Id
+
 	@Valid
 	@Column(name = "ADMISSION_COMMITEE_MEMBER_ID")
 	private int admissionCommiteeMemberId;
