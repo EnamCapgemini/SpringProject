@@ -59,11 +59,12 @@ public class UniversityStaffMember implements Serializable {
 
 	@NotEmpty(message = "Staff Role must have to given")
 	@NotNull(message = "Staff Role can't be Null")
-	@Length(min = 2, max = 20)
+	//@Length(min = 2, max = 20)
 	@Column(name = "STAFF_ROLE")
 	private String role;
 
-	@JsonInclude(Include.NON_EMPTY)
+	@JsonIgnore
+	//@JsonInclude(Include.NON_EMPTY)
 	@OneToMany(mappedBy = "universitystaffs", cascade = CascadeType.ALL)
 	private Set<Course> courses = new TreeSet<>();
 
