@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.mts.entities.Applicant;
 import com.cg.mts.entities.Course;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
@@ -53,7 +54,7 @@ public class CourseController {
 
 	
 
-	@PostMapping("{cid}")
+	/*@PostMapping("{cid}")
 	public String addCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c,
 			@PathVariable("sid") int id) {
 		String role = jwtUserDetailsService.getRoleFromToken(token);
@@ -65,6 +66,11 @@ public class CourseController {
 			return "Invalid role!";
 		}
 
+	}*/
+	@PostMapping
+	public String saveApplicant(@Valid @RequestBody Course c) {
+		service.addCourse(c);
+		return "data saved";	
 	}
 
 	@PutMapping("/{cid}")
