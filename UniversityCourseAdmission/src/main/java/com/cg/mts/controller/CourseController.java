@@ -27,6 +27,8 @@ import com.cg.mts.service.JwtUserDetailsService;
 
 @RestController
 @RequestMapping("/Courses")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class CourseController {
 
 	@Autowired
