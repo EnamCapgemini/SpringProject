@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.mts.config.JwtTokenUtil;
+import com.cg.mts.entities.DAOUser;
 import com.cg.mts.model.JwtRequest;
 import com.cg.mts.model.JwtResponse;
 import com.cg.mts.model.PasswordDTO;
@@ -24,7 +25,7 @@ import com.cg.mts.service.JwtUserDetailsService;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class JwtAuthenticationController {
 
 	@Autowired
@@ -47,7 +48,7 @@ public class JwtAuthenticationController {
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
-		jwtuserDetailsService.logIn(authenticationRequest.getUsername());
+		jwtuserDetailsService.setLoggedIn(authenticationRequest.getUsername());
 		
 		return ResponseEntity.ok(new JwtResponse(token));
 	}

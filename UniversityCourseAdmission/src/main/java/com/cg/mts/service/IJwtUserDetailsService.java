@@ -10,7 +10,7 @@ public interface IJwtUserDetailsService {
 	
 	public DAOUser save(UserDTO user);
 	
-	public void logIn(String username);
+	public void setLoggedIn(String username);
 	
 	public boolean changePassword(String userName, PasswordDTO passwordDTO) throws UsernameNotFoundException;
 	
@@ -21,5 +21,7 @@ public interface IJwtUserDetailsService {
 	public String getRoleFromToken(String token) throws UsernameNotFoundException;
 	
 	public DAOUser getUserDetailsFromToken(String token) throws UsernameNotFoundException;
+
+	
 
 }

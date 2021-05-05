@@ -33,11 +33,20 @@ public class JwtUserDetailsService implements UserDetailsService,IJwtUserDetails
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		DAOUser user = userDao.findByUsername(username);
+		
+		/*DAOUser user = new DAOUser();
+		user.setUsername("vector");
+		user.setPassword(bcryptEncoder.encode("pass"));
+		if(!username.equals(user.getUsername())) {
+			throw new UsernameNotFoundException("User not found with username: " + username);
+		}*/
+		
+		
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
 		
-		return new User(user.getUsername(), user.getPassword(),
+		return new User(user.getUsername(), bcryptEncoder.encode(user.getPassword()),
 				new ArrayList<>());
 	}
 	
@@ -50,8 +59,11 @@ public class JwtUserDetailsService implements UserDetailsService,IJwtUserDetails
 	}
 	
 	@Override
-	public void logIn(String username) {
+	public void setLoggedIn(String username) {
 		DAOUser user = userDao.findByUsername(username);
+		if(user == null) {
+			throw new DataNotFoundException("Login","Username: '"+username+"' not found!");
+		}
 		user.setLoggedIn(true);
 		userDao.save(user);
 	}
