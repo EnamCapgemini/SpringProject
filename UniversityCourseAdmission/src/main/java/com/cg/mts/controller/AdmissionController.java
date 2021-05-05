@@ -38,7 +38,7 @@ public class AdmissionController {
 	public List<Admission> getAdmission() {
 		List<Admission> list = service.getallAdmission();
 		if (list.size() == 0)
-			throw new EmptyDataException("No Applicants in Database.");
+			throw new EmptyDataException("No Admission in Database.");
 		return list;
 	}
 
