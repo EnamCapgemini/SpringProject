@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Applicant;
+import com.cg.mts.entities.Course;
 import com.cg.mts.entities.DAOUser;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.DuplicateDataException;
@@ -95,6 +96,12 @@ public class ApplicantService implements IApplicantService{
 	public List<Applicant> showFemaleApplicants(){
 		List<Applicant> female=(List<Applicant>)repository.showFemaleApplicants();
 		return female;
+	}
+
+	@Override
+	public List<Applicant> getallApplicants() {
+		List<Applicant> list = (List<Applicant>) repository.findAll();
+		return list;
 	}
 
 }

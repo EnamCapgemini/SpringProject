@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.cg.mts.entities.Applicant;
+import com.cg.mts.entities.UniversityStaffMember;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.ApplicantService;
@@ -34,6 +35,13 @@ public class ApplicantController {
 	@Autowired
 	JwtUserDetailsService jwtUserDetailsService;
 	
+	@GetMapping
+	public List<Applicant> getApplicants() {
+		List<Applicant> list = service.getallApplicants();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Applicants in Database.");
+		return list;
+	}
 	@GetMapping("/{appid}")
 	public ResponseEntity<?> getApplicant(@PathVariable("appid") int applicantId){
 		Applicant applicant=service.viewApplicant(applicantId);
