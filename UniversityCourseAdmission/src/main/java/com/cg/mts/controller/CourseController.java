@@ -53,7 +53,7 @@ public class CourseController {
 
 	
 
-	@PostMapping("{sid}")
+	@PostMapping("{cid}")
 	public String addCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c,
 			@PathVariable("sid") int id) {
 		String role = jwtUserDetailsService.getRoleFromToken(token);
@@ -67,20 +67,20 @@ public class CourseController {
 
 	}
 
-	@PutMapping("{cid}")
-	public String updateCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c,
+	@PutMapping("/{cid}")
+	public String updateCourse(/*@RequestHeader("Authorization") String token,*/ @Valid @RequestBody Course c,
 			@PathVariable("cid") int id) {
-		String role = jwtUserDetailsService.getRoleFromToken(token);
-		if (role.equalsIgnoreCase("STAFF")) {
+		/*String role = jwtUserDetailsService.getRoleFromToken(token);
+		if (role.equalsIgnoreCase("STAFF")) {*/
 			if (service.updateCourse(c, id))
 				return "data updated";
 			else
 				throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");
-		} else {
+		} /*else {
 			return "Invalid role!";
 		}
 
-	}
+	}*/
 
 	@GetMapping("{cid}")
 	public ResponseEntity<?> viewcourse(@PathVariable("cid") int courseId) {
