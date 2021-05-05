@@ -74,7 +74,7 @@ public class AdmissionCommiteeMemberController {
 	}
 
 	// To Update the Admission Committee Member detail
-	@PutMapping("/updateCommiteeMember")
+	@PutMapping
 	public String updateAdmissionCommiteeMember(@Valid @RequestBody AdmissionCommiteeMember acm) {
 		if (service.updateAdmissionCommiteeMember(acm))
 			return "Admission Commitee member data updated";
