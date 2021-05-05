@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.cg.mts.entities.Admission;
 import com.cg.mts.exceptions.DataNotFoundException;
+import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.AdmissionService;
 import com.cg.mts.service.JwtUserDetailsService;
 
@@ -30,9 +30,17 @@ public class AdmissionController {
 
 	@Autowired
 	AdmissionService service;
-	
+
 	@Autowired
 	JwtUserDetailsService jwtUserDetailsService;
+
+	@GetMapping
+	public List<Admission> getAdmission() {
+		List<Admission> list = service.getallAdmission();
+		if (list.size() == 0)
+			throw new EmptyDataException("No Applicants in Database.");
+		return list;
+	}
 
 	@GetMapping("{aid}")
 	public ResponseEntity<?> getAdmission(@PathVariable("aid") int admissionId) {
@@ -43,26 +51,24 @@ public class AdmissionController {
 	}
 
 	@PostMapping("/{courseId}/{staffId}/{applicantId}")
-	public String saveAdmission(@RequestHeader("Authorization") String token,@Valid @RequestBody Admission a, @PathVariable("courseId") int cid,
-			@PathVariable("staffId") int sid, @PathVariable("applicantId") int aid) {
+	public String saveAdmission(@RequestHeader("Authorization") String token, @Valid @RequestBody Admission a,
+			@PathVariable("courseId") int cid, @PathVariable("staffId") int sid, @PathVariable("applicantId") int aid) {
 		String role = jwtUserDetailsService.getRoleFromToken(token);
-		if(role.equalsIgnoreCase("COMMITTEE")) {
-		service.addAdmission(a, cid, sid, aid);
-		return "Data Saved";
-		}
-		else {
+		if (role.equalsIgnoreCase("COMMITTEE")) {
+			service.addAdmission(a, cid, sid, aid);
+			return "Data Saved";
+		} else {
 			return "Invalid Role";
 		}
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<?> updateAdmission(@RequestHeader("Authorization") String token,@RequestBody Admission a) {
+	public ResponseEntity<?> updateAdmission(@RequestHeader("Authorization") String token, @RequestBody Admission a) {
 		String role = jwtUserDetailsService.getRoleFromToken(token);
-		if(role.equalsIgnoreCase("COMMITTEE")) {
+		if (role.equalsIgnoreCase("COMMITTEE")) {
 			service.updateAdmission(a, a.getAdmissionId());
-			return new ResponseEntity<>("Admission Data Saved Successfully", HttpStatus.OK);	
-		}
-		else {
+			return new ResponseEntity<>("Admission Data Saved Successfully", HttpStatus.OK);
+		} else {
 			return new ResponseEntity<>("Invalid role..", HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -75,8 +81,7 @@ public class AdmissionController {
 				return "Data Deleted";
 			else
 				throw new DataNotFoundException("detete", "Admission with Id" + admissionId + "not found");
-		}
-		else {
+		} else {
 			return "Invalid Role";
 		}
 	}
