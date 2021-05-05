@@ -74,10 +74,10 @@ public class AdmissionCommiteeMemberController {
 	}
 
 	// To Update the Admission Committee Member detail
-	@PutMapping("/updateCommiteeMember")
+	@PutMapping
 	public String updateAdmissionCommiteeMember(@Valid @RequestBody AdmissionCommiteeMember acm) {
 		if (service.updateAdmissionCommiteeMember(acm))
-			return "Admission Commitee member data updated";
+			return "Admission Commitee member data with id " + acm.getAdmissionCommiteeMemberId() + " updated";
 		else
 			throw new DataNotFoundException("Update",
 					"Admission Commitee Member with id" + acm.getAdmissionCommiteeMemberId() + " not found");
@@ -98,7 +98,7 @@ public class AdmissionCommiteeMemberController {
 	@DeleteMapping("/deleteUserByAdmissionCommiteeMemberId/{acmid}")
 	public String deleteUserByAdmissionCommiteeMemberId(@PathVariable("acmid") int id) {
 		if (service.deleteUserByAdmissionCommiteeMemberId(id))
-			return "Admission Commitee Member data deleted";
+			return "Admission Commitee Member data with id " + id + " deleted";
 		else
 			throw new DataNotFoundException("Delete",
 					"Admission Commitee Member with id to delete " + id + " not found");

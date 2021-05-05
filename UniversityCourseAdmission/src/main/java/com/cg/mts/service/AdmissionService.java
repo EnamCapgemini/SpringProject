@@ -70,5 +70,11 @@ public class AdmissionService implements IAdmissionService {
 		return em.createQuery("Select a from Admission a where a.courseId = '" + id + "'", Admission.class)
 				.getResultList();
 	}
+	
+	@Override
+	public List<Admission> getallAdmission() {
+		List<Admission> list = (List<Admission>) repository.findAll();
+		return list;
+	}
 
 }

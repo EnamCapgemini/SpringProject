@@ -11,6 +11,8 @@ public interface IAdmissionService {
 	boolean deleteAdmission(int id);
 
 	Admission getAdmission(int id);
+	
+	List<Admission> getallAdmission();
 
 	List<Admission> showAllByDate(String adDate);
 
