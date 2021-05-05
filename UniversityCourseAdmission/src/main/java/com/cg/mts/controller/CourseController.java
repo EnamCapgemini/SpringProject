@@ -38,20 +38,20 @@ public class CourseController {
 	JwtUserDetailsService jwtUserDetailsService;
 
 	// Authorize before access
-	@DeleteMapping("{cid}")
-	public String removeCourse(@RequestHeader("Authorization") String token, @PathVariable("cid") int id) {
+	@DeleteMapping("/{cid}")
+	public String removeCourse(/*@RequestHeader("Authorization") String token,*/ @PathVariable("cid") int id) {
 
-		String role = jwtUserDetailsService.getRoleFromToken(token);
-		if (role.equalsIgnoreCase("STAFF")) {
+		/*String role = jwtUserDetailsService.getRoleFromToken(token);
+		if (role.equalsIgnoreCase("STAFF")) {*/
 			if (service.removeCourse(id))
-				return "data deleted";
+				return "data with with id "+id+" Deleted Succesfully";
 			else
 				throw new DataNotFoundException("Delete", "Course with id to delete " + id + "not found");
-		} else {
+		} /*else {
 			return "Invalid role!";
-		}
+		}*/
 
-	}
+	
 
 	@PostMapping("{sid}")
 	public String addCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c,
