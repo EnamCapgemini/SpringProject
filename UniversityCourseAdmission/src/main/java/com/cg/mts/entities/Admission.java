@@ -16,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -40,7 +43,8 @@ public class Admission implements Serializable {
 	@Column(name = "STATUS")
 	private AdmissionStatus status;
 
-	@OneToOne(cascade = CascadeType.DETACH)
+	@OneToOne(cascade = CascadeType.ALL)
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name = "APPLICANT_APPLICANT_ID")
 	private Applicant applicant;
 

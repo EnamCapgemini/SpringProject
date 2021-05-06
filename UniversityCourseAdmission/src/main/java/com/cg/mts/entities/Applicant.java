@@ -40,20 +40,20 @@ public class Applicant implements Serializable {
 	@Column(name = "APPLICANT_LASTNAME")
 	private String applicantLastName;
 
-	@NotEmpty(message = "mobile number should not be empty")
+	/*@NotEmpty(message = "mobile number should not be empty")
 	@NotNull(message = "mobile number is required")
-	@Length(min = 10, max = 10, message = "phone.length.error")
+	@Length(min = 10, max = 10, message = "phone.length.error")*/
 	@Column(name = "PH_NO")
 	private String mobileNumber;
 
-	@NotEmpty(message = "degree should not be empty")
+	/*@NotEmpty(message = "degree should not be empty")
 	@NotNull(message = "degree is required")
-	//@Length(min = 3, max = 10, message = "${degree.length.error}")
+	//@Length(min = 3, max = 10, message = "${degree.length.error}")*/
 	@Column(name = "DEGREE",length = 20)
 	private String applicantDegree;
 
-	@NotNull(message = "percent is required")
-	@Range(min=0,max=100)
+	/*@NotNull(message = "percent is required")
+	@Range(min=0,max=100)*/
 	@Column(name = "GRAD_PER")
 	private int applicantGraduationPercent;
 
@@ -62,7 +62,7 @@ public class Applicant implements Serializable {
 	private Admission admission;*/
 
 	/*@OneToOne
-	@JoinColumn(name = "COURSE_ID")*/
+	@JoinColumn(name = "COURSE_ID")*/ 
 	private int courseId;
 
 	@Enumerated(EnumType.STRING)
@@ -70,14 +70,14 @@ public class Applicant implements Serializable {
 	private Gender gender;
 
 	/*@OneToOne
-	@JoinColumn(name = "ADDRESS")*/
-	@NotEmpty(message = "address should not be empty")
+	@JoinColumn(name = "ADDRESS")
+	@NotEmpty(message = "address should not be empty")*/
 	private String address;
 
 	@Column(name = "EMAIL_ID")
-	@NotEmpty(message = "email should not be empty")
+	/*@NotEmpty(message = "email should not be empty")
 	@NotNull(message = "email is required")
-	@Email(message = "email should be valid")
+	@Email(message = "email should be valid")*/
 	private String emailId;
 	
 	@Column(name="ROLE")
