@@ -58,19 +58,20 @@ public class ApplicantController {
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<?> updateApplicant(@RequestHeader("Authorization") String token,@Valid @RequestBody Applicant applicant){
-		String role = jwtUserDetailsService.getRoleFromToken(token);
-		if(role.equalsIgnoreCase("APPLICANT")) {
+	public ResponseEntity<?> updateApplicant(/*@RequestHeader("Authorization") String token,*/@Valid @RequestBody Applicant applicant){
+		/*String role = jwtUserDetailsService.getRoleFromToken(token);
+		if(role.equalsIgnoreCase("APPLICANT")) {*/
 		service.updateApplicant(applicant);
 		return new ResponseEntity<>("Applicant data saved successfully!!...",HttpStatus.OK);
 		}
-		else {
+		/*else {
 			return new ResponseEntity<>("Invalid role!!...",HttpStatus.BAD_REQUEST);
 
 		}
-	}
+	}*/
 	
 	@DeleteMapping("/{appid}")
+<<<<<<< HEAD
 	public String deleteApplicants(/*@RequestHeader("Authorization") String token,*/ @PathVariable("appid") int applicantId) {
 		//String role = jwtUserDetailsService.getRoleFromToken(token);
 		//if(role.equalsIgnoreCase("APPLICANT")) {
@@ -83,6 +84,20 @@ public class ApplicantController {
 			return "Invalid Role..";
 		}*/
 	}
+=======
+	public String deleteApplicants(/*@RequestHeader("Authorization") String token,*/@PathVariable("appid") int id) {
+		//String role = jwtUserDetailsService.getRoleFromToken(token);
+		//if(role.equalsIgnoreCase("APPLICANT")) {
+		if(service.deleteApplicant(id))
+			return "data deleted";
+		else
+			throw new  DataNotFoundException("delete","applicant with id "+id+" not found");
+		}
+		/*else {
+			return "Invalid Role..";
+		}*/
+	//}
+>>>>>>> d33d396b0051625282443c00bafd5a0ca2284d73
 	
 	@GetMapping("/show12thpassApplicants")
 	public List<Applicant> get12thpass(){
