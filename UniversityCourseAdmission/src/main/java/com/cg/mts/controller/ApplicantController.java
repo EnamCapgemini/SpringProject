@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.entities.UniversityStaffMember;
 import com.cg.mts.exceptions.DataNotFoundException;
+import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.ApplicantService;
 import com.cg.mts.service.JwtUserDetailsService;
@@ -53,17 +54,26 @@ public class ApplicantController {
 	
 	@PostMapping
 	public String saveApplicant(@Valid @RequestBody Applicant applicant) {
+		if(service.viewApplicant(applicant.getApplicantId())==null){
 		service.addApplicant(applicant);
 		return "data saved";	
+		}
+		else
+			throw new DuplicateDataException("Applicant with id "+applicant.getApplicantId()+" already exists.");
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<?> updateApplicant(/*@RequestHeader("Authorization") String token,*/@Valid @RequestBody Applicant applicant){
+	public String updateApplicant(/*@RequestHeader("Authorization") String token,*/@Valid @RequestBody Applicant applicant){
 		/*String role = jwtUserDetailsService.getRoleFromToken(token);
 		if(role.equalsIgnoreCase("APPLICANT")) {*/
-		service.updateApplicant(applicant);
-		return new ResponseEntity<>("Applicant data saved successfully!!...",HttpStatus.OK);
+		if(service.updateApplicant(applicant)) {
+			//service.updateApplicant(applicant);
+			return "Applicant data saved successfully!!...";
 		}
+		else
+			throw new DataNotFoundException("update", "Staff with id " + applicant.getApplicantId() + " not found");
+	}
+			
 		/*else {
 			return new ResponseEntity<>("Invalid role!!...",HttpStatus.BAD_REQUEST);
 

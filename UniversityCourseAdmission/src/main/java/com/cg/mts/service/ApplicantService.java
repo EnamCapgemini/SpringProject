@@ -43,14 +43,25 @@ public class ApplicantService implements IApplicantService{
 	}
 	
 	public boolean updateApplicant(Applicant applicant) {
-		if(!(repository.existsById(applicant.getApplicantId()))) {
-			throw new DataNotFoundException("update","Applicant with id "+applicant.getApplicantId()+" not found!..");
-		}
-		else{	
-			repository.save(applicant);
+		Applicant newapp=repository.findById(applicant.getApplicantId()).orElseThrow(()->new DataNotFoundException("update","failed"));
+		if(repository.existsById(newapp.getApplicantId())) {
+			newapp.setApplicantId(applicant.getApplicantId());
+			newapp.setUsername(applicant.getUsername());
+			newapp.setPassword(applicant.getPassword());
+			newapp.setApplicantFirstName(applicant.getApplicantFirstName());
+			newapp.setApplicantLastName(applicant.getApplicantLastName());
+			newapp.setAddress(applicant.getAddress());
+			newapp.setApplicantGraduationPercent(applicant.getApplicantGraduationPercent());
+			newapp.setEmailId(applicant.getEmailId());
+			newapp.setMobileNumber(applicant.getMobileNumber());
+			newapp.setCourse(applicant.getCourse());
+			newapp.setGender(applicant.getGender());
+			newapp.setApplicantDegree(applicant.getApplicantDegree());
+			newapp.setRole(applicant.getRole()); 
+			repository.save(newapp);
 			return true;
 		}
-
+		return false;
 	}
 	public boolean deleteApplicant(int id) {
 		if(repository.existsById(id)) {
