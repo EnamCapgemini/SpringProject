@@ -43,7 +43,7 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler{
 		
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(DuplicateDataException.class)
 	public ResponseEntity<?> handleDuplicateData(DuplicateDataException ex) {
 		Map<String, Object> errorBody = new LinkedHashMap<>();
