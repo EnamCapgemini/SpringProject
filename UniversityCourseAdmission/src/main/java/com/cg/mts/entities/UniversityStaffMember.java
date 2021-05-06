@@ -124,4 +124,11 @@ public class UniversityStaffMember implements Serializable {
 		this.courses = courses;
 	}
 
+	@Override
+	public String toString() {
+		return "UniversityStaffMember [staffId=" + staffId + ", username=" + username + ", password=" + password
+				+ ", role=" + role + ", courses=" + courses + "]";
+	}
+	
+
 }

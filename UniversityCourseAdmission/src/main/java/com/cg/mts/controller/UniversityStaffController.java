@@ -79,6 +79,7 @@ public class UniversityStaffController {
 	// To Save University Staff Details
 	@PostMapping
 	public String addStaff(@Valid @RequestBody UniversityStaffMember staff) {
+		//System.out.println(staff);
 		if (universityService.viewStaff(staff.getStaffId()) == null) 
 		{
 			universityService.addStaff(staff);

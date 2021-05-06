@@ -84,7 +84,8 @@ public class ApplicantController {
 		}*/
 	}
 
-
+	
+	
 	@GetMapping("/show12thpassApplicants")
 	public List<Applicant> get12thpass(){
 		List<Applicant> list=service.get12thpass();

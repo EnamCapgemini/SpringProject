@@ -70,8 +70,14 @@ public class UniversityStaffService implements IUniversityStaffService {
 
 	// Method to update Staff Details
 	public boolean updateStaff(UniversityStaffMember staff) {
+		UniversityStaffMember newStaff=universityRepo.findById(staff.getStaffId()).orElseThrow(()->new DataNotFoundException("update", "failed"));
 		if (universityRepo.existsById(staff.getStaffId())) {
-			universityRepo.save(staff);
+			
+			newStaff.setUsername(staff.getUsername());
+			newStaff.setPassword(staff.getPassword());
+			newStaff.setRole(staff.getRole());
+			newStaff.setStaffId(staff.getStaffId());
+			universityRepo.save(newStaff);
 			return true;
 		}
 		return false;
