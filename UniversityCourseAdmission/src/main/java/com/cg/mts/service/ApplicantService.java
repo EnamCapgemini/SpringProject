@@ -43,7 +43,7 @@ public class ApplicantService implements IApplicantService{
 	}
 	
 	public boolean updateApplicant(Applicant applicant) {
-		Applicant newapp=repository.findById(applicant.getApplicantId()).orElseThrow(()->new DataNotFoundException("update","failed"));
+		Applicant newapp=repository.findById(applicant.getApplicantId()).orElseThrow(()->new DataNotFoundException("update","applicant with id "+applicant.getApplicantId()+" not found"));
 		if(repository.existsById(newapp.getApplicantId())) {
 			newapp.setApplicantId(applicant.getApplicantId());
 			newapp.setUsername(applicant.getUsername());

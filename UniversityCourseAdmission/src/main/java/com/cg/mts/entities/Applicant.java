@@ -219,15 +219,4 @@ public class Applicant implements Serializable {
 		this.gender = gender;
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "Applicant [applicantId=" + applicantId + ", username=" + username + ", password=" + password
-				+ ", applicantFirstName=" + applicantFirstName + ", applicantLastName=" + applicantLastName
-				+ ", mobileNumber=" + mobileNumber + ", applicantDegree=" + applicantDegree
-				+ ", applicantGraduationPercent=" + applicantGraduationPercent + ", courseId=" + courseId + ", gender="
-				+ gender + ", address=" + address + ", emailId=" + emailId + ", role=" + role + "]";
-	}
-
 }
