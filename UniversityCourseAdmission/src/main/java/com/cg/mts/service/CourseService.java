@@ -34,7 +34,7 @@ public class CourseService implements ICourseService {
 		repository.save(c);
 	}
 
-	// Method to update course
+	/*// Method to update course
 	public boolean updateCourse(Course c, int cid) {
 		if (repository.existsById(c.getCourseId())) {
 			repository.updateCourseDetails(c.getCourseName(), c.getCourseDuration(), c.getCourseStartDate(),
@@ -42,7 +42,10 @@ public class CourseService implements ICourseService {
 			return true;
 		}
 		return false;
-	}
+	}*/
+	
+	
+	
 
 	// Method to view course by course id
 	public Course viewCourse(int id) {
@@ -111,6 +114,15 @@ public class CourseService implements ICourseService {
 	public List<Course> fees4LacCourses() {
 		List<Course> coursefees = (List<Course>) repository.fees4LacCourses();
 		return coursefees;
+	}
+
+	@Override
+	public boolean updateCourse(Course c) {
+		if (repository.existsById(c.getCourseId())) {
+			repository.save(c);
+			return true;
+		}
+		return false;
 	}
 
 }

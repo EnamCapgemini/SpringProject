@@ -37,13 +37,12 @@ public class AdmissionCommiteeMemberController {
 	AdmissionCommiteeMemberService service;
 
 	// To Save the Admission Committee Member details
-	@PostMapping("/addCommiteeMember")
+	@PostMapping
 	public ResponseEntity<?> saveAdmissionCommiteeMember(@Valid @RequestBody AdmissionCommiteeMember acm) {
 
 		service.saveAdmissionCommiteeMember(acm);
 
 		return new ResponseEntity<>("Admission Commitee Member saved successfully!", HttpStatus.OK);
-
 	}
 
 	// To Retrieve the Admission Committee Member Detail by Admission Committee Id
@@ -133,8 +132,9 @@ public class AdmissionCommiteeMemberController {
 		return "Admission Commitee Member contact update sucessfull";
 	}
 
+	@CrossOrigin
 	// To Update the Admission Status by Admission Id
-	@PatchMapping("/updateAdmissionStatus/{​​​​​adid}​​​​​/{​​​​​adstatus}​​​​​")
+	@PutMapping("/updateAdmissionStatus/{​​​​​adid}​​​​​/{​​​​​adstatus}​​​​​")
 	public String updateAdmissionStatus(@RequestParam("adid") int adid,
 			@RequestParam("adstatus") String adstatus) {
 		if (service.provideAdmissionResult(adid, adstatus))

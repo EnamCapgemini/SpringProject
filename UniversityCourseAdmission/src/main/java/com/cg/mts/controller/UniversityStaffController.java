@@ -145,7 +145,7 @@ public class UniversityStaffController {
 	}
 
 	// To Update Course Details By a Staff
-	@PutMapping("/updateCourseDetails/{courseId}")
+	/*@PutMapping("/updateCourseDetails/{courseId}")
 	public String updateCourse(@RequestHeader("Authorization") String token, @Valid @RequestBody Course c,
 			@PathVariable("courseId") int cid) {
 		String role = jwtUserDetailsService.getRoleFromToken(token);
@@ -157,7 +157,7 @@ public class UniversityStaffController {
 		} else {
 			return "Invalid role!";
 		}
-	}
+	}*/
 
 	// Delete Course Data
 	@DeleteMapping("/deleteCourseUsingCourseID/{courseId}")

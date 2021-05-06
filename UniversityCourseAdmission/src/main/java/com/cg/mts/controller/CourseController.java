@@ -73,12 +73,11 @@ public class CourseController {
 		return "data saved";	
 	}
 
-	@PutMapping("/{cid}")
-	public String updateCourse(/*@RequestHeader("Authorization") String token,*/ @Valid @RequestBody Course c,
-			@PathVariable("cid") int id) {
+	@PutMapping
+	public String updateCourse(/*@RequestHeader("Authorization") String token,*/ @Valid @RequestBody Course c) {
 		/*String role = jwtUserDetailsService.getRoleFromToken(token);
 		if (role.equalsIgnoreCase("STAFF")) {*/
-			if (service.updateCourse(c, id))
+			if (service.updateCourse(c))
 				return "data updated";
 			else
 				throw new DataNotFoundException("Update", "Course with id" + c.getCourseId() + "not found");
