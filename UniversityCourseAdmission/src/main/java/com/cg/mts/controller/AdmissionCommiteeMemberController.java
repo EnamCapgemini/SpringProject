@@ -133,6 +133,7 @@ public class AdmissionCommiteeMemberController {
 		return "Admission Commitee Member contact update sucessfull";
 	}
 
+	@CrossOrigin
 	// To Update the Admission Status by Admission Id
 	@PatchMapping("/updateAdmissionStatus/{​​​​​adid}​​​​​/{​​​​​adstatus}​​​​​")
 	public String updateAdmissionStatus(@RequestParam("adid") int adid,
