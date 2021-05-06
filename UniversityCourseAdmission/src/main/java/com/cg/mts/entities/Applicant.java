@@ -62,7 +62,7 @@ public class Applicant implements Serializable {
 	private Admission admission;*/
 
 	/*@OneToOne
-	@JoinColumn(name = "COURSE")*/
+	@JoinColumn(name = "COURSE_ID")*/
 	private int courseId;
 
 	@Enumerated(EnumType.STRING)

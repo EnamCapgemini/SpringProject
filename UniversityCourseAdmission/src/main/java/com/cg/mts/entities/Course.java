@@ -27,14 +27,11 @@ public class Course implements Serializable {
 	@Column(name = "COURSE_ID")
 	private int courseId;
 
-	@NotEmpty(message = "course should not be empty")
-	@NotNull(message = "course is required")
-	@Length(min = 4, max = 15, message = "${name.length.error}")
+	
 	@Column(name = "COURSE_NAME")
 	private String courseName;
 
-	@NotEmpty(message = "Course Duration should not be empty")
-	@NotNull(message = "Course Duration is required")
+	
 	@Column(name = "COURSE_DURATION")
 	private String courseDuration;
 
@@ -44,10 +41,7 @@ public class Course implements Serializable {
 	@Column(name = "COURSE_END_DATE")
 	private LocalDate courseEndDate;
 
-	@NotEmpty(message = "Fees should not be empty")
-	@NotNull(message = "Fees is required")
 	@Column(name = "COURSE_FEES")
-	@Pattern(regexp = "^[0-9]{1,6}$", message = "It Should be within 6 digit figure")
 	private String courseFees;
 
 	@OneToOne

@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "ADMISSION")
+
 public class Admission implements Serializable {
 
 	private static final long serialVersionUID = 1L;

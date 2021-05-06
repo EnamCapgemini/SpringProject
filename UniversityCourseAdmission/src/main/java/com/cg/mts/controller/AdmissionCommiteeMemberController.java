@@ -136,7 +136,7 @@ public class AdmissionCommiteeMemberController {
 	// To Update the Admission Status by Admission Id
 	@PatchMapping("/updateAdmissionStatus/{​​​​​adid}​​​​​/{​​​​​adstatus}​​​​​")
 	public String updateAdmissionStatus(@RequestParam("adid") int adid,
-			@RequestParam("adstatus") AdmissionStatus adstatus) {
+			@RequestParam("adstatus") String adstatus) {
 		if (service.provideAdmissionResult(adid, adstatus))
 			return "Admission Result data of " + adid + " updated";
 		else
