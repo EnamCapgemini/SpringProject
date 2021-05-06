@@ -62,28 +62,28 @@ public class AdmissionController {
 		}
 	}
 
-	@PutMapping("/update")
-	public ResponseEntity<?> updateAdmission(@RequestHeader("Authorization") String token, @RequestBody Admission a) {
-		String role = jwtUserDetailsService.getRoleFromToken(token);
-		if (role.equalsIgnoreCase("COMMITTEE")) {
+	@PutMapping//("/update")
+	public ResponseEntity<?> updateAdmission(/*@RequestHeader("Authorization") String token,*/ @RequestBody Admission a) {
+//		String role = jwtUserDetailsService.getRoleFromToken(token);
+//		if (role.equalsIgnoreCase("COMMITTEE")) {
 			service.updateAdmission(a, a.getAdmissionId());
 			return new ResponseEntity<>("Admission Data Saved Successfully", HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>("Invalid role..", HttpStatus.BAD_REQUEST);
-		}
+//		} else {
+//			return new ResponseEntity<>("Invalid role..", HttpStatus.BAD_REQUEST);
+//		}
 	}
 
 	@DeleteMapping("/{aid}")
-	public String deleteAdmission(@RequestHeader("Authorization") String token, @PathVariable("aid") int admissionId) {
-		String role = jwtUserDetailsService.getRoleFromToken(token);
-		if (role.equalsIgnoreCase("COMMITTEE")) {
+	public String deleteAdmission(/*@RequestHeader("Authorization") String token,*/ @PathVariable("aid") int admissionId) {
+//		String role = jwtUserDetailsService.getRoleFromToken(token);
+//		if (role.equalsIgnoreCase("COMMITTEE")) {
 			if (service.deleteAdmission(admissionId))
 				return "Data Deleted";
 			else
 				throw new DataNotFoundException("detete", "Admission with Id" + admissionId + "not found");
-		} else {
-			return "Invalid Role";
-		}
+//		} else {
+//			return "Invalid Role";
+//		}
 	}
 
 	@GetMapping("/Date/{date}")

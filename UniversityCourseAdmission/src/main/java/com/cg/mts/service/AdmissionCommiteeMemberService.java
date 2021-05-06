@@ -89,13 +89,13 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 	}
 
 	// Method to update Admission Status by Admission Id
-	public boolean provideAdmissionResult(int adid, AdmissionStatus as) {
+	public boolean provideAdmissionResult(int adid, String as) {
 
 		if (!(repo.existsById(adid))) {
 			throw new DataNotFoundException("update", "Admission with id " + adid + " not found...");
 		} else {
 			Admission ad = repo.findById(adid).get();
-			ad.setStatus(as);
+			ad.setStatus(AdmissionStatus.valueOf(as.toUpperCase()));
 			repo.save(ad);
 			return true;
 		}

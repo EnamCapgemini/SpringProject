@@ -24,6 +24,6 @@ public interface IAdmissionCommiteeMemberService {
 
 	boolean deleteAdmissionCommiteeMemberByStaffId(int id);
 
-	boolean provideAdmissionResult(int id, AdmissionStatus as);
+	boolean provideAdmissionResult(int id, String as);
 
 }
