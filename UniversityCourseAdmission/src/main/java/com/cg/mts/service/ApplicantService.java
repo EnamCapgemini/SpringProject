@@ -54,7 +54,7 @@ public class ApplicantService implements IApplicantService{
 			newapp.setApplicantGraduationPercent(applicant.getApplicantGraduationPercent());
 			newapp.setEmailId(applicant.getEmailId());
 			newapp.setMobileNumber(applicant.getMobileNumber());
-			newapp.setCourse(applicant.getCourse());
+			newapp.setCourseId(applicant.getCourseId());
 			newapp.setGender(applicant.getGender());
 			newapp.setApplicantDegree(applicant.getApplicantDegree());
 			newapp.setRole(applicant.getRole()); 

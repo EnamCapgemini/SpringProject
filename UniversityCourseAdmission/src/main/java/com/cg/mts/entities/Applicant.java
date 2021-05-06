@@ -90,7 +90,6 @@ public class Applicant implements Serializable {
 
 
 	public Applicant(int applicantId, String username, String password, String applicantFirstName, String applicantLastName, String mobileNumber,int courseId,String applicantDegree, int applicantGraduationPercent, Gender gender, String address, String emailId,String role) {
-		super();
 		this.applicantId = applicantId;
 		this.username = username;
 		this.password = password;
@@ -187,12 +186,12 @@ public class Applicant implements Serializable {
 
 	
 
-	public int getCourse() {
+	public int getCourseId() {
 		return courseId;
 	}
 
-	public void setCourse(int course) {
-		this.courseId = course;
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
 	}	
 
 	public String getAddress() {
