@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.mts.entities.Course;
 import com.cg.mts.entities.UniversityStaffMember;
 import com.cg.mts.exceptions.DataNotFoundException;
+import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.CourseService;
 import com.cg.mts.service.JwtUserDetailsService;
@@ -78,11 +79,13 @@ public class UniversityStaffController {
 	// To Save University Staff Details
 	@PostMapping
 	public String addStaff(@Valid @RequestBody UniversityStaffMember staff) {
-		if (universityService.viewStaff(staff.getStaffId()) == null) {
+		if (universityService.viewStaff(staff.getStaffId()) == null) 
+		{
 			universityService.addStaff(staff);
 			return "Data saved Succesfully";
 		}
-		return "Duplicate Staff ID";
+		else
+		throw new DuplicateDataException("Duplicate Staff Id");
 	}
 
 	// To Update the Staff Details

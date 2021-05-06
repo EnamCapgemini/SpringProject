@@ -3,6 +3,7 @@ package com.cg.mts.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -38,7 +39,7 @@ public class Admission implements Serializable {
 	@Column(name = "STATUS")
 	private AdmissionStatus status;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "APPLICANT_APPLICANT_ID")
 	private Applicant applicant;
 

@@ -71,17 +71,17 @@ public class ApplicantController {
 	}
 	
 	@DeleteMapping("/{appid}")
-	public String deleteApplicants(@RequestHeader("Authorization") String token,@PathVariable("appid") int applicantId) {
-		String role = jwtUserDetailsService.getRoleFromToken(token);
-		if(role.equalsIgnoreCase("APPLICANT")) {
+	public String deleteApplicants(/*@RequestHeader("Authorization") String token,*/ @PathVariable("appid") int applicantId) {
+		//String role = jwtUserDetailsService.getRoleFromToken(token);
+		//if(role.equalsIgnoreCase("APPLICANT")) {
 		if(service.deleteApplicant(applicantId))
 			return "data deleted";
 		else
 			throw new  DataNotFoundException("delete","applicant with id "+applicantId+" not found");
-		}
+		/*}
 		else {
 			return "Invalid Role..";
-		}
+		}*/
 	}
 	
 	@GetMapping("/show12thpassApplicants")

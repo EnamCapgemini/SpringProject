@@ -17,6 +17,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKey;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -33,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("deprecation")
+//@MappedSuperclass
 @Entity
 @Table(name = "UNIVERSITYSTAFFS")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -45,27 +47,27 @@ public class UniversityStaffMember implements Serializable {
 	private int staffId;
 	
 
-	@NotEmpty(message = "User Name must have to given")
+	/*@NotEmpty(message = "User Name must have to given")
 	@NotNull(message = "User Name can't be Null")
-	@Length(min = 2, max = 20)
+	@Length(min = 2, max = 20)*/
 	@Column(name = "USERNAME")
 	private String username;
 
-	@NotEmpty(message = "Password must have to given")
+	/*@NotEmpty(message = "Password must have to given")
 	@NotNull(message = "Password can't be Null")
-	@Length(min = 8, max = 20, message = "Password length should be 8-20 characters")
+	@Length(min = 8, max = 20, message = "Password length should be 8-20 characters")*/
 	@Column(name = "STAFF_PASSWORD")
 	private String password;
 
-	@NotEmpty(message = "Staff Role must have to given")
+	/*@NotEmpty(message = "Staff Role must have to given")
 	@NotNull(message = "Staff Role can't be Null")
-	//@Length(min = 2, max = 20)
+	//@Length(min = 2, max = 20)*/
 	@Column(name = "STAFF_ROLE")
 	private String role;
 
 	@JsonIgnore
 	//@JsonInclude(Include.NON_EMPTY)
-	@OneToMany(mappedBy = "universitystaffs", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "universitystaffs", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Course> courses = new TreeSet<>();
 
 	public UniversityStaffMember() {

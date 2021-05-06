@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 
 @Table(name = "ADMISSION_COMMITEE_MEMBER")
-@PrimaryKeyJoinColumn(name = "STAFF_ID")
+//@PrimaryKeyJoinColumn(name = "STAFF_ID")
 public class AdmissionCommiteeMember extends UniversityStaffMember implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -47,7 +47,7 @@ public class AdmissionCommiteeMember extends UniversityStaffMember implements Se
 	private String admissionCommiteeMemberContact;
 
 	@Valid
-	@OneToMany(mappedBy = "admissioncommitee", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "admissioncommitee", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Admission> admission = new HashSet<>();
 
 	public AdmissionCommiteeMember() {
