@@ -61,7 +61,7 @@ public class ApplicantController {
 			throw new DuplicateDataException("Applicant with id "+applicant.getApplicantId()+" already exists.");
 	}
 	
-	@PutMapping("/update")
+	@PutMapping
 	public String updateApplicant(/*@RequestHeader("Authorization") String token,*/@Valid @RequestBody Applicant applicant){
 		/*String role = jwtUserDetailsService.getRoleFromToken(token);
 		if(role.equalsIgnoreCase("APPLICANT")) {*/
