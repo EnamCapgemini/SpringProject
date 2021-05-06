@@ -3,10 +3,12 @@ package com.cg.mts.service;
 import java.util.List;
 
 import com.cg.mts.entities.Course;
+import com.cg.mts.entities.UniversityStaffMember;
 
 public interface ICourseService {
 
 	void addCourse(Course c);
+	boolean updateCourse(Course c);
 
 	boolean removeCourse(int id);
 
