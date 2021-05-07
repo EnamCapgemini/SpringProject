@@ -30,7 +30,11 @@ public class AdmissionCommiteeMemberService implements IAdmissionCommiteeMemberS
 	// Method to save Admission Committee Member
 	public void saveAdmissionCommiteeMember(AdmissionCommiteeMember e) {
 
-		if (repository.existsById(e.getAdmissionCommiteeMemberId())) {
+		if (repository.existsByStaffId(e.getStaffId())) {
+			throw new DuplicateDataException(
+					"University Staff with id : " + e.getStaffId() + " already exists.");
+		}
+		if (repository.existsByAdmissionCommiteeMemberId(e.getAdmissionCommiteeMemberId())) {
 			throw new DuplicateDataException(
 					"Admission Commitee Member with id : " + e.getAdmissionCommiteeMemberId() + " already exists.");
 		}

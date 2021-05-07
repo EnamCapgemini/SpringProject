@@ -57,12 +57,13 @@ public class Admission implements Serializable {
 		super();
 	}
 
-	public Admission(int admissionId, int courseId, LocalDate admissionDate, AdmissionStatus status) {
+	public Admission(int admissionId, int courseId, LocalDate admissionDate, AdmissionStatus status,Applicant applicant) {
 		super();
 		this.admissionId = admissionId;
 		this.courseId = courseId;
 		this.admissionDate = admissionDate;
 		this.status = status;
+		this.applicant=applicant;
 	}
 
 	public int getAdmissionId() {
@@ -98,11 +99,15 @@ public class Admission implements Serializable {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "Admission [admissionId=" + admissionId + ", courseId=" + courseId + ", admissionDate=" + admissionDate
-				+ ", status=" + status + ", applicant=" + applicant + ", admissioncommitee=" + admissioncommitee + "]";
+	public Applicant getApplicant() {
+		return applicant;
 	}
+
+	public void setApplicant(Applicant applicant) {
+		this.applicant = applicant;
+	}
+
+	
 
 	
 }
