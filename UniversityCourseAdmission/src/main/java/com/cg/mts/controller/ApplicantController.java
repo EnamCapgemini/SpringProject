@@ -55,7 +55,7 @@ public class ApplicantController {
 	public String saveApplicant(@Valid @RequestBody Applicant applicant) {
 		if(service.viewApplicant(applicant.getApplicantId())==null){
 		service.addApplicant(applicant);
-		return "data saved";	
+		return "Applicant with id "+applicant.getApplicantId()+" saved";	
 		}
 		else
 			throw new DuplicateDataException("Applicant with id "+applicant.getApplicantId()+" already exists.");
@@ -84,7 +84,7 @@ public class ApplicantController {
 		//String role = jwtUserDetailsService.getRoleFromToken(token);
 		//if(role.equalsIgnoreCase("APPLICANT")) {
 		if(service.deleteApplicant(id))
-			return "data deleted";
+			return "Applicant with id "+id+" deleted";
 		else
 			throw new  DataNotFoundException("delete","applicant with id "+id+" not found");
 		}
