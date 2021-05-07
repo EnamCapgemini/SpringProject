@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
+import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.AdmissionService;
 import com.cg.mts.service.JwtUserDetailsService;
@@ -57,9 +58,12 @@ public class AdmissionController {
 			@PathVariable("courseId") int cid, @PathVariable("staffId") int sid, @PathVariable("applicantId") int aid) {
 		//String role = jwtUserDetailsService.getRoleFromToken(token);
 		//if (role.equalsIgnoreCase("COMMITTEE")) {
-		System.out.println(a);
+		if(service.getAdmission(aid)==null) {
 			service.addAdmission(a, cid, sid, aid);
 			return "Data Saved";
+		}
+		else
+			throw new DuplicateDataException("admission with id "+aid+" already exists");
 		} /*else {
 			return "Invalid Role";
 		}*/
@@ -78,8 +82,12 @@ public class AdmissionController {
 	
 	@PostMapping
 	public String saveAdmission(@Valid @RequestBody Admission a) {
-		service.addingAdmission(a);
-		return "data saved";	
+		if(service.getAdmission(a.getAdmissionId())==null) {
+			service.addingAdmission(a);
+			return "data saved";	
+		}
+		else
+			throw new DuplicateDataException("admission with id "+a.getAdmissionId()+" already exists");
 	}
 
 	@DeleteMapping("/{aid}")
