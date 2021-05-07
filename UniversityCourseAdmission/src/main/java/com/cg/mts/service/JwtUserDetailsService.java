@@ -15,6 +15,7 @@ import com.cg.mts.entities.DAOUser;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.model.PasswordDTO;
 import com.cg.mts.model.UserDTO;
+import com.cg.mts.model.UserdetailsResponse;
 import com.cg.mts.repository.UserDao;
 
 @Service()
@@ -94,8 +95,17 @@ public class JwtUserDetailsService implements UserDetailsService,IJwtUserDetails
 			throw new UsernameNotFoundException("User not found with username: " + userName);
 		}
 		
+		/*
 		if(bcryptEncoder.matches(passwordDTO.getOldPassword(), user.getPassword()) && user.isLoggedIn()) {
 			user.setPassword(bcryptEncoder.encode(passwordDTO.getNewPassword()));
+			userDao.save(user);
+			
+			return true;
+		}
+		*/
+		
+		if(user.getPassword().equals(passwordDTO.getOldPassword()) && user.isLoggedIn()) {
+			user.setPassword(passwordDTO.getNewPassword());
 			userDao.save(user);
 			
 			return true;
@@ -126,7 +136,7 @@ public class JwtUserDetailsService implements UserDetailsService,IJwtUserDetails
 	}
 	
 	@Override
-	public DAOUser getUserDetailsFromToken(String token) throws UsernameNotFoundException {
+	public UserdetailsResponse getUserDetailsFromToken(String token) throws UsernameNotFoundException {
 		String jwtToken = token.substring(7);
 		String userName = jwtTokenUtil.getUsernameFromToken(jwtToken);
 		DAOUser user = userDao.findByUsername(userName);
@@ -135,8 +145,18 @@ public class JwtUserDetailsService implements UserDetailsService,IJwtUserDetails
 			throw new UsernameNotFoundException("User not found with username: " + userName);
 		}
 		
-		return userDao.findByUsername(userName);
+		return toUserDetailsResponse(user);
 	}
 	
-	
+	@Override
+	public UserdetailsResponse toUserDetailsResponse(DAOUser user) {
+		
+		UserdetailsResponse response = new UserdetailsResponse();
+		
+		response.setUsername(user.getUsername());
+		response.setPassword(user.getPassword());
+		response.setRole(user.getRole());
+		
+		return response;
+	}
 }

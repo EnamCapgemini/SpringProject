@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.mts.config.JwtTokenUtil;
-import com.cg.mts.entities.DAOUser;
 import com.cg.mts.model.JwtRequest;
 import com.cg.mts.model.JwtResponse;
 import com.cg.mts.model.PasswordDTO;
+import com.cg.mts.model.UserdetailsResponse;
 import com.cg.mts.service.JwtUserDetailsService;
 
 
@@ -77,8 +77,16 @@ public class JwtAuthenticationController {
 			return new ResponseEntity<>("User Logout successful!", HttpStatus.OK);
 		}
 		else {
-			return new ResponseEntity<>("Please login first!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Please Login first!", HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@GetMapping("/getUserDetails")
+	public ResponseEntity<?> getUserdetails(@RequestHeader("Authorization") String token) {
+		
+		UserdetailsResponse userDetails = jwtuserDetailsService.getUserDetailsFromToken(token);
+		
+		return ResponseEntity.ok(userDetails);
 	}
 
 	private void authenticate(String username, String password) throws Exception {
