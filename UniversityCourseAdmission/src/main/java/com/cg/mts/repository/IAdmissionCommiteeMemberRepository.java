@@ -14,7 +14,7 @@ public interface IAdmissionCommiteeMemberRepository extends JpaRepository<Admiss
 	Optional<AdmissionCommiteeMember> findByAdmissionCommiteeMemberId(int admissionCommiteeMemberId);
 
 	boolean existsByAdmissionCommiteeMemberId(int admissionCommiteeMemberId);
-
+	boolean existsByStaffId(int staffId);
 	void deleteByAdmissionCommiteeMemberId(int admissionCommiteeMemberId);
 
 }
