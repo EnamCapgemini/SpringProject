@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.mts.entities.Admission;
+import com.cg.mts.entities.Course;
 import com.cg.mts.exceptions.DuplicateDataException;
 import com.cg.mts.repository.IAdmissionRepository;
 
@@ -29,7 +30,14 @@ public class AdmissionService implements IAdmissionService {
 		repository.saveByApplicantAndAdmissionCommiteeId(a.getAdmissionId(), a.getAdmissionDate(), cid,
 				a.getStatus().toString(), sid, aid);
 	}
+	
+	public void addingAdmission(Admission a) throws DuplicateDataException {
+		if (repository.existsById(a.getCourseId()))
+			throw new DuplicateDataException("Admission with" + a.getAdmissionId() + "Already exists");
+		repository.save(a);
+	}
 
+	
 	// Method to update admission
 	public boolean updateAdmission(Admission a, int aid) {
 		if (repository.existsById(aid)) {
