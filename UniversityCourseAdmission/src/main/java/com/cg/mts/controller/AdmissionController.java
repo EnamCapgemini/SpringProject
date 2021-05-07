@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cg.mts.entities.Admission;
+import com.cg.mts.entities.Applicant;
 import com.cg.mts.exceptions.DataNotFoundException;
 import com.cg.mts.exceptions.EmptyDataException;
 import com.cg.mts.service.AdmissionService;
@@ -51,16 +52,18 @@ public class AdmissionController {
 	}
 
 	@PostMapping("/{courseId}/{staffId}/{applicantId}")
-	public String saveAdmission(@RequestHeader("Authorization") String token, @Valid @RequestBody Admission a,
+	
+	public String saveAdmission(/*@RequestHeader("Authorization") String token,*/ @Valid @RequestBody Admission a,
 			@PathVariable("courseId") int cid, @PathVariable("staffId") int sid, @PathVariable("applicantId") int aid) {
-		String role = jwtUserDetailsService.getRoleFromToken(token);
-		if (role.equalsIgnoreCase("COMMITTEE")) {
+		//String role = jwtUserDetailsService.getRoleFromToken(token);
+		//if (role.equalsIgnoreCase("COMMITTEE")) {
+		System.out.println(a);
 			service.addAdmission(a, cid, sid, aid);
 			return "Data Saved";
-		} else {
+		} /*else {
 			return "Invalid Role";
-		}
-	}
+		}*/
+	//}
 
 	@PutMapping//("/update")
 	public ResponseEntity<?> updateAdmission(/*@RequestHeader("Authorization") String token,*/ @RequestBody Admission a) {
@@ -71,6 +74,12 @@ public class AdmissionController {
 //		} else {
 //			return new ResponseEntity<>("Invalid role..", HttpStatus.BAD_REQUEST);
 //		}
+	}
+	
+	@PostMapping
+	public String saveAdmission(@Valid @RequestBody Admission a) {
+		service.addingAdmission(a);
+		return "data saved";	
 	}
 
 	@DeleteMapping("/{aid}")
