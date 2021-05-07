@@ -12,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.cg.mts.entities.Admission;
 import com.cg.mts.entities.AdmissionStatus;
+import com.cg.mts.entities.Applicant;
 import com.cg.mts.repository.IAdmissionRepository;
 import com.cg.mts.service.AdmissionService;
 
@@ -27,7 +28,7 @@ class TestAdmission {
 	@Test
 	public void addAdmission() {
 
-		Admission a = new Admission(100, 1000, LocalDate.now(), AdmissionStatus.PENDING);
+		Admission a = new Admission(100, 1000, LocalDate.now(), AdmissionStatus.PENDING,(new Applicant()));
 
 		when(repository.save(a)).thenReturn(a);
 		assertEquals(a, repository.save(a));
@@ -36,12 +37,12 @@ class TestAdmission {
 	@Test
 	public void updateAdmission() {
 
-		Admission a = new Admission(100, 1000, LocalDate.now(), AdmissionStatus.PENDING);
+		Admission a = new Admission(100, 1000, LocalDate.now(), AdmissionStatus.PENDING,(new Applicant()));
 		when(repository.save(a)).thenReturn(a);
 
-		a = new Admission(100, 100, LocalDate.now(), AdmissionStatus.APPLIED);
+		a = new Admission(100, 100, LocalDate.now(), AdmissionStatus.APPLIED,(new Applicant()));
 
-		a = new Admission(100, 2000, LocalDate.now(), AdmissionStatus.APPLIED);
+		a = new Admission(100, 2000, LocalDate.now(), AdmissionStatus.APPLIED,(new Applicant()));
 
 		assertNotEquals(a, repository.save(a));
 
@@ -50,7 +51,7 @@ class TestAdmission {
 	@Test
 	public void deleteAdmission() {
 
-		Admission a = new Admission(100, 1000, LocalDate.now(), AdmissionStatus.PENDING);
+		Admission a = new Admission(100, 1000, LocalDate.now(), AdmissionStatus.PENDING,(new Applicant()));
 		assertNotEquals(a, service.deleteAdmission(100));
 
 	}
