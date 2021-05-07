@@ -62,7 +62,7 @@ public class UniversityStaffController {
 	public List<UniversityStaffMember> viewAllStaffs() {
 		List<UniversityStaffMember> list = universityService.viewAllStaffs();
 		if (list.size() == 0)
-			throw new EmptyDataException("No University Satff in Database.");
+			throw new EmptyDataException("No University Staff in Database.");
 		return list;
 	}
 
