@@ -52,9 +52,8 @@ public class AdmissionController {
 		return new ResponseEntity<Admission>(c, HttpStatus.OK);
 	}
 
-	@PostMapping("/{courseId}/{staffId}/{applicantId}")
-	
-	public String saveAdmission(/*@RequestHeader("Authorization") String token,*/ @Valid @RequestBody Admission a,
+	/*@PostMapping("/{courseId}/{staffId}/{applicantId}")
+	public String saveAdmission(@RequestHeader("Authorization") String token, @Valid @RequestBody Admission a,
 			@PathVariable("courseId") int cid, @PathVariable("staffId") int sid, @PathVariable("applicantId") int aid) {
 		//String role = jwtUserDetailsService.getRoleFromToken(token);
 		//if (role.equalsIgnoreCase("COMMITTEE")) {
@@ -64,17 +63,19 @@ public class AdmissionController {
 		}
 		else
 			throw new DuplicateDataException("admission with id "+aid+" already exists");
-		} /*else {
+		} else {
 			return "Invalid Role";
-		}*/
-	//}
+		}
+	}*/
 
 	@PutMapping//("/update")
-	public ResponseEntity<?> updateAdmission(/*@RequestHeader("Authorization") String token,*/ @RequestBody Admission a) {
+	public String updateAdmission(/*@RequestHeader("Authorization") String token,*/@Valid @RequestBody Admission a) {
 //		String role = jwtUserDetailsService.getRoleFromToken(token);
 //		if (role.equalsIgnoreCase("COMMITTEE")) {
-			service.updateAdmission(a, a.getAdmissionId());
-			return new ResponseEntity<>("Admission Data Saved Successfully", HttpStatus.OK);
+			if(service.updateAdmission(a, a.getAdmissionId()))
+					return "Admission Data Saved Successfully";
+			else
+				throw new DataNotFoundException("update", "Admission with id " + a.getAdmissionId() + " not found");
 //		} else {
 //			return new ResponseEntity<>("Invalid role..", HttpStatus.BAD_REQUEST);
 //		}

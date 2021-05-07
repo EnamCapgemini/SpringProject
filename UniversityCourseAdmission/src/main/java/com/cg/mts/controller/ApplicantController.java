@@ -70,7 +70,7 @@ public class ApplicantController {
 			return "Applicant data saved successfully!!...";
 		}
 		else
-			throw new DataNotFoundException("update", "Staff with id " + applicant.getApplicantId() + " not found");
+			throw new DataNotFoundException("update", "Applicant with id " + applicant.getApplicantId() + " not found");
 	}
 			
 		/*else {
