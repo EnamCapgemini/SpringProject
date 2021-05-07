@@ -47,21 +47,23 @@ public class UniversityStaffMember implements Serializable {
 	private int staffId;
 	
 
-	/*@NotEmpty(message = "User Name must have to given")
+	@NotEmpty(message = "User Name must have to given")
 	@NotNull(message = "User Name can't be Null")
-	@Length(min = 2, max = 20)*/
+	@Length(min = 4, max = 20, message = "Name length should be 4-20 characters")
 	@Column(name = "USERNAME")
 	private String username;
 
-	/*@NotEmpty(message = "Password must have to given")
+	@NotEmpty(message = "Password must have to given")
 	@NotNull(message = "Password can't be Null")
-	@Length(min = 8, max = 20, message = "Password length should be 8-20 characters")*/
+	//@Length(min = 6, max = 20, message = "Password length should be 6-20 characters")
+	@Pattern(regexp="^[a-zA-Z0-9]{6,20}",message="password must contains one lowercase letter,"
+			+"one uppercase letter and a number (no special characters) and length within 6-20 characters")
 	@Column(name = "STAFF_PASSWORD")
 	private String password;
 
-	/*@NotEmpty(message = "Staff Role must have to given")
+	@NotEmpty(message = "Staff Role must have to given")
 	@NotNull(message = "Staff Role can't be Null")
-	//@Length(min = 2, max = 20)*/
+	//@Length(min = 2, max = 20)
 	@Column(name = "STAFF_ROLE")
 	private String role;
 
