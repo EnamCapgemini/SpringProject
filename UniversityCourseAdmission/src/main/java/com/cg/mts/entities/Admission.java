@@ -48,7 +48,8 @@ public class Admission implements Serializable {
 	@JoinColumn(name = "APPLICANT_APPLICANT_ID")
 	private Applicant applicant;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.DETACH)
+	
 	@JoinColumn(name = "ADMISSION_COMMITEE_STAFF_ID")
 	private AdmissionCommiteeMember admissioncommitee;
 
@@ -97,4 +98,11 @@ public class Admission implements Serializable {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		return "Admission [admissionId=" + admissionId + ", courseId=" + courseId + ", admissionDate=" + admissionDate
+				+ ", status=" + status + ", applicant=" + applicant + ", admissioncommitee=" + admissioncommitee + "]";
+	}
+
+	
 }
