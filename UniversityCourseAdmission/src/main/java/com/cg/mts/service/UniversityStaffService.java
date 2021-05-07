@@ -53,9 +53,9 @@ public class UniversityStaffService implements IUniversityStaffService {
 
 	// Method to add Staff Details as well User Details
 	public void addStaff(UniversityStaffMember staff) throws DuplicateDataException{
-		if(universityRepo.existsById(staff.getStaffId()))
+		if(universityRepo.existsById(staff.getStaffId())) {
 			throw new DuplicateDataException("Staff with id "+staff.getStaffId()+" already exists");
-
+		}
 		// User is created here in User table
 		DAOUser newUser = new DAOUser();
 		newUser.setUsername(staff.getUsername());
