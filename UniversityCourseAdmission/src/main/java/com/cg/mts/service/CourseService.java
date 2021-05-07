@@ -30,7 +30,7 @@ public class CourseService implements ICourseService {
 	// Method to add course
 	public void addCourse(Course c) throws DuplicateDataException {
 		if (repository.existsById(c.getCourseId()))
-			throw new DuplicateDataException("Course with" + c.getCourseId() + "Already exists");
+			throw new DuplicateDataException("Course with ID " + c.getCourseId() + " already exists");
 		repository.save(c);
 	}
 
