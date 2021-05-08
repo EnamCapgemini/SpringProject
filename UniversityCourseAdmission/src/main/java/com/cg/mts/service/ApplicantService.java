@@ -24,9 +24,6 @@ public class ApplicantService implements IApplicantService{
 	@Autowired
 	UserDao userRepository;
 	
-	@Autowired
-	private PasswordEncoder bcryptEncoder;
-	
 	public void addApplicant(Applicant applicant) throws DuplicateDataException {
 		if(repository.existsById(applicant.getApplicantId()))
 			throw new DuplicateDataException("Applicant with id "+applicant.getApplicantId()+" already exists!..");
@@ -34,9 +31,9 @@ public class ApplicantService implements IApplicantService{
 		// User is added here in User table
 		DAOUser newUser = new DAOUser();
 		newUser.setUsername(applicant.getUsername());
-		newUser.setPassword(bcryptEncoder.encode(applicant.getPassword()));
-		newUser.setRole("APPLICANT");
-		newUser.setLoggedIn(true);
+		newUser.setPassword(applicant.getPassword());
+		newUser.setRole(applicant.getRole());
+		newUser.setLoggedIn(false);
 		userRepository.save(newUser);
 		
 		repository.save(applicant);

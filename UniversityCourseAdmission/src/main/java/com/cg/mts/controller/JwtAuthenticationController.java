@@ -88,6 +88,11 @@ public class JwtAuthenticationController {
 		
 		return ResponseEntity.ok(userDetails);
 	}
+	
+	@GetMapping("/getRole")
+	public ResponseEntity<?> getRole(@RequestHeader("Authorization") String token) {
+		return ResponseEntity.ok(jwtuserDetailsService.getRoleFromToken(token));
+	}
 
 	private void authenticate(String username, String password) throws Exception {
 		try {

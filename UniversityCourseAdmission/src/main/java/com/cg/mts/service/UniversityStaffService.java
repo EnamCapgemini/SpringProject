@@ -32,9 +32,6 @@ public class UniversityStaffService implements IUniversityStaffService {
 	@Autowired
 	UserDao userRepository;
 
-	@Autowired
-	private PasswordEncoder bcryptEncoder;
-
 
 	// Method to get All Staffs
 	public List<UniversityStaffMember> viewAllStaffs() {
@@ -59,7 +56,7 @@ public class UniversityStaffService implements IUniversityStaffService {
 		// User is created here in User table
 		DAOUser newUser = new DAOUser();
 		newUser.setUsername(staff.getUsername());
-		newUser.setPassword(bcryptEncoder.encode(staff.getPassword()));
+		newUser.setPassword(staff.getPassword());
 		newUser.setRole(staff.getRole());
 		newUser.setLoggedIn(false);
 		userRepository.save(newUser);
