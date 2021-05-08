@@ -31,7 +31,7 @@ public class Course implements Serializable {
 	@Column(name = "COURSE_NAME")
 	private String courseName;
 
-	
+	@Pattern(regexp="^[0-9]{1}$*( +)YEARS",message="follow the format while filling course duration e.g.,5 YEARS(keep 'years' in capital case)")
 	@Column(name = "COURSE_DURATION")
 	private String courseDuration;
 
@@ -40,7 +40,7 @@ public class Course implements Serializable {
 
 	@Column(name = "COURSE_END_DATE")
 	private LocalDate courseEndDate;
-
+	@Pattern(regexp="^[0-9]{3,7}$",message="Enter valid number in course fees")
 	@Column(name = "COURSE_FEES")
 	private String courseFees;
 
