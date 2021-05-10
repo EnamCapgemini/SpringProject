@@ -53,7 +53,7 @@ public class AdmissionController {
 	}
 
 	/*@PostMapping("/{courseId}/{staffId}/{applicantId}")
-	public String saveAdmission(@RequestHeader("Authorization") String token, @Valid @RequestBody Admission a,
+	public String saveAdmission(/*@RequestHeader("Authorization") String token, @Valid @RequestBody Admission a,
 			@PathVariable("courseId") int cid, @PathVariable("staffId") int sid, @PathVariable("applicantId") int aid) {
 		//String role = jwtUserDetailsService.getRoleFromToken(token);
 		//if (role.equalsIgnoreCase("COMMITTEE")) {
@@ -63,9 +63,9 @@ public class AdmissionController {
 		}
 		else
 			throw new DuplicateDataException("admission with id "+aid+" already exists");
-		} else {
-			return "Invalid Role";
-		}
+		//} else {
+			//return "Invalid Role";
+		//}
 	}*/
 
 	@PutMapping//("/update")
