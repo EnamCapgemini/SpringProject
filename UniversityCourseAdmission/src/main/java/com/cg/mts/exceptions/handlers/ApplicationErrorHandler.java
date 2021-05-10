@@ -93,7 +93,7 @@ public class ApplicationErrorHandler extends ResponseEntityExceptionHandler {
 		Map<String, Object> errorBody = new LinkedHashMap<>();
 		errorBody.put("error", "DUPLICATE DATA EXISTS");
 		errorBody.put("timestamp", LocalDateTime.now());
-		errorBody.put("details", "Staff Id Exists");
+		errorBody.put("details", "Staff Id exists with role STAFF");
 
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 	}
